@@ -109,6 +109,23 @@ body{
 .brand{background:rgba(255,255,255,.9);padding:6px 18px 6px 6px;border-radius:999px;box-shadow:0 4px 16px rgba(190,70,100,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .stats{display:none!important}
 .hflag{font-style:normal;margin-right:12px;font-size:.85em;vertical-align:.04em}
+.today{display:grid;gap:10px;padding:14px 16px;border-radius:20px;background:linear-gradient(135deg,#FFF4F7,#FFF8EA);border:1.5px solid var(--line);margin:4px 0 6px}
+.today .th{display:flex;align-items:center;gap:8px;color:var(--red)}
+.today .th b{color:var(--ink)}
+.today h3{margin:-4px 0 0;font:italic 500 24px/1.15 var(--f-display);color:var(--ink)}
+.today .now{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:16px;background:#fff}
+.today .now .gi{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--gb);color:var(--gc);flex:none}
+.today .now b{display:block;font-size:15.5px;line-height:1.25}
+.today .now .small{display:block;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:10.5px}
+.today .row{margin:0}
+.linkb{margin-left:auto;border:0;background:none;color:var(--mute);font-weight:700;font-size:12.5px;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.tabs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--soft);position:sticky;top:-4px;z-index:2;margin:6px 0 2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:1 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;background:none;padding:9px 12px;border-radius:999px;font-weight:700;font-size:13.5px;color:var(--mute);min-height:40px;white-space:nowrap}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--red);box-shadow:0 2px 8px rgba(190,70,100,.14)}
+.tabpane>.sec:first-child,.tabpane>section:first-child{margin-top:4px}
+.cityrow .cc.on{outline:2px solid var(--red);outline-offset:1px}
+.phead #b-share{margin-left:auto}
 .kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
 .kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
 .kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
@@ -815,6 +832,9 @@ function openTrip(id){
   const tr = trips().find(t => t.id === id); if (!tr) return;
   S.trip = id; S.view = "trip"; S.step = null; S.play = null; S.sel = null;
   if (S.size === "min") setSize("half");
+  setHash("ruta-" + id);
+  const d = tr.plan ? todayIdx(tr) : null;
+  if (d != null && d >= 0 && d < (tr.stops || []).length) { S.step = d; render(); fitStage(tr.stops[d]); return; }
   fitTrip(tr); render();
 }
 function tripStats(tr){
@@ -822,6 +842,52 @@ function tripStats(tr){
   return Object.entries(c).filter(([k]) => MODES[k] && k !== "otro");
 }
 const WHEN = {manana:"Mañana", mediodia:"Mediodía", tarde:"Tarde", atardecer:"Atardecer", noche:"Noche", cuando:"Cuando quieras"};
+/* ---------- "Hoy": which day of the plan you're on and what comes next ---------- */
+const SLOTS = ["manana", "mediodia", "tarde", "atardecer", "noche"];
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const SKEY = id => "singladura.inicio." + id;
+function tripStart(tr){ if (tr.start) return tr.start; try { return localStorage.getItem(SKEY(tr.id)) || ""; } catch(e) { return ""; } }
+async function setTripStart(tr, start){
+  try { start ? localStorage.setItem(SKEY(tr.id), start) : localStorage.removeItem(SKEY(tr.id)); } catch(e) {}
+  if (S.canEdit) { tr.start = start || undefined; if (!start) delete tr.start; await Store.save(tr.id, tripData(tr)); }
+}
+function todayIdx(tr){
+  const st = tripStart(tr); if (!/^\d{4}-\d{2}-\d{2}$/.test(st)) return null;
+  const [y, m, d] = st.split("-").map(Number), t = new Date(); t.setHours(0, 0, 0, 0);
+  return Math.round((t - new Date(y, m - 1, d)) / 864e5);
+}
+const onTrip = tr => { const d = todayIdx(tr); return d != null && d >= 0 && d < (tr.stops || []).length; };
+function slotNow(){ const h = new Date().getHours() + new Date().getMinutes() / 60; return h < 12 ? 0 : h < 15.5 ? 1 : h < 17.5 ? 2 : h < 19 ? 3 : 4; }
+function nextItem(s0){
+  const items = (s0?.items || []).map((it, j) => ({it, j})).filter(x => !x.it.done);
+  if (!items.length) return null;
+  const now = slotNow();
+  return items.find(x => SLOTS.indexOf(x.it.when) >= now || x.it.when === "cuando") || items[items.length - 1];
+}
+function todayHTML(tr){
+  const st = tr.stops || [], d = todayIdx(tr);
+  if (d == null) return `<section class="today ask"><div class="th">${ic("sun", "sm")}<b>¿Ya estáis de viaje?</b></div>
+    <span class="muted small">Dime qué día es hoy y te iré diciendo qué toca en cada momento.</span>
+    <div class="row">${st.map((_, i) => `<button class="btn sm" data-today="${i}">Hoy es el día ${i + 1}</button>`).join("")}</div></section>`;
+  if (d < 0) return `<section class="today soon"><div class="th">${ic("cal", "sm")}<b>${d === -1 ? "Mañana empieza el viaje" : `Faltan ${-d} días`}</b></div><button class="linkb" id="b-today-reset">Cambiar fecha</button></section>`;
+  if (d >= st.length) return `<section class="today done"><div class="th">${ic("check", "sm")}<b>Viaje terminado</b></div><span class="muted small">Ya podéis valorar lo que os falte.</span><button class="linkb" id="b-today-reset">Cambiar fecha</button></section>`;
+  const s0 = st[d], nx = nextItem(s0), g = nx ? (GT[nx.it.t] || GT.ver) : null, left = (s0.items || []).filter(it => !it.done).length;
+  return `<section class="today on">
+    <div class="th">${ic("sun", "sm")}<span class="kicker" style="margin:0">Hoy · Día ${d + 1}</span><button class="linkb" id="b-today-reset">Cambiar</button></div>
+    <h3>${esc(s0.n)}</h3>
+    ${nx ? `<div class="now" style="--gc:${g.c};--gb:${g.bg}"><span class="gi">${ic(g.ic, "sm")}</span><span><span class="muted small">${slotNow() <= SLOTS.indexOf(nx.it.when) || nx.it.when === "cuando" ? "Ahora toca" : "Os queda"}</span><b>${esc(nx.it.n)}</b></span></div>
+      <div class="mapl">${isFinite(nx.it.lat) ? `<button data-mapit="${d}|${nx.j}">${ic("pin", "sm")}Ver en el mapa</button><a class="go" href="${dirUrl(nx.it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>` : ""}${S.canEdit ? `<button data-done="${d}|${nx.j}">${ic("check", "sm")}Hecho</button>` : ""}<button data-go-today="${d}">Todo el día (${left})</button></div>`
+      : `<span class="muted small">Habéis hecho todo lo del día. ¡A descansar!</span>`}
+  </section>`;
+}
+function wireToday(tr){
+  panel.querySelectorAll("[data-today]").forEach(b => b.onclick = async () => {
+    const k = +b.dataset.today, t = new Date(); t.setDate(t.getDate() - k);
+    await setTripStart(tr, ymd(t)); S.step = k; renderTrip(); fitStage(tr.stops[k]);
+  });
+  const r = $("#b-today-reset"); if (r) r.onclick = async () => { await setTripStart(tr, ""); renderTrip(); };
+  panel.querySelectorAll("[data-go-today]").forEach(b => b.onclick = () => { const i = +b.dataset.goToday; markStep(i); fitStage(tr.stops[i]); panel.querySelector(`.tl li[data-step="${i}"]`)?.scrollIntoView({block: "start", behavior: reduced ? "auto" : "smooth"}); });
+}
 function planProgress(tr){
   const all = (tr.stops || []).flatMap(s0 => s0.items || []), done = all.filter(it => it.done).length;
   return all.length ? `<span class="chipmeta">${ic("check", "sm")}${done}/${all.length} hechos</span>` : "";
@@ -861,13 +927,15 @@ function renderTrip(){
   const tr = curTrip(); if (!tr) return goList();
   const st = tr.stops || [];
   panel.innerHTML = shell(`
-    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}${esc(countryName(tr.country) || "Volver")}</button></div>
+    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}${esc(countryName(tr.country) || "Volver")}</button><button class="btn sm" id="b-share">${ic("share", "sm")}Compartir</button></div>
+    ${tr.plan && onTrip(tr) ? todayHTML(tr) : ""}
     <div class="hero">
-      <div class="kicker">${tr.plan ? "Próximo viaje" : "Mi ruta"}</div>
+      <div class="kicker">${tr.plan ? (onTrip(tr) ? "De viaje" : "Próximo viaje") : "Mi ruta"}</div>
       <h2>${esc(tr.title || "Ruta")}</h2>
       <div class="meta"><span class="chipmeta">${ic(tr.plan ? "cal" : "pin", "sm")}${st.length} ${tr.plan ? "días" : "paradas"}</span>${tr.plan ? planProgress(tr) : ""}${tripStats(tr).map(([k, n]) => `<span class="chipmeta" style="color:${MODES[k].col}">${ic(MODES[k].ic, "sm")}${n}</span>`).join("")}${tr.date ? `<span class="chipmeta">${ic("cal", "sm")}${fmtDate(tr.date)}</span>` : ""}</div>
     </div>
     <button class="btn primary" id="b-play"${st.length < 2 || tr.plan ? " hidden" : ""}>${ic(S.play ? "pause" : "play", "sm")}${S.play ? "Pausar" : "Ver la ruta en movimiento"}</button>
+    ${tr.plan && st.length && !onTrip(tr) ? todayHTML(tr) : ""}
     ${tr.intro ? `<p class="tintro">${esc(tr.intro)}</p>` : ""}
     ${!st.length ? `<div class="empty">${ic("route")}<b>Ruta sin etapas</b><span>Añade la primera parada del viaje.</span></div>` : ""}
     <ol class="tl">${st.map((s0, i) => { const m = modeOf(s0); return `<li data-step="${i}" class="${S.step === i ? "cur" : ""}" style="--lc:${m.col}">
@@ -899,7 +967,8 @@ function renderTrip(){
     if (isPhone()) setSize("half");
   };
   panel.querySelectorAll("[data-edit]").forEach(b => b.onclick = () => openStage(+b.dataset.edit));
-  wirePlanItems(tr);
+  wirePlanItems(tr); wireToday(tr);
+  const bsh = $("#b-share"); if (bsh) bsh.onclick = () => shareLink("ruta-" + tr.id, tr.title || "Mi ruta", tr.plan ? "Mi plan de viaje" : "Mi ruta");
   const bas = $("#b-addstage"); if (bas) bas.onclick = () => openStage(null);
   const btt = $("#b-telltrip"); if (btt) btt.onclick = () => openChat({trip:tr.id, country:tr.country});
   panel.querySelectorAll(".polas img").forEach(im => im.onclick = () => { $("#lbimg").src = im.dataset.full; $("#lightbox").hidden = false; });
@@ -1230,6 +1299,11 @@ function initMap(){
   map.once("idle", closeAttrib); setTimeout(closeAttrib, 1500);
   map.on("load", () => {
     syncMap();
+    if (S.view !== "list") { const tr = curTrip(); map.jumpTo({padding: pad()});
+      if (S.view === "country" && S.country) fitCountry(S.country);
+      else if (S.view === "trip" && tr) { if (S.step != null) fitStage(tr.stops[S.step]); else fitTrip(tr); }
+      else if (S.view === "detail") { const p = places().find(x => x.id === S.sel); if (p) flyTo(p.lon, p.lat, 14); }
+      return; }
     if (!reduced && S.view === "list") map.easeTo({center: [-12, 30], zoom: worldZoom(), padding: pad(), duration: 1800});
     else map.jumpTo({padding: pad(), zoom: S.view === "list" ? worldZoom() : zoomNow()});
   });
@@ -1466,6 +1540,7 @@ async function markCountry(cc, on){
   return ok;
 }
 function openCountry(cc, flyIt){
+  if (S.country !== cc) S.ctab = null;
   S.city = null; S.country = cc; S.sel = null; S.view = "country"; S.share = null; S.confirmDel = false;
   if (flyIt && byId.get(cc)) fitCountry(cc);
   setHash("pais-" + cc.toLowerCase());
@@ -1641,46 +1716,56 @@ function guideText(cc){
 function renderCountry(){
   const cc = S.country, ps = places().filter(p => p.country === cc).sort((a,b) => (b.date||"").localeCompare(a.date||""));
   const marked = marks().some(m => m.country === cc), visited = marked || ps.length, ro = !S.canEdit;
-  const totals = CATS.map(c => ps.reduce((n, p) => n + (p[c.k]?.length || 0), 0));
+  const tr = trips().filter(t => t.country === cc), gd = guideOf(cc), hasShare = ps.length || tr.length || gd;
+  const tabs = [gd && ["guia", "Guía", "compass"], tr.length && ["rutas", tr.length === 1 ? "Ruta" : "Rutas", "route"], ps.length && ["sitios", "Lugares", "pin"], hasShare && ["amigos", "Pasárselo", "share"]].filter(Boolean);
+  if (!tabs.some(t => t[0] === S.ctab)) S.ctab = tabs[0]?.[0] || null;
+  const tab = S.ctab;
+  const pane = {
+    guia: () => gd ? guideHTML(gd) : "",
+    rutas: () => tripCards(tr),
+    sitios: () => `<section class="sec"><ul class="list">${ps.map(p => placeItem(p, false)).join("")}</ul></section>`,
+    amigos: () => `<section class="sec"><div class="sectitle">${ic("share")}Para amigos que vayan</div>
+      <span class="muted small">Mándales el enlace directo a ${esc(countryName(cc))}: lo abren en el móvil sin cuentas ni contraseñas.</span>
+      <div class="row"><button class="btn primary grow" id="b-sharec">${ic("share", "sm")}Compartir enlace</button><button class="btn grow" id="b-copy">${ic("copy", "sm")}Copiar como texto</button></div>
+      ${S.share === cc ? `<textarea class="inp sharebox" id="sharebox" readonly aria-label="Recomendaciones">${esc(guideText(cc))}</textarea><span class="muted small">Selecciona el texto y cópialo para mandarlo por WhatsApp.</span>` : ""}</section>`
+  };
   panel.innerHTML = shell(`
-    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Todos los países</button></div>
+    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Todos los países</button>${hasShare ? `<button class="btn sm" id="b-share">${ic("share", "sm")}Compartir</button>` : ""}</div>
     <div class="hero">
       <h2 style="font-size:36px"><span class="hflag" aria-hidden="true">${flag(cc)}</span>${esc(countryName(cc))}</h2>
       <div class="meta">
         <span class="chipmeta" style="${visited ? `background:${colorFor(cc)};color:#fff` : ""}">${ic(visited ? "check" : "flag", "sm")}${visited ? "Visitado" : "Sin visitar"}</span>
-        ${ps.length ? CATS.map((c, i) => `<span class="chipmeta ${c.cls}" style="background:var(--cbg)">${ic(c.icon, "sm")}${totals[i]}</span>`).join("") : ""}
+        ${gd?.when ? `<span class="chipmeta">${ic("sun", "sm")}${esc(String(gd.when).split(/[.;,(]/)[0].trim().slice(0, 40))}</span>` : ""}
       </div>
     </div>
-    ${citiesOf(cc).length || (!ro && visited) ? `<section class="sec"><div class="sectitle">${ic("pin")}Ciudades y zonas</div>
-      ${citiesOf(cc).length ? `<div class="ccs">${citiesOf(cc).map((c, i) => cityCoord(cc, c) ? `<button class="cc city" data-city="${i}" style="--sw:${colorFor(cc)}"><span class="sw"></span>${esc(cityName(c))}</button>` : `<span class="cc city" style="cursor:default">${esc(cityName(c))}</span>`).join("")}</div>` : ""}
-      ${ro ? "" : `<div class="field"><input class="inp" data-addcity="${cc}" placeholder="＋ Añade una ciudad o zona" autocomplete="off" enterkeyhint="done"></div>`}</section>` : ""}
+    ${citiesOf(cc).length || (!ro && visited) ? `<div class="ccs cityrow">${citiesOf(cc).map((c, i) => cityCoord(cc, c) ? `<button class="cc city ${S.city === cityName(c) ? "on" : ""}" data-city="${i}" style="--sw:${colorFor(cc)}"><span class="sw"></span>${esc(cityName(c))}</button>` : `<span class="cc city" style="cursor:default">${esc(cityName(c))}</span>`).join("")}</div>
+      ${ro ? "" : `<div class="field"><input class="inp" data-addcity="${cc}" placeholder="＋ Añade una ciudad o zona" autocomplete="off" enterkeyhint="done"></div>`}` : ""}
     ${ro ? "" : `<div class="row">
       ${ps.length ? "" : `<button class="btn ${marked ? "on" : ""} grow" id="b-mark">${ic(marked ? "check" : "flag", "sm")}${marked ? "Visitado · quitar" : "Marcar como visitado"}</button>`}
       <button class="btn ${ps.length ? "primary" : ""} grow" id="b-addhere">${ic("plus", "sm")}Añadir un lugar aquí</button>
       <button class="btn grow" id="b-newtrip">${ic("route", "sm")}Crear una ruta</button>
       <button class="btn grow" id="b-tellc">${ic("chat", "sm")}Cuéntame algo</button></div>`}
-    ${tripCards(trips().filter(t => t.country === cc))}
-    ${guideOf(cc) ? guideHTML(guideOf(cc)) : ""}
-    ${ps.length || trips().some(t => t.country === cc) ? `${ps.length ? `<section class="sec"><div class="sectitle">${ic("pin")}Lugares <span class="n">${ps.length}</span></div><ul class="list">${ps.map(p => placeItem(p, false)).join("")}</ul></section>` : ""}
-      <section class="sec"><div class="sectitle">${ic("share")}Para amigos que vayan</div>
-        <button class="btn" id="b-copy">${ic("copy", "sm")}Copiar recomendaciones</button>
-        ${S.share === cc ? `<textarea class="inp sharebox" id="sharebox" readonly aria-label="Recomendaciones">${esc(guideText(cc))}</textarea><span class="muted small">Selecciona el texto y cópialo para mandarlo por WhatsApp.</span>` : `<span class="muted small">Copia en un texto todo lo que viste, hiciste y comiste en ${esc(countryName(cc))}, listo para pegar en un chat.</span>`}
-      </section>`
+    ${tabs.length > 1 ? `<div class="tabs" role="tablist">${tabs.map(([k, l, icn]) => `<button role="tab" aria-selected="${k === tab}" data-tab="${k}">${ic(icn, "sm")}${l}</button>`).join("")}</div>` : ""}
+    ${tab ? `<div class="tabpane" role="tabpanel">${pane[tab]()}</div>`
       : `<div class="empty">${ic(visited ? "check" : "flag")}<span>${visited ? "Has estado aquí, pero aún no hay lugares apuntados." : ro ? "Sin recomendaciones en este país." : "Pulsa «Marcar como visitado» para pintarlo en tu mapa."}</span></div>`}`);
   wireShell();
   $("#b-back").onclick = goList;
+  panel.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { S.ctab = b.dataset.tab; keepScroll(renderCountry); });
   panel.querySelectorAll("[data-trip]").forEach(b => b.onclick = () => openTrip(b.dataset.trip));
   panel.querySelectorAll("details.gcity").forEach(d => d.addEventListener("toggle", () => {
     if (!d.open) return;
     const c = guideOf(cc)?.cities?.[+d.dataset.gc]; const g = c && (isFinite(c.lat) ? c : findPlace(c.n, cc));
     if (g) { S.city = c.n; flyTo(g.lon, g.lat, Math.max(zoomNow(), 11)); syncMap(); }
   }));
-  panel.querySelectorAll("[data-city]").forEach(b => b.onclick = () => { const c = citiesOf(cc)[+b.dataset.city], g = cityCoord(cc, c); if (!g) return; S.city = cityName(c); flyTo(g.lon, g.lat, Math.max(zoomNow() + 1.5, 12)); syncMap(); if (isPhone()) setSize("min"); renderMinbar(); });
+  panel.querySelectorAll("[data-city]").forEach(b => b.onclick = () => { const c = citiesOf(cc)[+b.dataset.city], g = cityCoord(cc, c); if (!g) return; S.city = cityName(c); flyTo(g.lon, g.lat, Math.max(zoomNow() + 1.5, 12)); syncMap(); panel.querySelectorAll(".cityrow .cc").forEach(x => x.classList.toggle("on", x === b)); });
   wireCityEditors(() => { if (S.mode !== "db") renderCountry(); });
   const bm = $("#b-mark"); if (bm) bm.onclick = async () => { bm.disabled = true; await markCountry(cc, !marked); };
   const ba = $("#b-addhere"); if (ba) ba.onclick = () => openForm(null, cc);
   const bt = $("#b-newtrip"); if (bt) bt.onclick = () => createTrip(cc);
   const btc = $("#b-tellc"); if (btc) btc.onclick = () => openChat({country:cc});
+  const share = () => shareLink("pais-" + cc.toLowerCase(), countryName(cc), "Mis recomendaciones de viaje");
+  const bs = $("#b-share"); if (bs) bs.onclick = share;
+  const bs2 = $("#b-sharec"); if (bs2) bs2.onclick = share;
   const bc = $("#b-copy"); if (bc) bc.onclick = () => {
     const text = guideText(cc);
     const fallback = () => { S.share = cc; renderCountry(); const sb = $("#sharebox"); if (sb) { sb.focus(); sb.select(); } };
@@ -1932,6 +2017,12 @@ function renderLogin(){
 }
 let toastT;
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2800); }
+async function shareLink(hash, title, kind){
+  const url = location.origin + location.pathname + "#" + hash;
+  const text = `${kind}: ${title}`;
+  try { if (navigator.share) { await navigator.share({title: `${title} · Singladura`, text, url}); return; } } catch(e) { if (e?.name === "AbortError") return; }
+  try { await navigator.clipboard.writeText(url); toast("Enlace copiado. Pégalo en WhatsApp."); } catch(e) { prompt("Copia este enlace:", url); }
+}
 function setHash(h){ try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch(e) {} }
 let firstLoad = true;
 function afterLoad(){
@@ -1939,6 +2030,8 @@ function afterLoad(){
     firstLoad = false;
     const m = /^#pais-([a-z]{2})$/.exec(location.hash);
     if (m && byId.get(m[1].toUpperCase())) return openCountry(m[1].toUpperCase(), true);
+    const r = /^#ruta-(.+)$/.exec(location.hash);
+    if (r && trips().some(t => t.id === decodeURIComponent(r[1]))) return openTrip(decodeURIComponent(r[1]));
   }
   const ae = document.activeElement;
   if (S.view === "form" || S.view === "stage" || ((S.view === "checklist" || S.view === "country") && ae && panel.contains(ae) && ae.matches("input[type=search], input[data-addcity]"))) renderStats(); else render();
@@ -1946,6 +2039,11 @@ function afterLoad(){
 
 /* ---------- boot ---------- */
 addEventListener("resize", layout);
+addEventListener("hashchange", () => {
+  const m = /^#pais-([a-z]{2})$/.exec(location.hash), r = /^#ruta-(.+)$/.exec(location.hash);
+  if (m && byId.get(m[1].toUpperCase())) openCountry(m[1].toUpperCase(), true);
+  else if (r && trips().some(t => t.id === decodeURIComponent(r[1]))) openTrip(decodeURIComponent(r[1]));
+});
 addEventListener("keydown", e => { if (e.key === "Escape") { if (!$("#lightbox").hidden) $("#lightbox").hidden = true; else if (S.view === "detail" || S.view === "country") goList(); } });
 layout(); initMap(); render();
 if ("serviceWorker" in navigator && location.protocol === "https:") addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
