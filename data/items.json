@@ -2197,5 +2197,37 @@
     ]
    }
   ]
+ },
+ {
+  "id": "dest-lisboa",
+  "kind": "dest",
+  "slug": "lisboa",
+  "country": "PT",
+  "city": "Lisboa",
+  "lat": 38.7139,
+  "lon": -9.1394,
+  "radius": 25,
+  "tagline": "Miradores al atardecer, tranvías, pastéis y ostras a 1 €.",
+  "cover": "photos/lis22-santacatarina.jpg",
+  "story": [
+   "photos/lis22-santacatarina.jpg",
+   "photos/lis26-v-mirador.mp4",
+   "photos/lis22-tranvia.jpg",
+   "photos/lis22-pasteis.jpg",
+   "photos/lis22-pink-street.jpg",
+   "photos/lis26-ostras.jpg",
+   "photos/lis26-fotomaton.jpg",
+   "photos/lis22-torre-belem.jpg",
+   "photos/lis26-v-ginjinha.mp4",
+   "photos/lis22-bica.jpg",
+   "photos/lis26-cena.jpg"
+  ],
+  "tips": [
+   "Lisboa es todo cuestas: calzado cómodo y tranvía, elevador o Uber para subir.",
+   "Si coincide con la maratón o algún evento, el centro se dispara. Moscavide sale mucho más barato y el Uber al centro cuesta unos 7 €.",
+   "Para el atardecer: Santa Catarina (más joven y con el puente enfrente) o São Pedro de Alcântara.",
+   "Si vas en coche desde España, para en Évora: precioso, muy barato y a mitad de camino.",
+   "Pide la ginjinha en vasito de chocolate y cómete el vaso."
+  ]
  }
 ]

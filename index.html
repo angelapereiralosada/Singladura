@@ -239,6 +239,73 @@ body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
 .collage img{width:100%;height:100%;object-fit:cover;display:block}
 .tintro.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .stopb .num.ph{width:54px;height:54px;flex:none}
+.dest{position:fixed;inset:0;z-index:28;overflow-y:auto;overscroll-behavior:contain;background:#FFF7F9;-webkit-overflow-scrolling:touch}
+.dhero{position:relative;height:min(74vh,640px);overflow:hidden;background:#1d1830}
+.dslides,.dslide{position:absolute;inset:0;width:100%;height:100%}
+.dslide{object-fit:cover;opacity:0;transition:opacity 1.2s ease;transform:scale(1.04)}
+.dslide.on{opacity:1;animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+.dshade{position:absolute;inset:0;background:linear-gradient(rgba(20,16,40,.35),transparent 30%,transparent 45%,rgba(20,16,40,.82))}
+.dtop{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top, 0px)) 16px}
+.dround{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:grid;place-items:center}
+.dtitle{position:absolute;left:0;right:0;bottom:0;padding:0 22px 26px;color:#fff}
+.dkick{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+.dtitle h1{margin:4px 0 2px;font:italic 500 clamp(56px,16vw,96px)/.95 var(--f-display);letter-spacing:-.02em}
+.dtitle p{margin:6px 0 14px;font-size:17px;opacity:.92;max-width:30ch}
+.dstory{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:12px 20px;background:#fff;color:var(--ink);font-weight:700;font-size:15px}
+.dtabs{position:sticky;top:0;z-index:3;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 16px;background:rgba(255,247,249,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.dtabs::-webkit-scrollbar{display:none}
+.dtabs button{flex:none;display:inline-flex;align-items:center;gap:7px;border:0;border-radius:999px;padding:6px 14px 6px 6px;background:#fff;font-weight:700;font-size:14px;color:var(--ink);box-shadow:0 2px 10px rgba(150,40,70,.12)}
+.dtabs button span{width:28px;height:28px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center}
+.dtabs em{font-style:normal;color:var(--mute)}
+.dbody{max-width:760px;margin:0 auto;padding:6px 16px calc(40px + env(safe-area-inset-bottom, 0px))}
+.dsec{margin:22px 0 8px}
+.dsec h2{display:flex;align-items:center;gap:10px;margin:0 0 14px;font:italic 500 30px/1.1 var(--f-display);color:var(--ink)}
+.dsec h2 span{width:40px;height:40px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center}
+.dgrid{display:grid;gap:18px}
+@media (min-width:700px){.dgrid{grid-template-columns:1fr 1fr}}
+.dcard{background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 10px 30px rgba(150,40,70,.12)}
+.dmedia{position:relative;display:block;width:100%;aspect-ratio:4/3;border:0;padding:0;background:var(--gb);color:var(--c)}
+.dmedia img{width:100%;height:100%;object-fit:cover;display:block}
+.dnoimg{position:absolute;inset:0;display:grid;place-items:center}.dnoimg .ic{width:54px;height:54px}
+.dplay{position:absolute;right:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(20,16,40,.6);color:#fff;font-size:13px;font-weight:700}
+.dtext{padding:14px 18px 18px;display:grid;gap:8px}
+.dhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.dhead h4{margin:0;font:italic 500 25px/1.1 var(--f-display);color:var(--ink)}
+.dstars{color:#E8A71C;font-size:15px;white-space:nowrap}
+.dtext p{margin:0;font-size:16px;line-height:1.45;color:#4B4767}
+.dgo{display:flex;gap:8px;margin-top:4px}
+.dgo a,.dgo button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;border-radius:14px;border:0;background:#F4F1F7;color:var(--ink);font-weight:700;font-size:14px;text-decoration:none}
+.dgo .mgi{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#4285F4;font:700 12px/1 var(--f-body)}
+.dgo a:nth-child(2) .mgi{background:#24254A;color:#fff}
+.dtips{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.dtips li{position:relative;padding:16px 18px 16px 52px;border-radius:20px;background:#FFF4D6;font-size:16px;line-height:1.45;color:#4A3A10}
+.dtips li::before{content:"💡";position:absolute;left:16px;top:14px;font-size:20px}
+.dmapbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:26px 0 0;min-height:58px;border:0;border-radius:20px;background:var(--ink);color:#fff;font-weight:700;font-size:16px}
+.story{position:fixed;inset:0;z-index:60;background:#000;color:#fff;display:grid}
+.smedia{position:absolute;inset:0;display:grid;place-items:center}
+.smedia img,.smedia video{width:100%;height:100%;object-fit:cover}
+.smedia video{object-fit:contain}
+.sbars{position:absolute;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top, 0px));z-index:3;display:flex;gap:4px}
+.sbars span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.sbars i{display:block;height:100%;width:0;background:#fff}
+.sbars .done i{width:100%}
+.sclose{position:absolute;right:10px;top:calc(22px + env(safe-area-inset-top, 0px));z-index:4;width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;display:grid;place-items:center}
+.ssound{position:absolute;left:50%;top:calc(70px + env(safe-area-inset-top, 0px));transform:translateX(-50%);z-index:4;border:0;border-radius:999px;padding:8px 14px;background:rgba(0,0,0,.45);color:#fff;font-weight:700;font-size:13px}
+.scap{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:60px 22px calc(28px + env(safe-area-inset-bottom, 0px));background:linear-gradient(transparent,rgba(0,0,0,.75))}
+.scap h3{margin:8px 0 4px;font:italic 500 34px/1.05 var(--f-display);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.scap p{margin:0;font-size:17px;color:#fff;opacity:.95;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.scat{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--c);font-weight:700;font-size:12.5px}
+.sprev,.snext{position:absolute;top:0;bottom:0;z-index:2;border:0;background:none}
+.sprev{left:0;width:33%}.snext{right:0;width:67%}
+.dcards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,46%);gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.dcover{position:relative;aspect-ratio:3/4;border:0;padding:0;border-radius:22px;overflow:hidden;background:#2B2540;color:#fff;text-align:left;box-shadow:0 8px 20px rgba(150,40,70,.2)}
+.dcover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dcover span{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(20,16,40,.8))}
+.dcover b{display:block;font:italic 500 28px/1 var(--f-display)}
+.dcover em{display:block;font-style:normal;font-size:12.5px;opacity:.9;margin-top:4px}
+.dcover.wide{display:block;width:100%;aspect-ratio:16/9;margin:6px 0 12px}
+body.deston .top,body.deston #zloc,body.deston .maplegend{visibility:hidden}
 .kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
 .kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
 .kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
@@ -603,6 +670,8 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
 <div class="maptip" id="maptip" hidden></div>
 <div class="maplegend" id="maplegend" hidden></div>
 <div class="spotcard" id="spotcard" hidden role="dialog" aria-label="Sitio"></div>
+<section class="dest" id="dest" hidden aria-label="Guía"></section>
+<div class="story" id="story" hidden role="dialog" aria-label="Historia"></div>
 <div class="mapfail" id="mapfail" hidden>No se ha podido cargar el mapa. Comprueba la conexión y recarga.</div>
 
 <div class="top">
@@ -716,7 +785,8 @@ $("#gz").innerHTML = GZ.map(g => `<option value="${esc(g.n)}" label="${esc(count
 
 /* ---------- state ---------- */
 const S = { items: [], loaded:false, view:"list", sel:null, country:null, form:null, q:"", mode:"init", confirmDel:false, canEdit:false, size:"half", share:null };
-const places = () => S.items.filter(p => p.kind !== "country" && p.kind !== "trip" && p.kind !== "guide" && p.kind !== "wish");
+const places = () => S.items.filter(p => p.kind !== "country" && p.kind !== "trip" && p.kind !== "guide" && p.kind !== "wish" && p.kind !== "dest");
+const dests = () => S.items.filter(p => p.kind === "dest");
 const wishes = () => S.items.filter(p => p.kind === "wish");
 const wishSet = () => new Set(wishes().map(w => w.country).filter(cc => !visitedSet().has(cc)));
 const guideOf = cc => S.items.find(x => x.kind === "guide" && x.country === cc) || null;
@@ -1656,6 +1726,94 @@ $("#zloc").onclick = () => {
     if (meFirst) { meFirst = false; const c = map.getCenter(), far = zoomNow() < 9 || Math.hypot(c.lng - ll[0], c.lat - ll[1]) > .3; flyTo(ll[0], ll[1], far ? 15 : Math.max(zoomNow(), 15)); }
   }, () => { stopLocate(); toast("Activa la ubicación para Safari en Ajustes › Privacidad"); }, {enableHighAccuracy: true, maximumAge: 15000});
 };
+/* ---------- city guides: what to see, eat, drink and where to sleep ---------- */
+const DSEC = [["ver", "Qué ver y hacer", ["ver", "hacer"], "eye", "#3552E0"], ["comer", "Dónde comer", ["comer"], "food", "#9A6400"], ["ocio", "Dónde tomar algo", ["ocio"], "glass", "#D71F2B"], ["dormir", "Dónde dormir", ["dormir"], "bed", "#24254A"]];
+let DEST = null, heroT = 0;
+function destItems(d){
+  const out = [], seen = new Set();
+  for (const tr of trips().filter(t => !t.plan && t.country === d.country)) (tr.stops || []).forEach((s0, i) => (s0.items || []).forEach((it, j) => {
+    if (!isFinite(it.lat) || kmTo(d, it) > (d.radius || 25) || seen.has(it.n)) return; seen.add(it.n); out.push({tr, i, j, it});
+  }));
+  const score = x => (x.it.rating || 0) * 10 + (coverOf(x.it) ? 5 : 0) + ((x.it.videos || []).length ? 1 : 0);
+  return out.sort((a, b) => score(b) - score(a));
+}
+function mediaOf(it){ return [...(it.photos || []).map(src => ({src})), ...(it.videos || []).map(v => ({v}))]; }
+function destStory(d, list){
+  const byMedia = new Map(); list.forEach(x => mediaOf(x.it).forEach(m => byMedia.set(m.src || m.v, x)));
+  const picks = (d.story || []).map(src => ({m: src.endsWith(".mp4") ? {v: src} : {src}, x: byMedia.get(src)})).filter(o => o.x);
+  if (picks.length) return picks;
+  return list.filter(x => coverOf(x.it)).slice(0, 10).map(x => ({m: mediaOf(x.it)[0], x}));
+}
+function openDest(id, push = true){
+  const d = dests().find(x => x.id === id); if (!d) return;
+  DEST = id; if (push) setHash(d.slug || id.replace(/^dest-/, ""));
+  renderDest(); const el = $("#dest"); el.hidden = false; el.scrollTop = 0; document.body.classList.add("deston");
+}
+function closeDest(){ DEST = null; clearInterval(heroT); $("#dest").hidden = true; document.body.classList.remove("deston"); setHash(""); }
+function renderDest(){
+  const d = dests().find(x => x.id === DEST), el = $("#dest"); if (!d) return closeDest();
+  const list = destItems(d), story = destStory(d, list), years = [...new Set(list.map(x => (x.tr.date || "").slice(0, 4)).filter(Boolean))].sort();
+  const card = x => { const it = x.it, g = GT[it.t] || GT.ver, cov = coverOf(it), n = mediaOf(it).length;
+    return `<article class="dcard" style="--c:${g.c};--gb:${g.bg}">
+      <button class="dmedia" data-dmedia="${esc(x.tr.id)}|${x.i}|${x.j}" aria-label="Ver fotos de ${esc(it.n)}">${cov ? `<img src="${esc(photoSrc(cov))}" alt="" loading="lazy">` : `<span class="dnoimg">${ic(g.ic, "lg")}</span>`}
+        ${(it.videos || []).length ? `<span class="dplay">▶ vídeo</span>` : n > 1 ? `<span class="dplay">${n} fotos</span>` : ""}</button>
+      <div class="dtext"><div class="dhead"><h4>${esc(it.n)}</h4>${it.rating ? `<span class="dstars">${"★".repeat(it.rating)}</span>` : ""}</div>
+        ${it.txt ? `<p>${esc(it.txt)}</p>` : ""}
+        ${isFinite(it.lat) ? `<div class="dgo"><a href="${gmaps(it)}" target="_blank" rel="noopener" aria-label="Abrir en Google Maps"><span class="mgi">G</span>Google</a><a href="${amaps(it)}" target="_blank" rel="noopener" aria-label="Abrir en Apple Maps"><span class="mgi">${ic("map", "sm")}</span>Apple</a><button data-dmap="${esc(x.tr.id)}|${x.i}|${x.j}" aria-label="Ver en el mapa">${ic("pin", "sm")}Mapa</button></div>` : ""}
+      </div></article>`; };
+  const secs = DSEC.map(([k, l, ts, icn, col]) => ({k, l, icn, col, items: list.filter(x => ts.includes(x.it.t))})).filter(sc => sc.items.length);
+  el.innerHTML = `
+    <div class="dhero">
+      <div class="dslides">${story.map((o, k) => o.m.v ? `<video class="dslide ${k ? "" : "on"}" src="${esc(photoSrc(o.m.v))}" poster="${esc(photoSrc(posterOf(o.m.v)))}" muted playsinline loop preload="${k < 2 ? "auto" : "none"}"></video>` : `<img class="dslide ${k ? "" : "on"}" src="${esc(photoSrc(o.m.src))}" alt="" ${k > 1 ? `loading="lazy"` : ""}>`).join("")}</div>
+      <div class="dshade"></div>
+      <div class="dtop"><button class="dround" id="d-close" aria-label="Volver">${ic("back")}</button><button class="dround" id="d-share" aria-label="Compartir">${ic("share")}</button></div>
+      <div class="dtitle"><span class="dkick">${flag(d.country)} ${esc(countryName(d.country))}${years.length ? ` · ${years.join(" y ")}` : ""}</span>
+        <h1>${esc(d.city)}</h1>${d.tagline ? `<p>${esc(d.tagline)}</p>` : ""}
+        ${story.length ? `<button class="dstory" id="d-story">${ic("play", "sm")}Ver la historia</button>` : ""}</div>
+    </div>
+    <nav class="dtabs">${secs.map(sc => `<button data-dsec="${sc.k}" style="--c:${sc.col}"><span>${ic(sc.icn, "sm")}</span>${sc.l.replace(/^Dónde |^Qué /, m => m)}<em>${sc.items.length}</em></button>`).join("")}${(d.tips || []).length ? `<button data-dsec="tips" style="--c:#9A6400"><span>${ic("bulb", "sm")}</span>Consejos</button>` : ""}</nav>
+    <div class="dbody">
+      ${secs.map(sc => `<section class="dsec" id="ds-${sc.k}"><h2 style="--c:${sc.col}"><span>${ic(sc.icn)}</span>${sc.l}</h2><div class="dgrid">${sc.items.map(card).join("")}</div></section>`).join("")}
+      ${(d.tips || []).length ? `<section class="dsec" id="ds-tips"><h2 style="--c:#9A6400"><span>${ic("bulb")}</span>Mis consejos</h2><ul class="dtips">${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>` : ""}
+      <button class="dmapbtn" id="d-map">${ic("map")}Ver todo en el mapa</button>
+    </div>`;
+  // hero slideshow
+  clearInterval(heroT);
+  const slides = [...el.querySelectorAll(".dslide")]; let cur = 0;
+  const show = k => { slides.forEach((sl, n) => { sl.classList.toggle("on", n === k); if (sl.tagName === "VIDEO") { if (n === k) sl.play().catch(() => {}); else sl.pause(); } }); };
+  show(0); if (slides.length > 1 && !reduced) heroT = setInterval(() => { cur = (cur + 1) % slides.length; show(cur); }, 4200);
+  $("#d-close").onclick = closeDest;
+  $("#d-share").onclick = () => shareLink(d.slug || d.id.replace(/^dest-/, ""), d.city, "Mi guía de");
+  const st = $("#d-story"); if (st) st.onclick = () => openStory(story, 0);
+  el.querySelectorAll("[data-dsec]").forEach(b => b.onclick = () => { const t = $("#ds-" + b.dataset.dsec); if (t) el.scrollTo({top: t.offsetTop - 64, behavior: reduced ? "auto" : "smooth"}); });
+  el.querySelectorAll("[data-dmedia]").forEach(b => b.onclick = () => { const [tid, i, j] = b.dataset.dmedia.split("|"); const x = list.find(o => o.tr.id === tid && o.i === +i && o.j === +j); if (x) openStory(mediaOf(x.it).map(m => ({m, x})), 0); });
+  el.querySelectorAll("[data-dmap]").forEach(b => b.onclick = () => { const [tid, i, j] = b.dataset.dmap.split("|"); closeDest(); openCountry(d.country, false); openSpot(tid, +i, +j); });
+  $("#d-map").onclick = () => { closeDest(); openCountry(d.country, false); flyTo(d.lon, d.lat, 13.2); };
+}
+// full-screen stories: photo or video, place name and my comment
+let STORY = null;
+function openStory(list, k){ if (!list.length) return; STORY = {list, k}; $("#story").hidden = false; renderStory(); }
+function closeStory(){ clearTimeout(STORY?.t); STORY = null; const el = $("#story"); el.hidden = true; el.innerHTML = ""; }
+function renderStory(){
+  const el = $("#story"); if (!STORY) return; clearTimeout(STORY.t);
+  const {list, k} = STORY, o = list[k], it = o.x.it, g = GT[it.t] || GT.ver;
+  el.innerHTML = `<div class="sbars">${list.map((_, n) => `<span class="${n < k ? "done" : n === k ? "now" : ""}"><i></i></span>`).join("")}</div>
+    <button class="sclose" id="s-x" aria-label="Cerrar">${ic("x")}</button>
+    <div class="smedia">${o.m.v ? `<video src="${esc(photoSrc(o.m.v))}" poster="${esc(photoSrc(posterOf(o.m.v)))}" playsinline autoplay muted></video><button class="ssound" id="s-snd">🔇 Toca para el sonido</button>` : `<img src="${esc(photoSrc(o.m.src))}" alt="">`}</div>
+    <div class="scap"><span class="scat" style="--c:${g.c}">${ic(g.ic, "sm")}${g.l}</span><h3>${esc(it.n)}</h3>${it.txt ? `<p>${esc(it.txt)}</p>` : ""}</div>
+    <button class="sprev" id="s-prev" aria-label="Anterior"></button><button class="snext" id="s-next" aria-label="Siguiente"></button>`;
+  const next = () => { if (STORY.k + 1 >= STORY.list.length) return closeStory(); STORY.k++; renderStory(); };
+  const prev = () => { STORY.k = Math.max(0, STORY.k - 1); renderStory(); };
+  $("#s-x").onclick = closeStory; $("#s-next").onclick = next; $("#s-prev").onclick = prev;
+  const bar = el.querySelector(".sbars .now i"), vid = el.querySelector(".smedia video");
+  const run = ms => { if (bar) { bar.style.transition = `width ${ms}ms linear`; requestAnimationFrame(() => bar.style.width = "100%"); } STORY.t = setTimeout(next, ms); };
+  if (vid) {
+    const snd = $("#s-snd"); snd.onclick = e => { e.stopPropagation(); vid.muted = !vid.muted; snd.textContent = vid.muted ? "🔇 Toca para el sonido" : "🔊"; };
+    vid.onloadedmetadata = () => run(Math.min(30000, (vid.duration || 8) * 1000));
+    vid.onerror = () => run(2500);
+    vid.play().catch(() => {}); if (vid.readyState >= 1) run(Math.min(30000, (vid.duration || 8) * 1000));
+  } else run(5000);
+}
 function render(){
   renderStats();
   if (SPOT && !(S.view === "trip" || S.view === "country")) closeSpot();
@@ -1710,6 +1868,7 @@ function renderList(){
       ${vis.length ? `<div class="ccs">${vis.map(cc => `<button class="cc" data-cc="${cc}" style="--sw:${colorFor(cc)}"><span class="fl">${flag(cc)}</span>${esc(countryName(cc))}${countFor(cc) ? `<em>${countFor(cc)}</em>` : ""}</button>`).join("")}</div>` : `<span class="muted small">${ro ? "Sin países todavía." : "Marca los países donde has estado, aunque no tengas nada apuntado."}</span>`}
       ${ro ? "" : `<button class="btn" id="b-ckl">${ic("check", "sm")}Marcar países de la lista</button>`}
     </section>
+    ${dests().length ? `<section class="sec"><div class="sectitle">${ic("compass")}Mis guías</div><div class="dcards">${dests().map(d => { const cov = d.cover || (destStory(d, destItems(d))[0]?.m.src); return `<button class="dcover" data-dest="${esc(d.id)}">${cov ? `<img src="${esc(photoSrc(cov))}" alt="" loading="lazy">` : ""}<span><b>${esc(d.city)}</b><em>${flag(d.country)} ${destItems(d).length} sitios</em></span></button>`; }).join("")}</div></section>` : ""}
     ${wishSet().size || !ro ? `<section class="sec"><div class="sectitle">${ic("star")}Quiero ir <span class="n">${wishSet().size}</span></div>
       ${wishSet().size ? `<div class="ccs">${[...wishSet()].sort((a, b) => countryName(a).localeCompare(countryName(b), "es")).map(cc => `<button class="cc wish" data-cc="${cc}"><span class="fl">${flag(cc)}</span>${esc(countryName(cc))}</button>`).join("")}</div>` : `<span class="muted small">Busca un país arriba y pulsa «Quiero ir» para pintarlo en amarillo.</span>`}</section>` : ""}
     ${tripCards(trips())}
@@ -1718,6 +1877,7 @@ function renderList(){
       ${body}
     </section>`);
   panel.querySelectorAll("[data-trip]").forEach(b => b.onclick = () => openTrip(b.dataset.trip));
+  panel.querySelectorAll("[data-dest]").forEach(b => b.onclick = () => openDest(b.dataset.dest));
   wireShell();
   const bn = $("#b-new"); if (bn) bn.onclick = () => openForm();
   wireGlobalSearch($("#gsearch"));
@@ -1988,12 +2148,14 @@ function renderCountry(){
       <button class="btn ${ps.length ? "primary" : ""} grow" id="b-addhere">${ic("plus", "sm")}Añadir un lugar aquí</button>
       <button class="btn grow" id="b-newtrip">${ic("route", "sm")}Crear una ruta</button>
       <button class="btn grow" id="b-tellc">${ic("chat", "sm")}Cuéntame algo</button></div>`}
+    ${dests().filter(d => d.country === cc).map(d => { const cov = d.cover || (destStory(d, destItems(d))[0]?.m.src); return `<button class="dcover wide" data-dest="${esc(d.id)}">${cov ? `<img src="${esc(photoSrc(cov))}" alt="" loading="lazy">` : ""}<span><b>Guía de ${esc(d.city)}</b><em>${destItems(d).length} sitios recomendados</em></span></button>`; }).join("")}
     ${tabs.length > 1 ? `<div class="tabs" role="tablist">${tabs.map(([k, l, icn]) => `<button role="tab" aria-selected="${k === tab}" data-tab="${k}">${ic(icn, "sm")}${l}</button>`).join("")}</div>` : ""}
     ${tab ? `<div class="tabpane" role="tabpanel">${pane[tab]()}</div>`
       : `<div class="empty">${ic(visited ? "check" : "flag")}<span>${visited ? "Has estado aquí, pero aún no hay lugares apuntados." : ro ? "Sin recomendaciones en este país." : "Pulsa «Marcar como visitado» para pintarlo en tu mapa."}</span></div>`}`);
   wireShell();
   $("#b-back").onclick = goList;
   panel.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { S.ctab = b.dataset.tab; keepScroll(renderCountry); });
+  panel.querySelectorAll("[data-dest]").forEach(b => b.onclick = () => openDest(b.dataset.dest));
   panel.querySelectorAll("[data-trip]").forEach(b => b.onclick = () => openTrip(b.dataset.trip));
   panel.querySelectorAll("details.gcity").forEach(d => d.addEventListener("toggle", () => {
     if (!d.open) return;
@@ -2316,6 +2478,8 @@ function afterLoad(){
     firstLoad = false;
     const m = /^#pais-([a-z]{2})$/.exec(location.hash);
     if (m && byId.get(m[1].toUpperCase())) return openCountry(m[1].toUpperCase(), true);
+    const dh = location.hash.slice(1), dd = dh && dests().find(d => (d.slug || d.id.replace(/^dest-/, "")) === dh);
+    if (dd) { render(); return openDest(dd.id, false); }
     const r = /^#ruta-(.+)$/.exec(location.hash);
     if (r && trips().some(t => t.id === decodeURIComponent(r[1]))) return openTrip(decodeURIComponent(r[1]));
   }
@@ -2340,11 +2504,12 @@ async function refreshData(force){
 document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshData(); });
 addEventListener("focus", () => refreshData());
 addEventListener("hashchange", () => {
+  const dh = location.hash.slice(1), dd = dh && dests().find(d => (d.slug || d.id.replace(/^dest-/, "")) === dh); if (dd) return openDest(dd.id, false);
   const m = /^#pais-([a-z]{2})$/.exec(location.hash), r = /^#ruta-(.+)$/.exec(location.hash);
   if (m && byId.get(m[1].toUpperCase())) openCountry(m[1].toUpperCase(), true);
   else if (r && trips().some(t => t.id === decodeURIComponent(r[1]))) openTrip(decodeURIComponent(r[1]));
 });
-addEventListener("keydown", e => { if (e.key === "Escape") { if (!$("#lightbox").hidden) $("#lightbox").hidden = true; else if (S.view === "detail" || S.view === "country") goList(); } });
+addEventListener("keydown", e => { if (e.key === "Escape" && STORY) return closeStory(); if (e.key === "Escape" && DEST) return closeDest(); if (STORY && e.key === "ArrowRight") return $("#s-next")?.click(); if (STORY && e.key === "ArrowLeft") return $("#s-prev")?.click(); if (e.key === "Escape") { if (!$("#lightbox").hidden) $("#lightbox").hidden = true; else if (S.view === "detail" || S.view === "country") goList(); } });
 layout(); initMap(); render();
 if ("serviceWorker" in navigator && location.protocol === "https:") addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 
