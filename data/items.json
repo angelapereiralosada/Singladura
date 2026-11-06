@@ -2021,18 +2021,18 @@
     "lon": -9.137,
     "by": "taxi",
     "leg": "En Uber al centro (unos 7 €)",
-    "story": "Primera noche en Lisboa: cena en una terraza de la Rua dos Bacalhoeiros, un sitio algo turístico pero con un arroz de marisco y unas almejas riquísimos. De remate, una ginjinha en la Ginginha do Carmo, un local enano bajo las escaleras que suben al Largo do Carmo, donde sirven el chupito en vasito de chocolate.",
+    "story": "Primera noche en Lisboa: cena en Baixamar, en la Rua dos Bacalhoeiros, un sitio algo turístico pero con un arroz de marisco y unas almejas riquísimos. De remate, una ginjinha en la Ginginha do Carmo, un local enano bajo las escaleras que suben al Largo do Carmo, donde sirven el chupito en vasito de chocolate.",
     "did": [
      "Paseo nocturno por la Baixa",
      "Ginjinha en la Ginginha do Carmo, bajo las escaleras del Largo do Carmo"
     ],
     "ate": [
-     "Arroz de marisco y almejas en la Rua dos Bacalhoeiros (algo turístico, pero riquísimo)",
+     "Arroz de marisco y almejas en Baixamar (Rua dos Bacalhoeiros, 28C): algo turístico, pero riquísimo",
      "Ginjinha en vasito de chocolate en la Ginginha do Carmo"
     ],
     "spots": [
      {
-      "n": "Arroz en la Rua dos Bacalhoeiros",
+      "n": "Baixamar",
       "lat": 38.70903,
       "lon": -9.13421
      },
@@ -2055,14 +2055,15 @@
     "lon": -9.145,
     "by": "taxi",
     "leg": "Al día siguiente, de nuevo en Uber",
-    "story": "Tarde de disfrutar sin prisa: happy hour de ostras a 1 € en el antiguo Barbica, en la Rua dos Cordoeiros junto al Elevador da Bica (hoy tiene otro nombre), fotomatón en blanco y negro con cerveza en mano y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. Cena en Nonna Goes Crazy, el sitio de pasta fresca que se ha puesto de moda: buenísimo.",
+    "story": "Tarde de disfrutar sin prisa: happy hour de ostras a 1 € en el antiguo Barbica, en la Rua dos Cordoeiros junto al Elevador da Bica (hoy tiene otro nombre); unas cervezas enormes y fotomatón en blanco y negro en un bar pequeñito del Largo do Carmo con una azotea muy chula; y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. Cena en Nonna Goes Crazy, el sitio de pasta fresca que se ha puesto de moda: buenísimo.",
     "did": [
      "Happy hour de ostras a 1 €",
-     "Fotomatón en blanco y negro",
+     "Cervezas enormes y fotomatón en un bar con azotea del Largo do Carmo",
      "Fiesta en el Miradouro de São Pedro de Alcântara"
     ],
     "ate": [
      "Ostras a 1 € y tabla de quesos en el antiguo Barbica (Rua dos Cordoeiros, 8-10)",
+     "Cervezas enormes en un bar pequeño con azotea en el Largo do Carmo",
      "Pasta fresca en Nonna Goes Crazy (Rua de Santo António da Glória, 6B)"
     ],
     "spots": [
@@ -2070,6 +2071,11 @@
       "n": "Antiguo Barbica (ostras a 1 €)",
       "lat": 38.709,
       "lon": -9.1468
+     },
+     {
+      "n": "Bar con azotea del Largo do Carmo",
+      "lat": 38.712,
+      "lon": -9.1405
      },
      {
       "n": "Miradouro de São Pedro de Alcântara",
