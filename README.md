@@ -14,6 +14,8 @@ Diario de a bordo de mis viajes: países visitados, rutas por etapas, guías de 
 | Viajes, guías y planes | `data/items.json` |
 | Fotos | `photos/` |
 | Diccionario de lugares | `gz.json` |
+| Mapa (globo y calles) | `vendor/` (MapLibre) + teselas gratuitas de OpenFreeMap, sin claves |
+| Uso sin conexión | `sw.js` guarda la app, tus datos y el mapa que ya has visto |
 | Guardar cambios desde el móvil | `worker/worker.js` (Cloudflare Workers, plan gratuito) |
 | Notas privadas de «Cuéntamelo» | repositorio privado `singladura-notas` |
 

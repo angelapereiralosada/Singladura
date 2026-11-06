@@ -52,13 +52,38 @@ body{
   padding-right:max(16px, env(safe-area-inset-right, 0px));
   padding-block:0;
 }
-#globe{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
-#globe.grabbing{cursor:grabbing}
-#citymap{position:fixed;inset:0;z-index:2;display:none;background:#F3E6E4}
-body.city #citymap{display:block}
-body.city .stats,body.city .seg,body.city .hint{display:none}
-#citymap .leaflet-tile-pane{filter:saturate(.9) sepia(.1) hue-rotate(-10deg)}
-#citymap .leaflet-control-attribution{font-size:9px;background:rgba(255,255,255,.7);border-radius:8px 0 0 0}
+#map{position:fixed;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 36%,#FFF3F6 0%,#FCDDE5 52%,#F5BCCB 100%)}
+#map canvas{outline:none}
+.maptip{position:fixed;left:0;top:0;z-index:4;pointer-events:none;font:700 10.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,.94);padding:6px 10px;border-radius:999px;box-shadow:0 3px 10px rgba(36,37,74,.12)}
+.mapfail{position:fixed;z-index:5;left:50%;top:40%;transform:translate(-50%,-50%);background:#fff;border-radius:18px;padding:14px 18px;font-weight:700;max-width:300px;text-align:center;box-shadow:0 10px 30px rgba(190,70,100,.2)}
+.mk{position:relative;display:grid;justify-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mk .mlab{position:absolute;top:100%;left:50%;transform:translate(-50%,3px);white-space:nowrap;font:700 10.5px/1.2 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff,0 0 5px #fff;pointer-events:none}
+.mk .mlab.strong{font:italic 500 16px/1.1 var(--f-display);letter-spacing:0;text-transform:none;color:#A3121D}
+.badge{width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:16px;line-height:1;box-shadow:0 4px 10px rgba(150,40,70,.28),inset 0 0 0 3px var(--sw,#D71F2B);transition:transform .15s}
+.mk:hover .badge{transform:scale(1.12)}
+.badge.n{background:var(--red);color:#fff;font:400 16px/1 var(--f-display);box-shadow:0 4px 10px rgba(150,40,70,.3),inset 0 0 0 2.5px #fff}
+.mk.dim{opacity:.4}
+.mk .dot{width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 2px 6px rgba(150,40,70,.35)}
+.pinm{display:block;width:24px;height:24px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--red);border:2.5px solid #fff;box-shadow:-2px 3px 8px rgba(150,40,70,.35);margin-bottom:5px;transition:transform .15s}
+.pinm.blue{background:var(--cobalt)}
+.mk.sel .pinm{transform:rotate(-45deg) scale(1.25)}
+.mk .pinm+.mlab{top:auto;bottom:100%;transform:translate(-50%,-4px)}
+.polam{display:block;width:48px;padding:4px 4px 11px;background:#fff;transform:rotate(var(--r));box-shadow:0 6px 14px rgba(150,40,70,.3);margin-bottom:6px;transition:transform .15s}
+.polam img{width:40px;height:40px;object-fit:cover;display:block}
+.mk.sel .polam{transform:rotate(var(--r)) scale(1.22)}
+.mk .polam+.mlab{top:100%}
+.stopn{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--ink);border:2px solid var(--ink);font:400 14px/1 var(--f-display);box-shadow:0 3px 8px rgba(150,40,70,.3)}
+.mk.cur .stopn{background:var(--red);color:#fff;border-color:#fff;width:36px;height:36px;font-size:17px}
+.modem span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid var(--ink);font-size:13px;line-height:1}
+.mover{font-size:19px;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 5px 14px rgba(150,40,70,.35);border:2.5px solid var(--red);line-height:1}
+.stamp{width:78px;height:78px;border-radius:50%;border:2.5px solid #A3121D;outline:1px solid #A3121D;outline-offset:-7px;display:grid;place-content:center;text-align:center;color:#A3121D;background:rgba(255,255,255,.55);animation:stamp 1.45s ease forwards;pointer-events:none}
+.stamp b{font:700 9px/1 var(--f-body);letter-spacing:.18em}.stamp i{font:italic 500 16px/1.25 var(--f-display)}
+@keyframes stamp{0%{transform:rotate(-14deg) scale(2.3);opacity:0}22%{transform:rotate(-14deg) scale(1);opacity:1}75%{opacity:1}100%{transform:rotate(-14deg) scale(1);opacity:0}}
+.maplibregl-popup-content{border-radius:18px;padding:13px 15px 12px;box-shadow:0 10px 30px rgba(190,70,100,.25);font-family:var(--f-body);color:var(--ink);min-width:180px}
+.maplibregl-popup-close-button{font-size:20px;right:6px;top:3px;color:var(--mute);border-radius:50%;width:28px;height:28px}
+.maplibregl-ctrl-attrib{font-size:10px}
+#map .maplibregl-ctrl-top-left{top:calc(58px + env(safe-area-inset-top, 0px));left:calc(6px + env(safe-area-inset-left, 0px))}
+.maplibregl-ctrl-attrib.maplibregl-compact{background:rgba(255,255,255,.8)}
 .cm{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c,#24254A);color:#fff;border:2.5px solid #fff;box-shadow:0 3px 8px rgba(36,37,74,.35);font:700 12px/1 system-ui,sans-serif;position:relative}
 .cm .ic{width:15px;height:15px}
 .cm b{position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#fff;color:var(--ink);font-size:10.5px;display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.25)}
@@ -68,8 +93,6 @@ body.city .stats,body.city .seg,body.city .hint{display:none}
 .cm.spot{width:16px;height:16px;background:#fff;border:3px solid #24254A}
 .cmlab{font:700 12px/1.2 system-ui,sans-serif;color:var(--ink);white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}
 .me{width:18px;height:18px;border-radius:50%;background:#2F7BFF;border:3px solid #fff;box-shadow:0 0 0 6px rgba(47,123,255,.22),0 2px 6px rgba(0,0,0,.3)}
-.leaflet-popup-content-wrapper{border-radius:18px;box-shadow:0 10px 30px rgba(190,70,100,.25)}
-.leaflet-popup-content{margin:12px 14px;font-family:var(--f-body);color:var(--ink);min-width:170px}
 .pop b{display:block;font-size:15px;line-height:1.25}
 .pop span{display:block;font-size:12px;opacity:.7;margin:2px 0 8px}
 .pop .pl{display:flex;gap:6px;flex-wrap:wrap}
@@ -77,16 +100,30 @@ body.city .stats,body.city .seg,body.city .hint{display:none}
 .pop a.go,.mapl a.go{background:var(--ink);color:#fff;border-color:var(--ink)}
 .mapl{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .pit.flash{outline:3px solid var(--red);outline-offset:2px;transition:outline .3s}
-#zloc{display:none;position:fixed;z-index:6;right:calc(16px + env(safe-area-inset-right, 0px));top:calc(70px + env(safe-area-inset-top, 0px));width:auto;height:40px;padding:0 14px 0 11px;border-radius:999px;gap:7px;align-items:center;font:700 13px/1 var(--f-body);color:var(--ink)}
-body.city #zloc{display:inline-flex}
-body.city .brand{background:rgba(255,255,255,.92);padding:5px 16px 5px 5px;border-radius:999px;box-shadow:0 4px 14px rgba(36,37,74,.12)}
-body.city .brand .rose{width:30px;height:30px}
-body.city .brand .wm b{font-size:22px}
-body.city .brand .wm span{display:none}
-#citymap .leaflet-top.leaflet-right{top:calc(116px + env(safe-area-inset-top, 0px))}
-@media (min-width:901px){ #zloc{right:calc(432px + env(safe-area-inset-right, 0px));top:calc(22px + env(safe-area-inset-top, 0px))} #citymap .leaflet-top.leaflet-right{top:auto;bottom:0;right:416px} }
+#zloc{position:fixed;z-index:6;right:calc(14px + env(safe-area-inset-right, 0px));top:calc(64px + env(safe-area-inset-top, 0px));width:42px;height:42px;color:var(--ink)}
 #zloc[aria-pressed="true"]{background:#2F7BFF;color:#fff}
-#globe.aim{cursor:crosshair}
+.mk.pi .cm{width:30px;height:30px}
+.mk.pi.sm .cm{width:24px;height:24px;border-width:2px}.mk.pi.sm .cm .ic{width:12px;height:12px}.mk.pi.sm .cm b{top:-6px;right:-6px;min-width:15px;height:15px;font-size:9.5px}
+.mk.pi.done .cm{background:#fff;color:var(--c)}
+.me{width:18px;height:18px;border-radius:50%;background:#2F7BFF;border:3px solid #fff;box-shadow:0 0 0 7px rgba(47,123,255,.2),0 2px 6px rgba(0,0,0,.3)}
+.brand{background:rgba(255,255,255,.9);padding:6px 18px 6px 6px;border-radius:999px;box-shadow:0 4px 16px rgba(190,70,100,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.stats{display:none!important}
+.hflag{font-style:normal;margin-right:12px;font-size:.85em;vertical-align:.04em}
+.kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
+.kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
+.kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
+.panel[data-size="drag"]{transition:none}
+@media (min-width:901px){
+  #zloc{right:calc(432px + env(safe-area-inset-right, 0px));top:calc(18px + env(safe-area-inset-top, 0px))}
+  #map .maplibregl-ctrl-bottom-left{left:calc(180px + env(safe-area-inset-left, 0px))}
+}
+@media (max-width:900px){
+  .brand{padding:4px 14px 4px 4px}
+  .brand svg.rose{width:30px;height:30px}
+  .brand .wm b{font-size:23px}
+  .brand .wm span{display:none}
+}
+
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
@@ -432,16 +469,13 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
 </svg>
 
-<div id="citymap" aria-label="Mapa de calles"></div>
-<canvas id="globe" aria-label="Mapa con tus viajes. Arrastra para moverlo, toca un país o una chincheta."></canvas>
+<div id="map" role="application" aria-label="Mapa de tus viajes. Arrastra para moverlo, pellizca para acercarte y toca un país."></div>
+<div class="maptip" id="maptip" hidden></div>
+<div class="mapfail" id="mapfail" hidden>No se ha podido cargar el mapa. Comprueba la conexión y recarga.</div>
 
 <div class="top">
   <div class="brandrow">
     <div class="brand"><svg class="rose" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#fff" stroke="#24254A" stroke-width="1"/><circle cx="20" cy="20" r="14.5" fill="none" stroke="#24254A" stroke-width=".6" stroke-dasharray="1 2"/><path d="M20 3 23 20 20 37 17 20Z" fill="#D71F2B"/><path d="M20 3 20 37 17 20Z" fill="#A3121D"/><path d="M3 20 20 17 37 20 20 23Z" fill="#24254A"/><path d="M3 20 37 20 20 23Z" fill="#3A3C6E"/><circle cx="20" cy="20" r="2" fill="#fff" stroke="#24254A" stroke-width=".8"/></svg><div class="wm"><b>Singladura</b><span>Diario de a bordo</span></div></div>
-    <div class="seg" role="group" aria-label="Vista">
-      <button id="v-map" aria-pressed="true"><svg class="ic sm"><use href="#i-map"/></svg><span class="lbtxt">Mapa</span></button>
-      <button id="v-globe" aria-pressed="false"><svg class="ic sm"><use href="#i-globe"/></svg><span class="lbtxt">Globo</span></button>
-    </div>
     <button class="lockb" id="b-lock" aria-label="Modo edición"><svg class="ic sm"><use href="#i-edit"/></svg></button>
   </div>
   <div class="stats" id="stats"></div>
@@ -450,23 +484,21 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
 <div class="ctrls">
   <button class="ctrl" id="zin" aria-label="Acercar"><svg class="ic"><use href="#i-plus"/></svg></button>
   <button class="ctrl" id="zout" aria-label="Alejar"><svg class="ic"><use href="#i-minus"/></svg></button>
-  <button class="ctrl" id="zreset" aria-label="Ver el mundo entero"><svg class="ic"><use href="#i-locate"/></svg></button>
-  <span class="hint">Toca un país para verlo de cerca</span>
+  <button class="ctrl" id="zreset" aria-label="Ver el mundo entero"><svg class="ic"><use href="#i-globe"/></svg></button>
+  
 </div>
 
 <div class="aimbar" id="aimbar" hidden><svg class="ic"><use href="#i-target"/></svg>Toca el mapa donde estuviste</div>
-<button class="ctrl locb" id="zloc" aria-label="Dónde estoy" aria-pressed="false"><svg class="ic"><use href="#i-target"/></svg><span>Dónde estoy</span></button>
+<button class="ctrl locb" id="zloc" aria-label="Dónde estoy" title="Dónde estoy" aria-pressed="false"><svg class="ic"><use href="#i-locate"/></svg></button>
 <aside class="panel" id="panel" data-size="half"></aside>
 <div class="toast" id="toast" hidden role="status"></div>
 <div class="lightbox" id="lightbox" hidden><img id="lbimg" alt=""></div>
 <datalist id="gz"></datalist>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@amcharts/amcharts4-geodata@4.1.31/dist/script/worldLow.js"></script>
-<script>if(!window.am4geodata_worldLow){document.write('<script src="https://unpkg.com/@amcharts/amcharts4-geodata@4.1.31/dist/script/worldLow.js"><\/script>');}</script>
-<script>if(!window.am4geodata_worldLow){document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"><\/script><script src="https://cdn.jsdelivr.net/npm/datamaps@0.5.9/dist/datamaps.world.min.js"><\/script>');}</script>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<script src="vendor/maplibre-gl.js"></script>
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/world.js"></script>
 <script>
 (() => {
 "use strict";
@@ -551,8 +583,7 @@ const TOTAL_COUNTRIES = 195;
 $("#gz").innerHTML = GZ.map(g => `<option value="${esc(g.n)}" label="${esc(countryName(g.c))}"></option>`).join("");
 
 /* ---------- state ---------- */
-const S = { items: [], loaded:false, view:"list", sel:null, country:null, form:null, q:"", mode:"init", confirmDel:false, canEdit:false, size:"half", share:null, look:"globe" };
-try { const l = localStorage.getItem("mochilerapp.vista"); if (l === "globe" || l === "map") S.look = l; } catch(e) {}
+const S = { items: [], loaded:false, view:"list", sel:null, country:null, form:null, q:"", mode:"init", confirmDel:false, canEdit:false, size:"half", share:null };
 const places = () => S.items.filter(p => p.kind !== "country" && p.kind !== "trip" && p.kind !== "guide");
 const guideOf = cc => S.items.find(x => x.kind === "guide" && x.country === cc) || null;
 const trips = () => S.items.filter(p => p.kind === "trip");
@@ -560,86 +591,119 @@ const marks = () => S.items.filter(p => p.kind === "country");
 const visitedSet = () => new Set([...places().map(p => p.country), ...marks().map(m => m.country)].filter(Boolean));
 let db = null, assets = null;
 
-/* ---------- canvas & projections ---------- */
-const cv = $("#globe"), ctx = cv.getContext("2d");
-const globeProj = d3.geoOrthographic().clipAngle(90).precision(0.5);
-const mapProj = d3.geoNaturalEarth1().precision(0.5);
-let proj = mapProj, path = d3.geoPath(proj, ctx);
-const grat = d3.geoGraticule10(), SPHERE = {type:"Sphere"};
-let W=0, H=0, DPR=1, cx=0, cy=0, base=200, mbase=100, zoom=1, rot=[8, -30, 0], mty=0;
-let fly = null, lastTouch = 0, pinScreen = [], AW = 600, AH = 400, hoverXY = null;
+/* ---------- map: one MapLibre globe, from the whole world down to the street ---------- */
+const TILES = "https://tiles.openfreemap.org";
+const EMPTY = {type:"FeatureCollection", features:[]};
 const panel = $("#panel");
-const isGlobe = () => S.look === "globe";
+let map = null, W = 0, H = 0, AW = 600, AH = 400, lastTouch = 0;
+const zoomNow = () => map ? map.getZoom() : 1;
+const sortedPlaces = () => places().filter(p => isFinite(p.lat) && isFinite(p.lon)).sort((a,b) => (a.date||"").localeCompare(b.date||""));
+$("#b-lock").onclick = () => { S.view = "login"; S.sel = null; S.country = null; S.trip = null; if (S.size === "min") setSize("half"); render(); };
 
+function panelH(){ return S.size === "min" ? 120 : S.size === "tall" ? H * .85 : H * .52; }
 function layout(){
-  W = innerWidth; H = innerHeight; DPR = Math.min(devicePixelRatio || 1, 2);
-  cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-  let aw, ah, top;
-  if (!isPhone()) { aw = W - 432; top = 110; ah = H - top - 70; cx = aw/2 + 8; cy = top + ah/2; }
-  else { const ph = S.size === "min" ? 110 : S.size === "tall" ? H*.85 : H*.52; top = 96; ah = Math.max(150, H - ph - top - 12); aw = W; cx = W/2; cy = top + ah/2; }
-  AW = aw; AH = ah;
-  if (cmap) setTimeout(() => cmap.invalidateSize(), 280);
-  base = Math.min(aw - 24, ah) * .48;
-  mbase = Math.min((aw - 24) / 5.45, ah / 2.85);
+  W = innerWidth; H = innerHeight;
+  if (isPhone()) { AW = W; AH = Math.max(150, H - panelH() - 96); } else { AW = W - 432; AH = H - 150; }
+  if (map) { map.resize(); map.easeTo({padding: pad(), duration: reduced ? 0 : 300}); }
 }
 function setSize(sz){ if (S.size === sz) return; S.size = sz; panel.dataset.size = sz; layout(); }
-function setLook(l){
-  S.look = l; try { localStorage.setItem("mochilerapp.vista", l); } catch(e) {}
-  document.body.classList.toggle("globe", l === "globe");
-  proj = l === "globe" ? globeProj : mapProj; path = d3.geoPath(proj, ctx);
-  $("#v-map").setAttribute("aria-pressed", l === "map"); $("#v-globe").setAttribute("aria-pressed", l === "globe");
-  if (l === "globe") { rot[1] = -30; } else { rot[1] = 0; mty = 0; zoom = Math.max(1, Math.min(zoom, 4)); }
-  fly = null;
+// the part of the screen the map can really use (the panel covers the rest)
+function pad(){
+  let p = isPhone() ? {top: 76, bottom: Math.round(panelH() + 18), left: 22, right: 22} : {top: 96, bottom: 48, left: 48, right: 452};
+  const free = H - p.top - p.bottom; if (free < 140) p.bottom = Math.max(0, H - p.top - 140);
+  return p;
 }
-$("#v-map").onclick = () => setLook("map");
-$("#b-lock").onclick = () => { S.view = "login"; S.sel = null; S.country = null; S.trip = null; if (S.size === "min") setSize("half"); render(); };
-$("#v-globe").onclick = () => setLook("globe");
+function worldZoom(){ const p = pad(); const d = Math.min(W - p.left - p.right, H - p.top - p.bottom); return Math.max(0, Math.log2(Math.max(120, d * .92) / 158)); }
+function flyTo(lon, lat, z){
+  if (!map || !isFinite(lon) || !isFinite(lat)) return;
+  map.flyTo({center:[lon, lat], zoom: z ?? Math.max(zoomNow(), 5), padding: pad(), duration: reduced ? 0 : 1500, essential: true});
+  lastTouch = performance.now();
+}
+function fitLLs(lls, maxZ = 7){
+  lls = lls.filter(p => p && isFinite(p[0]) && isFinite(p[1])); if (!map || !lls.length) return;
+  if (lls.length === 1) return flyTo(lls[0][0], lls[0][1], Math.min(maxZ, 13));
+  const b = new maplibregl.LngLatBounds(lls[0], lls[0]); lls.forEach(p => b.extend(p));
+  // fit the bounds to the whole screen, then shrink to the free part and let the map padding centre it there
+  const p = pad(), fw = Math.max(80, W - p.left - p.right), fh = Math.max(80, H - p.top - p.bottom);
+  let cam = null; map.setPadding({top: 0, bottom: 0, left: 0, right: 0});
+  try { cam = map.cameraForBounds(b, {padding: 0}); } catch(e) {}
+  map.setPadding(p);
+  if (cam) cam.zoom += Math.log2(Math.min(fw / W, fh / H) * .95);
+  else cam = {center: b.getCenter(), zoom: zoomNow()};
+  map.flyTo({center: cam.center, zoom: Math.min(maxZ, cam.zoom), duration: reduced ? 0 : 1400, essential: true});
+  lastTouch = performance.now();
+}
+function fitTo(feature, fallbackLL, maxZ = 6){
+  try {
+    const b = d3.geoBounds(feature); let [[w, s], [e, n]] = b; if (e < w) e += 360;
+    if (![w, s, e, n].every(isFinite)) throw 0;
+    fitLLs([[w, s], [e, n]], maxZ);
+  } catch(err) { if (fallbackLL) flyTo(fallbackLL[0], fallbackLL[1], 4); }
+}
+const fitCountry = cc => { const f = byId.get(cc); if (f) fitTo(f.properties.main, f.properties.c, f.properties.tiny ? 11 : 6); };
+function goWorld(){ if (map) map.flyTo({center:[map.getCenter().lng, 22], zoom: worldZoom(), padding: pad(), duration: reduced ? 0 : 1300, essential: true}); }
 
-function applyProj(){
-  if (isGlobe()) globeProj.rotate(rot).scale(base * zoom).translate([cx, cy]);
-  else mapProj.rotate([rot[0], 0, 0]).scale(mbase * zoom).translate([cx, cy + mty]);
+function countriesFC(){
+  const vis = visitedSet(); assignColors(vis); const fc = focusCC();
+  return {type:"FeatureCollection", features: world.map(f => ({type:"Feature", geometry: f.geometry,
+    properties: {id: f.properties.id, v: vis.has(f.properties.id) ? 1 : 0, col: vis.has(f.properties.id) ? colorFor(f.properties.id) : "#FFFFFF", f: f.properties.id === fc ? 1 : 0}}))};
 }
-const sortedPlaces = () => places().filter(p => isFinite(p.lat) && isFinite(p.lon)).sort((a,b) => (a.date||"").localeCompare(b.date||""));
-function visible(lon, lat){
-  if (isGlobe()) return d3.geoDistance([lon, lat], [-rot[0], -rot[1]]) < 1.55;
-  const p = proj([lon, lat]); return p && p[0] > -40 && p[0] < W + 40 && p[1] > -40 && p[1] < H + 40;
-}
-let last = performance.now(), focusA = 0, placedLabels = [];
-const WAVES = [];
-(function seedWaves(){
-  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  for (let lat = -50; lat <= 62; lat += 19) for (let lon = -175; lon < 180; lon += 27) {
-    const p = [lon + (rnd() - .5) * 12, lat + (rnd() - .5) * 8];
-    if (world.length && !detectCountry(p[0], p[1])) WAVES.push(p);
-  }
-})();
-function drawStamp(t){
-  const st = S.stamp; if (!st) return;
-  const k = (t - st.t0) / 1300; if (k >= 1 || !byId.get(st.cc)) { S.stamp = null; return; }
-  const ll = byId.get(st.cc).properties.c; if (!visible(ll[0], ll[1])) return;
-  const [x, y] = proj(ll), sc = k < .25 ? 2.2 - 1.2 * (k / .25) : 1, a = k < .7 ? 1 : 1 - (k - .7) / .3;
-  ctx.save(); ctx.translate(x, y); ctx.rotate(-.2); ctx.scale(sc, sc); ctx.globalAlpha = a;
-  ctx.strokeStyle = "#A3121D"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(0, 0, 30, 0, 7); ctx.stroke();
-  ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(0, 0, 25, 0, 7); ctx.stroke();
-  ctx.fillStyle = "#A3121D"; ctx.font = "700 9px 'DM Sans', system-ui, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-  try { ctx.letterSpacing = "1.5px"; } catch(e) {}
-  ctx.fillText("VISITADO", 0, -9); ctx.font = "italic 500 15px Fraunces, Georgia, serif"; ctx.fillText(new Date().getFullYear(), 0, 8);
-  ctx.restore();
-}
-function drawWaves(){
-  const sz = 6 + Math.min(zoom, 3) * 2.5;
-  ctx.save(); ctx.strokeStyle = "rgba(215,31,43,.35)"; ctx.lineWidth = 1.5; ctx.lineCap = "round";
-  ctx.globalAlpha = 1 - .5 * focusA;
-  for (const ll of WAVES) {
-    if (!visible(ll[0], ll[1])) continue;
-    const [x, y] = proj(ll);
-    ctx.beginPath();
-    ctx.moveTo(x - sz, y); ctx.quadraticCurveTo(x - sz/2, y - sz/2.2, x, y); ctx.quadraticCurveTo(x + sz/2, y + sz/2.2, x + sz, y);
-    ctx.stroke();
-  }
-  ctx.restore();
+function mapStyle(){
+  const Z = (...a) => ["interpolate", ["linear"], ["zoom"], ...a];
+  const ZX = (...a) => ["interpolate", ["exponential", 1.5], ["zoom"], ...a];
+  const NM = ["coalesce", ["get", "name:es"], ["get", "name"]];
+  const cls = (...c) => ["match", ["get", "class"], c, true, false];
+  const road = (id, f, minz, col, w) => ({id, type:"line", source:"omt", "source-layer":"transportation", minzoom:minz, filter:["all", ["==", ["geometry-type"], "LineString"], f], layout:{"line-cap":"round", "line-join":"round"}, paint:{"line-color":col, "line-width":w}});
+  const halo = {"text-halo-color":"rgba(255,255,255,.92)", "text-halo-width":1.4};
+  return {
+    version: 8,
+    glyphs: TILES + "/fonts/{fontstack}/{range}.pbf",
+    projection: {type: "globe"},
+    sky: {"sky-color":"#FFE6EE", "horizon-color":"#F8C8D4", "fog-color":"#FCEFF3", "sky-horizon-blend":.6, "horizon-fog-blend":.5, "fog-ground-blend":.9, "atmosphere-blend": Z(0, .85, 4, .5, 7, 0)},
+    sources: {
+      omt: {type:"vector", url: TILES + "/planet"},
+      countries: {type:"geojson", data: countriesFC()},
+      route: {type:"geojson", data: EMPTY},
+      dayline: {type:"geojson", data: EMPTY}
+    },
+    layers: [
+      {id:"bg", type:"background", paint:{"background-color": Z(4.8, "#F8C8D4", 6.4, "#FBF5F1")}},
+      {id:"c-land", type:"fill", source:"countries", paint:{"fill-color":"#FFFFFF", "fill-opacity": Z(4.8, 1, 6.4, 0)}},
+      {id:"landcover", type:"fill", source:"omt", "source-layer":"landcover", minzoom:7, filter: cls("wood", "grass"), paint:{"fill-color":"#E9F1DF", "fill-opacity": Z(7, 0, 9, .7)}},
+      {id:"park", type:"fill", source:"omt", "source-layer":"park", minzoom:8, paint:{"fill-color":"#E1EED4", "fill-opacity": Z(8, 0, 10, .9)}},
+      {id:"c-vis", type:"fill", source:"countries", filter:["==", ["get", "v"], 1], paint:{"fill-color":["get", "col"], "fill-opacity": Z(0, 1, 4.5, .92, 6.5, .28, 9, .1, 12, 0)}},
+      {id:"water", type:"fill", source:"omt", "source-layer":"water", paint:{"fill-color":"#F8C8D4"}},
+      {id:"waterway", type:"line", source:"omt", "source-layer":"waterway", minzoom:9, paint:{"line-color":"#F3B4C5", "line-width": Z(9, .6, 15, 3)}},
+      {id:"building", type:"fill", source:"omt", "source-layer":"building", minzoom:14, paint:{"fill-color":"#F3E6E1", "fill-outline-color":"#E7D3CC", "fill-opacity": Z(14, 0, 15, 1)}},
+      road("rail", cls("rail", "transit"), 11, "#D4BEC8", Z(11, .6, 16, 1.6)),
+      road("path", cls("path", "track"), 14, "#DDA2B4", Z(14, .8, 18, 2.4)),
+      road("r-min-c", cls("minor", "service"), 13, "#EED7DE", ZX(13, 2, 18, 15)),
+      road("r-mid-c", cls("secondary", "tertiary"), 8, "#EACDD6", ZX(8, .8, 12, 3.5, 18, 24)),
+      road("r-maj-c", cls("motorway", "trunk", "primary"), 5, "#E4BDC9", ZX(5, .7, 10, 3.6, 18, 28)),
+      road("r-min", cls("minor", "service"), 13, "#FFFFFF", ZX(13, 1, 18, 12)),
+      road("r-mid", cls("secondary", "tertiary"), 8, "#FFFFFF", ZX(8, .4, 12, 2.4, 18, 20)),
+      road("r-maj", cls("motorway", "trunk", "primary"), 5, "#FFF4E4", ZX(5, .4, 10, 2.4, 18, 24)),
+      {id:"c-line", type:"line", source:"countries", maxzoom:7, paint:{"line-color":["case", ["==", ["get", "v"], 1], "#FFFFFF", "#F0CCD7"], "line-width": Z(1, .5, 5, 1.1), "line-opacity": Z(5, 1, 6.6, 0)}},
+      {id:"border", type:"line", source:"omt", "source-layer":"boundary", minzoom:5, filter:["all", ["==", ["get", "admin_level"], 2], ["!=", ["get", "maritime"], 1]], paint:{"line-color":"#24254A", "line-opacity": Z(5, 0, 6.6, .32), "line-width":1, "line-dasharray":[3, 2]}},
+      {id:"c-focus", type:"line", source:"countries", filter:["==", ["get", "f"], 1], paint:{"line-color":"#24254A", "line-width": Z(2, 1.4, 7, 2.2), "line-opacity": Z(7, 1, 9, 0)}},
+      {id:"rt-case", type:"line", source:"route", layout:{"line-cap":"round", "line-join":"round"}, paint:{"line-color":"#FFFFFF", "line-width":5.5, "line-opacity":["get", "o"]}},
+      {id:"rt-s", type:"line", source:"route", filter:["==", ["get", "d"], "s"], layout:{"line-cap":"round", "line-join":"round"}, paint:{"line-color":"#24254A", "line-width":2, "line-opacity":["get", "o"]}},
+      {id:"rt-d", type:"line", source:"route", filter:["==", ["get", "d"], "d"], layout:{"line-join":"round"}, paint:{"line-color":"#24254A", "line-width":2, "line-opacity":["get", "o"], "line-dasharray":[3, 2]}},
+      {id:"rt-p", type:"line", source:"route", filter:["==", ["get", "d"], "p"], layout:{"line-cap":"round", "line-join":"round"}, paint:{"line-color":"#24254A", "line-width":2.6, "line-opacity":["get", "o"], "line-dasharray":[0.1, 2.2]}},
+      {id:"dayline", type:"line", source:"dayline", layout:{"line-cap":"round", "line-join":"round"}, paint:{"line-color":"#24254A", "line-width":2.8, "line-opacity":.5, "line-dasharray":[0.1, 2.4]}},
+      {id:"l-water", type:"symbol", source:"omt", "source-layer":"water_name", minzoom:3, layout:{"text-field":NM, "text-font":["Noto Sans Italic"], "text-size": Z(3, 10, 12, 13), "text-max-width":8, "text-letter-spacing":.05}, paint:{"text-color":"#B5506F", "text-halo-color":"rgba(255,255,255,.5)", "text-halo-width":1}},
+      {id:"l-road", type:"symbol", source:"omt", "source-layer":"transportation_name", minzoom:14, layout:{"text-field":NM, "text-font":["Noto Sans Regular"], "text-size": Z(14, 10, 18, 13), "symbol-placement":"line"}, paint:{"text-color":"#5E5A7A", ...halo}},
+      {id:"l-poi", type:"symbol", source:"omt", "source-layer":"poi", minzoom:15.5, filter:["<=", ["coalesce", ["get", "rank"], 99], 12], layout:{"text-field":NM, "text-font":["Noto Sans Regular"], "text-size":11, "text-max-width":8, "symbol-sort-key":["coalesce", ["get", "rank"], 99]}, paint:{"text-color":"#8C1D3F", ...halo}},
+      {id:"l-sub", type:"symbol", source:"omt", "source-layer":"place", minzoom:12, filter: cls("suburb", "quarter", "neighbourhood"), layout:{"text-field":NM, "text-font":["Noto Sans Bold"], "text-size": Z(12, 9.5, 16, 12), "text-transform":"uppercase", "text-letter-spacing":.12, "text-max-width":7}, paint:{"text-color":"rgba(36,37,74,.55)", ...halo}},
+      {id:"l-village", type:"symbol", source:"omt", "source-layer":"place", minzoom:11, filter: cls("village", "hamlet"), layout:{"text-field":NM, "text-font":["Noto Sans Regular"], "text-size": Z(11, 10.5, 15, 13), "text-max-width":8}, paint:{"text-color":"#24254A", ...halo}},
+      {id:"l-town", type:"symbol", source:"omt", "source-layer":"place", minzoom:8, filter: cls("town"), layout:{"text-field":NM, "text-font":["Noto Sans Regular"], "text-size": Z(8, 11, 13, 15), "text-max-width":8, "symbol-sort-key":["coalesce", ["get", "rank"], 99]}, paint:{"text-color":"#24254A", ...halo}},
+      {id:"l-city", type:"symbol", source:"omt", "source-layer":"place", minzoom:4, filter: cls("city"), layout:{"text-field":NM, "text-font":["Noto Sans Bold"], "text-size": Z(4, 10, 8, 13, 12, 17), "text-max-width":8, "symbol-sort-key":["coalesce", ["get", "rank"], 99]}, paint:{"text-color":"#24254A", ...halo}},
+      {id:"l-country", type:"symbol", source:"omt", "source-layer":"place", minzoom:2.6, maxzoom:7, filter: cls("country"), layout:{"text-field":NM, "text-font":["Noto Sans Bold"], "text-size": Z(2.6, 8.5, 6, 11.5), "text-transform":"uppercase", "text-letter-spacing":.16, "text-max-width":7}, paint:{"text-color":"rgba(36,37,74,.62)", ...halo}}
+    ]
+  };
 }
 const colorMap = new Map(); let colorKey = "";
+
 function assignColors(vis){
   const key = [...vis].sort().join(","); if (key === colorKey) return; colorKey = key; colorMap.clear();
   const ids = [...vis].filter(id => byId.get(id)).sort();
@@ -672,104 +736,80 @@ const MODES = {
 const PL = {avion:["vuelo","vuelos"], bus:["bus","buses"], taxi:["taxi","taxis"], coche:["coche","coches"], barco:["barco","barcos"], excursion:["excursión","excursiones"]};
 const modeOf = s => MODES[s?.by] || MODES.otro;
 const curTrip = () => trips().find(t => t.id === S.trip) || null;
-function legPoints(a, b, mode, n = 56){
-  const interp = d3.geoInterpolate([a.lon, a.lat], [b.lon, b.lat]);
-  const P0 = proj([a.lon, a.lat]), P1 = proj([b.lon, b.lat]); if (!P0 || !P1) return [];
-  const dx = P1[0] - P0[0], dy = P1[1] - P0[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
-  const h = Math.min(140, L * (MODES[mode] || MODES.otro).curve), pts = [];
-  for (let i = 0; i <= n; i++) {
-    const tt = i / n, ll = interp(tt);
-    if (!visible(ll[0], ll[1])) { pts.push(null); continue; }
-    const p = proj(ll), o = Math.sin(Math.PI * tt) * h; pts.push([p[0] + nx * o, p[1] + ny * o]);
+// a gentle arc between two stops, drawn in map space so it looks right at any zoom
+function legPts(a, b, mode, n = 48){
+  const A = maplibregl.MercatorCoordinate.fromLngLat([a.lon, a.lat]), B = maplibregl.MercatorCoordinate.fromLngLat([b.lon, b.lat]);
+  let dx = B.x - A.x; if (Math.abs(dx) > .5) dx -= Math.sign(dx);
+  const dy = B.y - A.y, L = Math.hypot(dx, dy) || 1e-9, nx = -dy / L, ny = dx / L, h = L * (MODES[mode] || MODES.otro).curve;
+  const out = [];
+  for (let k = 0; k <= n; k++) {
+    const t = k / n, o = Math.sin(Math.PI * t) * h;
+    const ll = new maplibregl.MercatorCoordinate(A.x + dx * t + nx * o, A.y + dy * t + ny * o, 0).toLngLat();
+    out.push([ll.lng, ll.lat]);
   }
-  return pts;
+  return out;
 }
-function strokePts(pts, upto){
-  ctx.beginPath(); let pen = false; const last = Math.max(1, Math.floor((pts.length - 1) * upto));
-  for (let i = 0; i <= last; i++) { const q = pts[i]; if (!q) { pen = false; continue; } if (!pen) { ctx.moveTo(q[0], q[1]); pen = true; } else ctx.lineTo(q[0], q[1]); }
-  ctx.stroke();
-}
-function ptAt(pts, f){ const i = Math.min(pts.length - 1, Math.max(0, Math.round((pts.length - 1) * f))); return pts[i]; }
-function drawTrip(t){
-  const tr = curTrip(); if (!tr) return;
-  const st = tr.stops || [], pl = S.play;
-  let curLeg = -1, frac = 1;
-  if (pl) {
-    const el = t - pl.t0;
-    if (pl.i > 0 && !pl.fitted) { pl.fitted = true; const a = st[pl.i - 1], b = st[pl.i]; fitTo({type:"MultiPoint", coordinates:[[a.lon, a.lat], [b.lon, b.lat]]}, [b.lon, b.lat], 12); }
-    if (!pl.staged && t - pl.t0 > (pl.i > 0 ? 2500 : 300)) { pl.staged = true; fitStage(st[pl.i]); }
-    if (pl.i > 0) { curLeg = pl.i; frac = Math.min(1, Math.max(0, (el - 500) / 1900)); }
-    if (el > (pl.i > 0 ? 6200 : 4200)) {
-      if (pl.i + 1 >= st.length) { S.play = null; markStep(st.length - 1); }
-      else { S.play = {t0: t, i: pl.i + 1, fitted:false}; markStep(pl.i + 1); }
+const dashOf = by => by === "avion" ? "d" : (by === "barco" || by === "excursion" || !MODES[by] || by === "otro") ? "p" : "s";
+let mover = null;
+function drawRoutes(){
+  if (!map || !map.getSource("route")) return;
+  const tr = (S.view === "trip" || S.view === "stage") ? curTrip() : null;
+  const feats = [], pl = S.play; let mv = null;
+  if (tr && !tr.plan) {
+    const st = tr.stops || [], shown = pl ? pl.i : st.length - 1;
+    for (let i = 1; i < st.length; i++) {
+      const a = st[i - 1], b = st[i]; if (!isFinite(a.lat) || !isFinite(b.lat)) continue;
+      let pts = legPts(a, b, b.by);
+      const future = pl && i > shown, cur = pl && i === pl.i && (pl.frac ?? 1) < 1;
+      if (cur) { const f = pl.frac || 0; const k = Math.max(1, Math.round((pts.length - 1) * f)); const q = pts[Math.min(pts.length - 1, Math.round((pts.length - 1) * d3.easeCubicInOut(f)))]; mv = {q, emo: modeOf(b).emo}; pts = pts.slice(0, k + 1); }
+      if (pts.length < 2) continue;
+      feats.push({type:"Feature", properties:{d: dashOf(b.by), o: future ? .16 : 1}, geometry:{type:"LineString", coordinates: pts}});
     }
   }
-  const shown = pl ? pl.i : st.length - 1;
-  ctx.save(); ctx.lineCap = "round"; ctx.lineJoin = "round";
-  for (let i = 1; i < st.length; i++) {
-    if (tr.plan && !st[i].by) continue;
-    const m = modeOf(st[i]), pts = legPoints(st[i-1], st[i], st[i].by);
-    if (!pts.length) continue;
-    const future = pl && i > shown;
-    ctx.globalAlpha = future ? .18 : 1;
-    const upto = i === curLeg ? frac : 1;
-    ctx.setLineDash(m.dash.length ? [Math.max(1.5, m.dash[0] * .6), 5] : [10, 4]); ctx.lineWidth = 4.5; ctx.strokeStyle = "rgba(255,255,255,.8)"; strokePts(pts, upto);
-    ctx.lineWidth = 1.6; ctx.strokeStyle = "#24254A"; strokePts(pts, upto);
-    ctx.setLineDash([]);
-    if (upto >= 1 && !future) {
-      const a = ptAt(pts, .56), b = ptAt(pts, .6), md = ptAt(pts, .42);
-      if (a && b) { const ang = Math.atan2(b[1] - a[1], b[0] - a[0]); ctx.save(); ctx.translate(b[0], b[1]); ctx.rotate(ang); ctx.fillStyle = "#24254A"; ctx.beginPath(); ctx.moveTo(5, 0); ctx.lineTo(-4, -4); ctx.lineTo(-2, 0); ctx.lineTo(-4, 4); ctx.closePath(); ctx.fill(); ctx.restore(); }
-      if (md && zoom > 2.5) { ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(md[0], md[1], 11, 0, 7); ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = "#24254A"; ctx.stroke();
-        ctx.font = "11px system-ui, 'Apple Color Emoji','Segoe UI Emoji',sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(m.emo, md[0], md[1] + 1); ctx.textAlign = "left"; }
-    }
-    if (i === curLeg && frac < 1) {
-      const q = ptAt(pts, d3.easeCubicInOut(frac));
-      if (q) { ctx.globalAlpha = 1; ctx.shadowColor = "rgba(150,40,70,.35)"; ctx.shadowBlur = 8; ctx.shadowOffsetY = 3;
-        ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(q[0], q[1], 17, 0, 7); ctx.fill(); ctx.shadowColor = "transparent";
-        ctx.lineWidth = 2.5; ctx.strokeStyle = m.col; ctx.stroke();
-        ctx.font = "18px system-ui, 'Apple Color Emoji','Segoe UI Emoji',sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(m.emo, q[0], q[1] + 1); ctx.textAlign = "left"; }
-    }
+  map.getSource("route").setData({type:"FeatureCollection", features: feats});
+  let day = EMPTY;
+  if (tr && tr.plan && S.step != null) {
+    const line = (tr.stops[S.step]?.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat]);
+    if (line.length > 1) day = {type:"FeatureCollection", features:[{type:"Feature", properties:{}, geometry:{type:"LineString", coordinates: line}}]};
   }
-  ctx.restore();
-  const cs = S.step != null ? st[S.step] : null;
-  for (const sp of [...(cs?.spots || []), ...(cs?.items || []).filter(it => isFinite(it.lat)).map(it => ({n:it.n, lat:it.lat, lon:it.lon}))]) {
-    if (!visible(sp.lon, sp.lat)) continue;
-    const [x, y] = proj([sp.lon, sp.lat]);
-    ctx.save(); ctx.shadowColor = "rgba(150,40,70,.3)"; ctx.shadowBlur = 4; ctx.shadowOffsetY = 2;
-    ctx.fillStyle = "#FFFFFF"; ctx.beginPath(); ctx.arc(x, y, 6, 0, 7); ctx.fill(); ctx.restore();
-    ctx.fillStyle = "#24254A"; ctx.beginPath(); ctx.arc(x, y, 3, 0, 7); ctx.fill();
-    label(x, y - 6, sp.n, false);
-  }
-  const seenAt = new Map();
-  st.forEach((s0, i) => {
-    if (!visible(s0.lon, s0.lat)) return;
-    if (pl && i > shown) return;
-    const [x, y] = proj([s0.lon, s0.lat]);
-    const key = Math.round(x / 6) + "," + Math.round(y / 6), k = seenAt.get(key) || 0; seenAt.set(key, k + 1);
-    const ox = x + k * 15, cur = S.step === i;
-    pinScreen.push({step:i, x:ox, y});
-    ctx.save(); ctx.shadowColor = "rgba(150,40,70,.3)"; ctx.shadowBlur = 6; ctx.shadowOffsetY = 2;
-    ctx.fillStyle = cur ? "#D71F2B" : "#fff"; ctx.beginPath(); ctx.arc(ox, y, cur ? 13 : 10.5, 0, 7); ctx.fill(); ctx.restore();
-    ctx.lineWidth = 2; ctx.strokeStyle = cur ? "#fff" : "#24254A"; ctx.beginPath(); ctx.arc(ox, y, cur ? 13 : 10.5, 0, 7); ctx.stroke();
-    ctx.fillStyle = cur ? "#fff" : "#24254A"; ctx.font = `${cur ? 13 : 11}px Fraunces, Georgia, serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(String(i + 1), ox, y + 1); ctx.textAlign = "left";
-    if (k === 0) label(ox, y - 10, s0.n, cur);
-  });
+  map.getSource("dayline").setData(day);
+  if (mv) {
+    if (!mover) { const el = document.createElement("div"); el.className = "mover"; mover = new maplibregl.Marker({element: el, opacityWhenCovered: "0"}).setLngLat(mv.q).addTo(map); }
+    mover.getElement().textContent = mv.emo; mover.setLngLat(mv.q);
+  } else if (mover) { mover.remove(); mover = null; }
 }
+let playRAF = 0;
+function playTick(t){
+  const tr = curTrip(), pl = S.play;
+  if (!pl || !tr) { playRAF = 0; drawRoutes(); return; }
+  const st = tr.stops || [], el = t - pl.t0;
+  if (pl.i > 0 && !pl.fitted) { pl.fitted = true; const a = st[pl.i - 1], b = st[pl.i]; fitLLs([[a.lon, a.lat], [b.lon, b.lat]], 8); }
+  if (!pl.staged && el > (pl.i > 0 ? 2600 : 300)) { pl.staged = true; fitStage(st[pl.i]); }
+  pl.frac = pl.i > 0 ? Math.min(1, Math.max(0, (el - 500) / 1900)) : 1;
+  if (el > (pl.i > 0 ? 6200 : 4200)) {
+    if (pl.i + 1 >= st.length) { S.play = null; playRAF = 0; markStep(st.length - 1); drawRoutes(); return; }
+    S.play = {t0: t, i: pl.i + 1, fitted: false}; markStep(pl.i + 1);
+  }
+  drawRoutes();
+  playRAF = requestAnimationFrame(playTick);
+}
+function startPlay(){ if (!playRAF) playRAF = requestAnimationFrame(playTick); }
 function markStep(i){
   S.step = i;
   panel.querySelectorAll(".tl li").forEach(li => { const on = +li.dataset.step === i; li.classList.toggle("cur", on); li.querySelector(".stopb")?.setAttribute("aria-expanded", on); });
   const li = panel.querySelector(`.tl li[data-step="${i}"]`); if (li) li.scrollIntoView({block:"nearest", behavior: reduced ? "auto" : "smooth"});
   const pb = $("#b-play"); if (pb && !S.play) pb.innerHTML = `${ic("play", "sm")}Ver la ruta en movimiento`;
-  if (S.view === "trip") syncCity();
+  syncMap();
 }
 function fitStage(s0){
   const pts = [[s0.lon, s0.lat], ...(s0.spots || []).map(p => [p.lon, p.lat]), ...(s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])];
-  const mz = curTrip()?.plan ? 30000 : 14;
-  if (pts.length > 1) fitTo({type:"MultiPoint", coordinates:pts}, pts[0], mz); else flyTo(s0.lon, s0.lat, Math.max(zoom, 9));
+  const plan = !!curTrip()?.plan;
+  if (pts.length > 1) fitLLs(pts, plan ? 16.5 : 12); else flyTo(s0.lon, s0.lat, plan ? 15 : 11);
 }
 function fitTrip(tr){
   const pts = (tr.stops || []).filter(s0 => !tr.country || s0.cc === tr.country || !s0.cc).map(s0 => [s0.lon, s0.lat]);
-  if (pts.length) fitTo({type:"MultiPoint", coordinates:pts}, pts[0], tr.plan ? 30000 : 60);
+  if (tr.plan) pts.push(...(tr.stops || []).flatMap(s0 => (s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])));
+  if (pts.length) fitLLs(pts, tr.plan ? 15.5 : 7);
 }
 function openTrip(id){
   const tr = trips().find(t => t.id === id); if (!tr) return;
@@ -854,7 +894,7 @@ function renderTrip(){
   $("#b-play").onclick = () => {
     if (S.play) { S.play = null; markStep(S.step ?? 0); $("#b-play").innerHTML = `${ic("play", "sm")}Ver la ruta en movimiento`; return; }
     const a = st[0]; if (!a) return;
-    S.play = {t0: performance.now(), i: 0, fitted:true}; markStep(0);
+    S.play = {t0: performance.now(), i: 0, fitted:true}; markStep(0); startPlay();
     $("#b-play").innerHTML = `${ic("pause", "sm")}Pausar`;
     if (isPhone()) setSize("half");
   };
@@ -945,7 +985,7 @@ function renderStage(){
   const bind = (id, k) => { const el = $("#" + id); if (el) el.oninput = e => f[k] = e.target.value; };
   bind("sf-n", "n"); bind("sf-sub", "sub"); bind("sf-leg", "leg"); bind("sf-raw", "raw"); bind("sf-sleep", "sleep"); bind("sf-story", "story");
   $("#sf-by").onchange = e => f.by = e.target.value;
-  attachSuggest($("#sf-n"), () => tr.country || null, it => { f.n = it.n; $("#sf-n").value = it.n; f.lat = it.lat; f.lon = it.lon; f.cc = it.cc; flyTo(it.lon, it.lat, Math.max(zoom, 8)); }, {kinds:["c", "r", "z"]});
+  attachSuggest($("#sf-n"), () => tr.country || null, it => { f.n = it.n; $("#sf-n").value = it.n; f.lat = it.lat; f.lon = it.lon; f.cc = it.cc; flyTo(it.lon, it.lat, 12); }, {kinds:["c", "r", "z"]});
   ["did", "ate"].forEach(k => {
     renderStageChips(k);
     const inp = $("#sa-" + k), add = () => { const v = inp.value.trim(); if (!v) return; f[k].push(v); inp.value = ""; renderStageChips(k); inp.focus(); };
@@ -1054,282 +1094,184 @@ function tripCards(list){
     <div class="trips">${list.map(tr => `<button class="tripc" data-trip="${esc(tr.id)}"><span class="tico">${ic("route", "lg")}</span><span>${tr.plan ? `<span class="tag" style="margin:0 0 2px;display:block">Próximo viaje</span>` : ""}<b>${esc(tr.title || "Ruta")}</b><span class="muted small">${(tr.stops || []).length} ${tr.plan ? "días" : "paradas"} · ${tripStats(tr).map(([k, n]) => `${n} ${(PL[k] || [k, k])[n === 1 ? 0 : 1]}`).join(" · ")}</span></span>${ic("play", "sm")}</button>`).join("")}</div></section>` : "";
 }
 const countFor = cc => places().filter(p => p.country === cc).length + (marks().find(m => m.country === cc)?.cities?.length || 0);
-function frame(t){
-  if (document.body.classList.contains("city")) { last = t; requestAnimationFrame(frame); return; }
-  const dt = Math.min(64, t - last); last = t;
-  if (fly) { const k = Math.min(1, (t - fly.t0) / fly.dur), e = d3.easeCubicInOut(k); rot = fly.ir(e); zoom = fly.iz(e); if (fly.im) mty = fly.im(e); if (k >= 1) fly = null; }
-  else if (isGlobe() && !reduced && t - lastTouch > 4000 && !S.sel && !S.country && S.view !== "form") rot[0] += dt * 0.004;
-  applyProj();
-  ctx.clearRect(0,0,W,H);
-  const globe = isGlobe(), r = base * zoom;
-  const fc = focusCC();
-  focusA += ((fc ? 1 : 0) - focusA) * (reduced ? 1 : Math.min(1, dt / 160));
-
-  // pink sea (the page itself on the flat map), white land, little hand-drawn waves
-  if (globe) {
-    const halo = ctx.createRadialGradient(cx, cy, r * .98, cx, cy, r * 1.22);
-    halo.addColorStop(0, "rgba(242,150,175,.45)"); halo.addColorStop(1, "rgba(242,150,175,0)");
-    ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, r * 1.22, 0, 7); ctx.fill();
-    const g = ctx.createRadialGradient(cx - r * .38, cy - r * .42, r * .05, cx, cy, r * 1.02);
-    g.addColorStop(0, "#FFE4EB"); g.addColorStop(.55, "#F8C3D1"); g.addColorStop(1, "#EE9DB3");
-    ctx.beginPath(); path(SPHERE); ctx.fillStyle = g; ctx.fill();
+/* ---------- what sits on the map: badges, cities, places, stops, plan items ---------- */
+const MK = new Map();
+function putMarkers(list){
+  if (!map) return;
+  const keep = new Set();
+  for (const m of list) {
+    if (!m.ll || !isFinite(m.ll[0]) || !isFinite(m.ll[1])) continue;
+    keep.add(m.key);
+    let r = MK.get(m.key);
+    if (!r) {
+      const el = document.createElement("div");
+      r = {el, html: null, mk: new maplibregl.Marker({element: el, anchor: m.anchor || "center", opacityWhenCovered: "0"}).setLngLat(m.ll).addTo(map)};
+      el.addEventListener("click", e => { if (r.on) { e.stopPropagation(); r.on(e); } });
+      MK.set(m.key, r);
+    }
+    r.on = m.on || null;
+    const inner = `<div class="mk ${m.cls || ""}">${m.html}</div>`;
+    if (r.html !== inner) { r.el.innerHTML = inner; r.html = inner; }
+    r.el.style.zIndex = m.z || 1;
+    r.mk.setLngLat(m.ll);
+    if (m.pop) {
+      if (!r.pop) { r.pop = new maplibregl.Popup({offset: m.popOff || 18, maxWidth: "270px", focusAfterOpen: false}); r.pop.on("open", () => wirePop(r.pop.getElement())); r.mk.setPopup(r.pop); }
+      if (r.popHTML !== m.pop) { r.pop.setHTML(m.pop); r.popHTML = m.pop; }
+    } else if (r.pop) { r.mk.setPopup(null); r.pop = null; r.popHTML = null; }
   }
-  ctx.beginPath(); path(grat); ctx.strokeStyle = globe ? "rgba(255,255,255,.35)" : "rgba(163,18,29,.12)"; ctx.lineWidth = .7; ctx.setLineDash([3, 4]); ctx.stroke(); ctx.setLineDash([]);
-  ctx.beginPath(); for (const f of world) path(f); ctx.fillStyle = "#FFFFFF"; ctx.fill();
-  ctx.strokeStyle = "#F4D6DE"; ctx.lineWidth = .7; ctx.stroke();
-
-  const visited = visitedSet(); assignColors(visited);
-  for (const id of visited) {
-    const f = byId.get(id); if (!f || id === fc) continue;
-    ctx.globalAlpha = fc ? 1 - .55 * focusA : 1;
-    ctx.beginPath(); path(f); ctx.fillStyle = colorFor(id); ctx.fill();
-    ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 1; ctx.stroke();
-  }
-  ctx.globalAlpha = 1;
-  if (S.hover && S.hover !== fc && byId.get(S.hover)) {
-    ctx.beginPath(); path(byId.get(S.hover)); ctx.strokeStyle = "#D71F2B"; ctx.lineWidth = 1.6; ctx.stroke();
-  }
-  if (fc && byId.get(fc)) {
-    const f = byId.get(fc);
-    ctx.save(); ctx.shadowColor = "rgba(150,40,70,.35)"; ctx.shadowBlur = 16 * focusA; ctx.shadowOffsetY = 5 * focusA;
-    ctx.beginPath(); path(f); ctx.fillStyle = visited.has(fc) ? colorFor(fc) : "#FFFFFF"; ctx.fill(); ctx.restore();
-    ctx.beginPath(); path(f); ctx.strokeStyle = "#24254A"; ctx.lineWidth = 1.6; ctx.stroke();
-  }
-  if (globe) {
-    const sh = ctx.createRadialGradient(cx - r * .35, cy - r * .4, r * .2, cx, cy, r);
-    sh.addColorStop(0, "rgba(255,255,255,.18)"); sh.addColorStop(.7, "rgba(255,255,255,0)"); sh.addColorStop(1, "rgba(160,50,85,.16)");
-    ctx.beginPath(); path(SPHERE); ctx.fillStyle = sh; ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,.9)"; ctx.lineWidth = 2; ctx.stroke();
-  }
-
-  // route between detailed places (world view only)
-  const pts = sortedPlaces();
-  if (pts.length > 1 && focusA < .98) {
-    ctx.globalAlpha = 1 - focusA;
-    ctx.beginPath(); path({type:"LineString", coordinates: pts.map(p => [p.lon, p.lat])});
-    ctx.setLineDash([1.5, 5]); ctx.lineCap = "round"; ctx.lineDashOffset = reduced ? 0 : -t * 0.015;
-    ctx.strokeStyle = "rgba(36,37,74,.7)"; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]); ctx.lineCap = "butt";
-    ctx.globalAlpha = 1;
-  }
-
-  pinScreen = []; placedLabels = [];
-  // country badges, clustered when they crowd each other
-  const clusters = [];
-  [...visited].filter(cc => cc !== fc && byId.get(cc)).sort((a, b) => countFor(b) - countFor(a)).forEach(cc => {
-    const ll = byId.get(cc).properties.c; if (!visible(ll[0], ll[1])) return;
-    const [x, y] = proj(ll);
-    const cl = clusters.find(c => Math.hypot(c.x - x, c.y - y) < 30);
-    if (cl) { cl.members.push(cc); cl.lls.push(ll); } else clusters.push({x, y, members:[cc], lls:[ll]});
+  for (const [k, r] of MK) if (!keep.has(k)) { r.mk.remove(); MK.delete(k); }
+}
+const mlab = (t, strong) => t ? `<span class="mlab ${strong ? "strong" : ""}">${esc(t)}</span>` : "";
+function countryBadges(fc){
+  if (zoomNow() >= 6.4) return [];
+  const pts = [...visitedSet()].filter(cc => cc !== fc && byId.get(cc)).sort((a, b) => countFor(b) - countFor(a))
+    .map(cc => { const ll = byId.get(cc).properties.c; return {cc, ll, p: map.project(ll)}; });
+  const cl = [];
+  for (const q of pts) { const c = cl.find(c => Math.hypot(c.p.x - q.p.x, c.p.y - q.p.y) < 30); if (c) { c.m.push(q.cc); c.lls.push(q.ll); } else cl.push({p: q.p, ll: q.ll, m: [q.cc], lls: [q.ll]}); }
+  return cl.map(c => c.m.length === 1
+    ? {key: "c:" + c.m[0], ll: c.ll, html: `<span class="badge" style="--sw:${colorFor(c.m[0])}">${flag(c.m[0])}</span>`, cls: fc ? "dim" : "", z: 5, on: () => openCountry(c.m[0], true)}
+    : {key: "k:" + [...c.m].sort().join(","), ll: c.ll, html: `<span class="badge n">${c.m.length}</span>`, cls: fc ? "dim" : "", z: 6, on: () => fitLLs(c.lls, 6)});
+}
+function focusMarkers(fc){
+  const out = [];
+  citiesOf(fc).forEach((cn, i) => {
+    const g = cityCoord(fc, cn); if (!g) return; const n = cityName(cn);
+    out.push({key: "ci:" + fc + i, ll: [g.lon, g.lat], html: `<span class="dot"></span>${mlab(n, S.city === n)}`, cls: "city", z: S.city === n ? 20 : 10, on: () => { S.city = n; flyTo(g.lon, g.lat, Math.max(zoomNow() + 1.5, 11)); syncMap(); }});
   });
-  const ba = fc ? 1 - .7 * focusA : 1;
-  for (const c of clusters) {
-    if (c.members.length === 1) { badge(c.x, c.y, flag(c.members[0]), colorFor(c.members[0]), ba, false); pinScreen.push({country:c.members[0], x:c.x, y:c.y}); }
-    else { badge(c.x, c.y, String(c.members.length), "#1F2B3D", ba, true); pinScreen.push({cluster:c, x:c.x, y:c.y}); }
+  for (const p of places()) {
+    if (p.country !== fc || !isFinite(p.lat) || (S.view === "form" && S.form && p.id === S.form.id)) continue;
+    const sel = S.sel === p.id, seed = [...p.id].reduce((n, c) => n + c.charCodeAt(0), 0);
+    out.push({key: "p:" + p.id, ll: [p.lon, p.lat], anchor: "bottom", z: sel ? 40 : 30, cls: sel ? "sel" : "",
+      html: (p.photos?.length ? `<span class="polam" style="--r:${(seed % 7 - 3) * 2}deg"><img src="${esc(photoSrc(p.photos[0]))}" alt=""></span>` : `<span class="pinm"></span>`) + mlab(p.name, sel),
+      on: () => select(p.id, true)});
   }
+  return out;
+}
+function tripMarkers(){
+  const tr = curTrip(); if (!tr) return [];
+  const st = tr.stops || [], out = [], pl = S.play, shown = pl ? pl.i : st.length - 1;
+  if (tr.plan) {
+    st.forEach((s0, i) => {
+      if (S.step != null && S.step !== i) return;
+      (s0.items || []).forEach((it, j) => {
+        if (!isFinite(it.lat)) return; const g = GT[it.t] || GT.ver, one = S.step != null;
+        out.push({key: "pi:" + i + "|" + j, ll: [it.lon, it.lat], z: 20, cls: "pi" + (one ? "" : " sm") + (it.done ? " done" : ""),
+          html: `<span class="cm" style="--c:${g.c}">${ic(g.ic, "sm")}<b>${one ? j + 1 : i + 1}</b></span>`, pop: popHTML(it, g, i, j)});
+      });
+    });
+    return out;
+  }
+  st.forEach((s0, i) => {
+    if (!isFinite(s0.lat) || (pl && i > shown)) return;
+    const cur = S.step === i;
+    out.push({key: "s:" + i, ll: [s0.lon, s0.lat], z: cur ? 40 : 30, cls: "stop" + (cur ? " cur" : ""), html: `<span class="stopn">${i + 1}</span>${mlab(s0.n, cur)}`,
+      on: () => { S.play = null; if (S.step === i) { markStep(null); fitTrip(tr); } else { markStep(i); fitStage(s0); } }});
+    if (i > 0 && s0.by && isFinite(st[i - 1].lat) && !(pl && i === pl.i && (pl.frac ?? 1) < 1)) {
+      const pts = legPts(st[i - 1], s0, s0.by), md = pts[Math.round(pts.length * .45)];
+      out.push({key: "m:" + i, ll: md, z: 15, cls: "modem", html: `<span>${modeOf(s0).emo}</span>`});
+    }
+  });
+  const cs = S.step != null ? st[S.step] : null;
+  (cs?.spots || []).forEach((sp, k) => { if (isFinite(sp.lat)) out.push({key: "sp:" + S.step + ":" + k, ll: [sp.lon, sp.lat], z: 12, cls: "city", html: `<span class="dot"></span>${mlab(sp.n)}`, pop: popHTML(sp, null, S.step, null)}); });
+  return out;
+}
+let lastCK = "";
+function syncMap(){
+  if (!map || !map.getSource("countries")) return;
+  const fc = focusCC(), ck = [...visitedSet()].sort().join(",") + "|" + fc;
+  const src = map.getSource("countries"); if (src && ck !== lastCK) { lastCK = ck; src.setData(countriesFC()); }
+  const inTrip = S.view === "trip" || S.view === "stage", list = [];
+  if (!inTrip) list.push(...countryBadges(fc));
+  if (inTrip) list.push(...tripMarkers()); else if (fc) list.push(...focusMarkers(fc));
+  if (S.view === "form" && S.form && isFinite(S.form.lat)) list.push({key: "form", ll: [S.form.lon, S.form.lat], anchor: "bottom", z: 60, cls: "formpin", html: `<span class="pinm blue"></span>${mlab(S.form.name, true)}`});
+  putMarkers(list);
+  drawRoutes();
+  declutter();
+}
+let dclT = 0;
+function declutter(){
+  cancelAnimationFrame(dclT);
+  dclT = requestAnimationFrame(() => {
+    const labs = [...document.querySelectorAll("#map .mk .mlab")].map(l => ({l, z: +(l.closest(".maplibregl-marker")?.style.zIndex || 0)})).sort((a, b) => b.z - a.z);
+    const taken = [];
+    for (const {l} of labs) {
+      l.style.visibility = "";
+      const r = l.getBoundingClientRect(); if (!r.width) continue;
+      const hit = taken.some(t => r.left < t.right + 2 && r.right > t.left - 2 && r.top < t.bottom + 1 && r.bottom > t.top - 1);
+      if (hit) l.style.visibility = "hidden"; else taken.push(r);
+    }
+  });
+}
+function showStamp(cc){
+  const f = byId.get(cc); if (!f || !map || reduced) return;
+  const el = document.createElement("div"); el.className = "stamp"; el.innerHTML = `<b>VISITADO</b><i>${new Date().getFullYear()}</i>`;
+  const mk = new maplibregl.Marker({element: el, opacityWhenCovered: "0"}).setLngLat(f.properties.c).addTo(map);
+  setTimeout(() => mk.remove(), 1500);
+}
 
-  // focused country: its cities and places
-  if (S.view === "trip" || S.view === "stage") drawTrip(t);
-  else if (fc && focusA > .05) {
-    ctx.globalAlpha = focusA;
-    const m = marks().find(m => m.country === fc);
-    for (const cn of (m?.cities || [])) {
-      const g = cityCoord(fc, cn); if (!g || !visible(g.lon, g.lat)) continue;
-      const [x, y] = proj([g.lon, g.lat]); pinScreen.push({city:g, x, y});
-      ctx.save(); ctx.shadowColor = "rgba(150,40,70,.3)"; ctx.shadowBlur = 4; ctx.shadowOffsetY = 2;
-      ctx.fillStyle = "#FFFFFF"; ctx.beginPath(); ctx.arc(x, y, 6.5, 0, 7); ctx.fill(); ctx.restore();
-      ctx.fillStyle = "#24254A"; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, 7); ctx.fill();
-      label(x, y - 6, cityName(cn), S.city === cityName(cn));
-    }
-    for (const p of places()) {
-      if (p.country !== fc || !isFinite(p.lat) || (S.view === "form" && S.form && p.id === S.form.id) || !visible(p.lon, p.lat)) continue;
-      const [x, y] = proj([p.lon, p.lat]); const sel = S.sel === p.id;
-      if (p.photos?.length) {
-        const sz = drawPolaroid(x, y, p.photos[0], sel, [...p.id].reduce((n, c) => n + c.charCodeAt(0), 0));
-        pinScreen.push({id:p.id, x, y:y - sz/2 - 10});
-        label(x, y - sz - 18, p.name, sel);
-      } else {
-        pinScreen.push({id:p.id, x, y:y - 14});
-        drawPin(x, y, sel ? 1.3 : 1, "#D71F2B");
-        label(x, y - 30 * (sel ? 1.3 : 1), p.name, sel);
-      }
-    }
-    ctx.globalAlpha = 1;
+/* ---------- building the map ---------- */
+let spinLast = 0;
+function spinTick(t){
+  const dt = Math.min(64, t - (spinLast || t)); spinLast = t;
+  if (map && !reduced && S.view === "list" && !S.sel && !S.country && t - lastTouch > 6000 && zoomNow() < 3.2 && !map.isMoving() && !document.hidden) {
+    const c = map.getCenter(); map.setCenter([c.lng + dt * .0035, c.lat]);
   }
-  if (S.view === "form" && S.form && isFinite(S.form.lat) && visible(S.form.lon, S.form.lat)) {
-    const [x, y] = proj([S.form.lon, S.form.lat]);
-    if (!reduced) { const ph = (t/1300) % 1; ctx.beginPath(); ctx.arc(x, y, 4 + ph*22, 0, 7); ctx.strokeStyle = `rgba(53,82,224,${1-ph})`; ctx.lineWidth = 2; ctx.stroke(); }
-    drawPin(x, y, 1.3, "#3552E0");
-    if (S.form.name) label(x, y - 40, S.form.name, true);
-  }
-  drawStamp(t);
-  if (S.hover && hoverXY && S.hover !== fc) label(hoverXY[0], hoverXY[1] - 10, countryName(S.hover), false, false);
-  requestAnimationFrame(frame);
+  requestAnimationFrame(spinTick);
 }
-function badge(x, y, text, col, a, dark){
-  ctx.save(); ctx.globalAlpha = a;
-  const R = dark ? 16 : 15;
-  ctx.shadowColor = "rgba(150,40,70,.3)"; ctx.shadowBlur = 8; ctx.shadowOffsetY = 3;
-  ctx.fillStyle = dark ? "#D71F2B" : "#FFFFFF"; ctx.beginPath(); ctx.arc(x, y, R, 0, 7); ctx.fill();
-  ctx.shadowColor = "transparent";
-  if (!dark) { ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.arc(x, y, R - 1.5, 0, 7); ctx.stroke(); }
-  else { ctx.lineWidth = 2.5; ctx.strokeStyle = "#FFFFFF"; ctx.stroke(); }
-  ctx.textAlign = "center"; ctx.textBaseline = "middle";
-  if (dark) { ctx.fillStyle = "#FFFFFF"; ctx.font = "16px Fraunces, Georgia, serif"; ctx.fillText(text, x, y + 1); }
-  else { ctx.fillStyle = "#24254A"; ctx.font = "15px system-ui, 'Apple Color Emoji','Segoe UI Emoji',sans-serif"; ctx.fillText(text, x, y + 1); }
-  ctx.textAlign = "left"; ctx.restore();
-}
-const imgCache = new Map();
-function getImg(id){
-  let im = imgCache.get(id);
-  if (!im) { im = new Image(); im.decoding = "async"; im.src = photoSrc(id); imgCache.set(id, im); }
-  return im.complete && im.naturalWidth ? im : null;
-}
-function drawPolaroid(x, y, id, sel, seed){
-  const im = getImg(id); const s = sel ? 54 : 42, pad = 4, bot = 10;
-  const rotA = ((seed % 7) - 3) * .035;
-  ctx.save(); ctx.translate(x, y - s/2 - 10); ctx.rotate(rotA);
-  ctx.shadowColor = "rgba(150,40,70,.3)"; ctx.shadowBlur = 8; ctx.shadowOffsetY = 3;
-  ctx.fillStyle = "#FFFFFF"; ctx.fillRect(-s/2, -s/2, s, s + bot); ctx.shadowColor = "transparent";
-  if (im) {
-    const iw = im.naturalWidth, ih = im.naturalHeight, side = Math.min(iw, ih);
-    ctx.drawImage(im, (iw - side)/2, (ih - side)/2, side, side, -s/2 + pad, -s/2 + pad, s - pad*2, s - pad*2);
-  } else { ctx.fillStyle = "#E6EBF8"; ctx.fillRect(-s/2 + pad, -s/2 + pad, s - pad*2, s - pad*2); }
-  ctx.fillStyle = "#D71F2B"; ctx.beginPath(); ctx.arc(0, -s/2 + 1, 4.5, 0, 7); ctx.fill();
-  ctx.restore();
-  return s;
-}
-function drawPin(x, y, s, col){
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
-  ctx.shadowColor = "rgba(150,40,70,.35)"; ctx.shadowBlur = 6; ctx.shadowOffsetY = 3;
-  ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-3, -6, -10, -11, -10, -18); ctx.arc(0, -18, 10, Math.PI, 0); ctx.bezierCurveTo(10, -11, 3, -6, 0, 0); ctx.closePath();
-  ctx.fillStyle = col; ctx.fill(); ctx.shadowColor = "transparent";
-  ctx.lineWidth = 2; ctx.strokeStyle = "#FFFFFF"; ctx.stroke();
-  ctx.fillStyle = "#FFFFFF"; ctx.beginPath(); ctx.arc(0, -18, 3.8, 0, 7); ctx.fill();
-  ctx.restore();
-}
-function label(x, y, text, strong, avoid = true){
-  ctx.save();
-  if (strong) ctx.font = "italic 500 17px Fraunces, Georgia, serif";
-  else { ctx.font = "700 10.5px 'DM Sans', system-ui, sans-serif"; text = text.toUpperCase(); try { ctx.letterSpacing = "1.3px"; } catch(e) {} }
-  const w = ctx.measureText(text).width + 6, h = strong ? 22 : 16;
-  const tries = [y - h - 2, y + 10];
-  let lx = Math.max(6, Math.min(W - w - 6, x - w/2)), ly = null;
-  for (const ty of tries) {
-    const hitR = avoid && placedLabels.some(r => lx < r[0] + r[2] && lx + w > r[0] && ty < r[1] + r[3] && ty + h > r[1]);
-    if (!hitR) { ly = ty; break; }
-  }
-  if (ly === null) { ctx.restore(); return; }
-  if (avoid) placedLabels.push([lx - 2, ly - 2, w + 4, h + 4]);
-  ctx.textBaseline = "middle";
-  const tx = lx + 3, tyy = ly + h/2;
-  ctx.lineWidth = strong ? 5 : 4; ctx.strokeStyle = "#FFFFFF"; ctx.lineJoin = "round"; ctx.strokeText(text, tx, tyy);
-  ctx.fillStyle = strong ? "#A3121D" : "#24254A"; ctx.fillText(text, tx, tyy);
-  ctx.restore();
-}
-function flyTo(lon, lat, z){
-  const tz = z ?? Math.max(zoom, 1.6);
-  const tr0 = rot[0] + ((((-lon - rot[0]) % 360) + 540) % 360 - 180);
-  if (isGlobe()) fly = { t0: performance.now(), dur: reduced ? 1 : 1100, ir: d3.interpolate(rot.slice(), [tr0, -lat, 0]), iz: d3.interpolate(zoom, tz) };
-  else {
-    const tmp = d3.geoNaturalEarth1().rotate([-lon, 0]).scale(mbase * tz).translate([0, 0]);
-    const ty = -tmp([lon, lat])[1];
-    fly = { t0: performance.now(), dur: reduced ? 1 : 1000, ir: d3.interpolate(rot.slice(), [tr0, 0, 0]), iz: d3.interpolate(zoom, tz), im: d3.interpolate(mty, ty) };
-  }
-  lastTouch = performance.now();
-}
-function fitTo(feature, fallbackLL, maxZ = 60){
+function initMap(){
+  if (!window.maplibregl) { $("#mapfail").hidden = false; return; }
   try {
-    const c0 = d3.geoCentroid(feature);
-    const tmp = isGlobe() ? d3.geoOrthographic().rotate([-c0[0], -c0[1]]).scale(base).translate([0, 0]) : d3.geoNaturalEarth1().rotate([-c0[0], 0]).scale(mbase).translate([0, 0]);
-    const b = d3.geoPath(tmp).bounds(feature);
-    const w = Math.max(maxZ > 60 ? .004 : 4, b[1][0] - b[0][0]), h = Math.max(maxZ > 60 ? .004 : 4, b[1][1] - b[0][1]);
-    const z = Math.max(1, Math.min(maxZ, Math.min(AW * .72 / w, AH * .72 / h)));
-    const ctr = tmp.invert([(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2]) || c0;
-    flyTo(ctr[0], ctr[1], z);
-  } catch(e) { if (fallbackLL) flyTo(fallbackLL[0], fallbackLL[1], 3); }
+    map = new maplibregl.Map({container: "map", style: mapStyle(), center: [-30, 28], zoom: Math.max(0, worldZoom() - (reduced ? 0 : .5)),
+      attributionControl: false, dragRotate: false, pitchWithRotate: false, touchPitch: false, maxPitch: 0, renderWorldCopies: false, fadeDuration: 120, maxZoom: 19});
+  } catch(e) { map = null; $("#mapfail").hidden = false; return; }
+  map.touchZoomRotate.disableRotation(); map.keyboard.disableRotation?.();
+  map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>'}), isPhone() ? "top-left" : "bottom-left");
+  const closeAttrib = () => document.querySelectorAll(".maplibregl-ctrl-attrib.maplibregl-compact-show").forEach(a => { a.classList.remove("maplibregl-compact-show"); a.removeAttribute("open"); });
+  map.once("idle", closeAttrib); setTimeout(closeAttrib, 1500);
+  map.on("load", () => {
+    syncMap();
+    if (!reduced && S.view === "list") map.easeTo({center: [-12, 30], zoom: worldZoom(), padding: pad(), duration: 1800});
+    else map.jumpTo({padding: pad(), zoom: S.view === "list" ? worldZoom() : zoomNow()});
+  });
+  map.on("zoomend", syncMap); map.on("moveend", declutter);
+  ["mousedown", "touchstart", "wheel"].forEach(ev => map.on(ev, () => { lastTouch = performance.now(); }));
+  const tip = $("#maptip");
+  map.on("mousemove", e => {
+    if (S.view === "form" || S.view === "trip" || zoomNow() > 5.5) { tip.hidden = true; map.getCanvas().style.cursor = S.view === "form" ? "crosshair" : ""; return; }
+    const f = map.queryRenderedFeatures(e.point, {layers: ["c-land"]})[0], id = f?.properties?.id;
+    if (!id || id === focusCC()) { tip.hidden = true; map.getCanvas().style.cursor = ""; return; }
+    tip.textContent = countryName(id); tip.style.transform = `translate(${e.point.x + 14}px, ${e.point.y - 10}px)`; tip.hidden = false;
+    map.getCanvas().style.cursor = "pointer";
+  });
+  map.on("mouseout", () => { tip.hidden = true; });
+  map.on("click", e => {
+    if (e.originalEvent?.target?.closest?.(".mk, .maplibregl-popup")) return;
+    const ll = e.lngLat;
+    if (S.view === "form") {
+      S.form.lon = +ll.lng.toFixed(5); S.form.lat = +ll.lat.toFixed(5);
+      const c = detectCountry(ll.lng, ll.lat); if (c) S.form.country = c;
+      renderLoc(); const sel = $("#f-country"); if (sel && c) sel.value = c;
+      if (S.size === "min") renderMinbar();
+      return;
+    }
+    if (S.view === "trip" || S.view === "stage" || zoomNow() >= 6) return;
+    const f = map.queryRenderedFeatures(e.point, {layers: ["c-land"]})[0], c = f?.properties?.id;
+    if (c) return c === S.country ? null : openCountry(c, true);
+    if (S.view !== "list") goList();
+  });
+  requestAnimationFrame(spinTick);
 }
-const fitCountry = cc => { const f = byId.get(cc); if (f) fitTo(f.properties.main, f.properties.c); };
-const fitCluster = cl => fitTo({type:"MultiPoint", coordinates: cl.lls}, cl.lls[0]);
-
-/* ---------- pointer ---------- */
-const ptrs = new Map(); let moved = 0, pinch0 = 0, zoom0 = 1;
-const pd = () => { const [a,b] = [...ptrs.values()]; return Math.hypot(a.x-b.x, a.y-b.y); };
-const clampZ = z => Math.max(isGlobe() ? .6 : 1, Math.min((S.view === "trip" || S.view === "stage") && curTrip()?.plan ? 30000 : 60, z));
-const clampY = () => { if (isGlobe()) return; const lim = mbase * zoom * 1.4; mty = Math.max(-lim, Math.min(lim, mty)); };
-cv.addEventListener("pointerdown", e => {
-  cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, {x:e.clientX, y:e.clientY});
-  if (ptrs.size === 1) moved = 0;
-  if (ptrs.size === 2) { pinch0 = pd(); zoom0 = zoom; moved = 99; }
-  fly = null; lastTouch = performance.now(); cv.classList.add("grabbing");
-});
-cv.addEventListener("pointermove", e => {
-  const p = ptrs.get(e.pointerId);
-  if (!p) {
-    if (e.pointerType !== "mouse") return;
-    let hv = null;
-    if (!hit(e.clientX, e.clientY) && S.view !== "form" && onMap(e.clientX, e.clientY)) { const ll = proj.invert([e.clientX, e.clientY]); hv = ll ? detectCountry(ll[0], ll[1]) || null : null; }
-    S.hover = hv; hoverXY = hv ? [e.clientX, e.clientY] : null;
-    cv.style.cursor = hit(e.clientX, e.clientY) || hv ? "pointer" : ""; return;
-  }
-  S.hover = null;
-  const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
-  if (ptrs.size === 1) {
-    if (isGlobe()) { const k = 90 / (base * zoom); rot[0] += dx * k; rot[1] = Math.max(-88, Math.min(88, rot[1] - dy * k)); }
-    else { rot[0] += dx * 180 / (Math.PI * mbase * zoom * .87); mty += dy; clampY(); }
-  } else if (ptrs.size === 2 && pinch0) { const nz = clampZ(zoom0 * pd() / pinch0); if (!isGlobe()) mty *= nz / zoom; zoom = nz; clampY(); }
-  moved += Math.abs(dx) + Math.abs(dy); lastTouch = performance.now();
-});
-const up = e => {
-  if (!ptrs.has(e.pointerId)) return;
-  const single = ptrs.size === 1; ptrs.delete(e.pointerId);
-  if (ptrs.size < 2) pinch0 = 0;
-  if (!ptrs.size) cv.classList.remove("grabbing");
-  if (single && moved < 8 && e.type === "pointerup") tap(e.clientX, e.clientY);
-};
-cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
-cv.addEventListener("pointerleave", () => { S.hover = null; hoverXY = null; });
-cv.addEventListener("wheel", e => { e.preventDefault(); fly = null; const nz = clampZ(zoom * Math.exp(-e.deltaY * .0015)); if (!isGlobe()) mty *= nz / zoom; zoom = nz; clampY(); lastTouch = performance.now(); }, {passive:false});
-const zoomBy = f => { const nz = clampZ(zoom*f); fly = { t0: performance.now(), dur: 350, ir: d3.interpolate(rot.slice(), rot.slice()), iz: d3.interpolate(zoom, nz), im: isGlobe() ? null : d3.interpolate(mty, mty * nz / zoom) }; lastTouch = performance.now(); };
-$("#zin").onclick = () => cityActive() ? cmap.zoomIn() : zoomBy(1.6); $("#zout").onclick = () => cityActive() ? cmap.zoomOut() : zoomBy(1/1.6);
-$("#zreset").onclick = () => { if (cityActive()) return fitCity(); fly = { t0: performance.now(), dur: 900, ir: d3.interpolate(rot.slice(), [rot[0], isGlobe() ? -25 : 0, 0]), iz: d3.interpolate(zoom, 1), im: isGlobe() ? null : d3.interpolate(mty, 0) }; goList(); };
-
-function hit(x, y){ let best = null, bd = 22; for (const p of pinScreen) { const d = Math.hypot(p.x - x, p.y - y); if (d < bd) { bd = d; best = p; } } return best; }
-function onMap(x, y){ if (isGlobe()) return Math.hypot(x - cx, y - cy) <= base * zoom; const ll = proj.invert([x, y]); return !!ll && d3.geoContains(SPHERE, ll) && Math.abs(ll[1]) <= 90; }
-function tap(x, y){
-  if (S.view === "form") {
-    if (!onMap(x, y)) return;
-    const ll = proj.invert([x, y]); if (!ll) return;
-    S.form.lon = +ll[0].toFixed(4); S.form.lat = +ll[1].toFixed(4);
-    const c = detectCountry(ll[0], ll[1]); if (c) S.form.country = c;
-    renderLoc(); const sel = $("#f-country"); if (sel && c) sel.value = c;
-    if (S.size === "min") renderMinbar();
-    return;
-  }
-  const h = hit(x, y);
-  if (h && h.step !== undefined) { S.play = null; markStep(h.step); const s0 = curTrip()?.stops?.[h.step]; if (s0) flyTo(s0.lon, s0.lat, Math.max(zoom, 10)); return; }
-  if (S.view === "trip") return;
-  if (h?.id) return select(h.id, true);
-  if (h?.city) { S.city = h.city.n; flyTo(h.city.lon, h.city.lat, Math.max(zoom * 1.6, 12)); return; }
-  if (h?.cluster) { fitCluster(h.cluster); return; }
-  if (h?.country) return openCountry(h.country, true);
-  if (onMap(x, y)) { const ll = proj.invert([x, y]); const c = ll && detectCountry(ll[0], ll[1]); if (c) return c === S.country ? null : openCountry(c, true); }
-  if (S.view !== "list") goList();
-}
+$("#zin").onclick = () => map?.zoomIn(); $("#zout").onclick = () => map?.zoomOut();
+$("#zreset").onclick = () => goList(true);
 
 /* ---------- formatting ---------- */
 const fmtDate = d => { if (!d) return "Sin fecha"; const [y, m] = d.split("-"); try { return new Date(+y, (+m||1)-1, 1).toLocaleDateString("es-ES", {month:"long", year:"numeric"}); } catch(e) { return d; } };
-function renderStats(){
-  const ps = places(), countries = visitedSet(), pts = sortedPlaces(); let km = 0;
-  for (let i = 1; i < pts.length; i++) km += d3.geoDistance([pts[i-1].lon, pts[i-1].lat], [pts[i].lon, pts[i].lat]) * 6371;
-  const nf = new Intl.NumberFormat("es-ES");
+function statsLine(){
+  const countries = visitedSet(), n = places().length + marks().reduce((k, m) => k + (m.cities?.length || 0), 0);
   const pct = (countries.size / TOTAL_COUNTRIES * 100).toLocaleString("es-ES", {maximumFractionDigits:1});
-  $("#stats").innerHTML = [
-    ["#FF5C8A", countries.size, countries.size === 1 ? "país" : "países"],
-    ["#FFD23F", ps.length + marks().reduce((n, m) => n + (m.cities?.length || 0), 0), "sitios"],
-    ["#00B89F", pct + "%", "del mundo"],
-    ["#7B61FF", nf.format(Math.round(km)), "km"]
-  ].map(([c, v, l]) => `<span class="pill"><b>${v}</b><span class="l">${l}</span></span>`).join("");
+  return `<div class="kpis"><span><b>${countries.size}</b> ${countries.size === 1 ? "país" : "países"}</span><span><b>${n}</b> sitios</span><span><b>${pct}%</b> del mundo</span></div>`;
 }
+function renderStats(){ const k = panel.querySelector(".kpis"); if (k) k.outerHTML = statsLine(); }
 function photoSrc(id){ return photoUrls.get(id) || id; }
 const photoUrls = new Map();
 
@@ -1340,7 +1282,19 @@ function shell(inner, foot){
     <div class="minbar" id="minbar"></div>`;
 }
 function wireShell(){
-  $("#grab").onclick = () => { if (S.size === "min") setSize(S.view === "form" ? "tall" : "half"); else setSize("min"); renderMinbar(); };
+  const g = $("#grab"); let y0 = null, h0 = 0, moved = 0, drag = false;
+  g.onclick = () => { if (drag) { drag = false; return; } if (S.size === "min") setSize(S.view === "form" ? "tall" : "half"); else setSize("min"); renderMinbar(); };
+  g.onpointerdown = e => { if (!isPhone()) return; y0 = e.clientY; h0 = panel.getBoundingClientRect().height; moved = 0; try { g.setPointerCapture(e.pointerId); } catch(err) {} };
+  g.onpointermove = e => {
+    if (y0 == null) return; const dy = e.clientY - y0; moved = Math.max(moved, Math.abs(dy));
+    if (moved > 6) { drag = true; panel.dataset.size = "drag"; panel.style.height = Math.round(Math.max(96, Math.min(H * .9, h0 - dy))) + "px"; }
+  };
+  g.onpointerup = g.onpointercancel = () => {
+    if (y0 == null) return; y0 = null; if (!drag) return;
+    const h = panel.getBoundingClientRect().height; panel.style.height = "";
+    const best = [["min", 110], ["half", H * .52], ["tall", H * .85]].reduce((a, b) => Math.abs(b[1] - h) < Math.abs(a[1] - h) ? b : a)[0];
+    S.size = null; setSize(best); renderMinbar(); setTimeout(() => { drag = false; }, 50);
+  };
   renderMinbar();
 }
 function renderMinbar(){
@@ -1356,121 +1310,48 @@ function renderMinbar(){
     $("#mb-open").onclick = () => setSize("half");
   }
 }
-// ── Mapa de calles (Leaflet) para planes de viaje y etapas ──
-var cmap = null; let cLayer = null, cMarks = new Map(), meMk = null, meWatch = null, meFirst = false;
-const cityActive = () => !!cmap && document.body.classList.contains("city");
+// ── plan items: "Cómo llegar", "Ver ficha" and where am I ──
 const dirUrl = it => `https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lon}&travelmode=walking`;
-function cityWanted(){
-  if (S.view !== "trip" || S.play || !window.L) return false;
-  const tr = curTrip(); if (!tr) return false;
-  return !!tr.plan || S.step != null;
-}
-function cityPad(){
-  if (isPhone()) return {tl:[24, 132], br:[24, Math.max(40, H - (96 + AH)) + 16]};
-  return {tl:[30, 110], br:[W - AW + 20, 70]};
-}
-function cityPoints(){
-  const tr = curTrip(); if (!tr) return [];
-  const st = tr.stops || [];
-  const days = S.step != null ? [S.step] : st.map((_, i) => i);
-  const pts = [];
-  for (const i of days) { const s0 = st[i]; if (!s0) continue;
-    (s0.items || []).forEach((it, j) => { if (isFinite(it.lat)) pts.push([it.lat, it.lon]); });
-    (s0.spots || []).forEach(p => { if (isFinite(p.lat)) pts.push([p.lat, p.lon]); });
-    if (!tr.plan && isFinite(s0.lat)) pts.push([s0.lat, s0.lon]);
-  }
-  return pts;
-}
-function fitCity(){
-  if (!cmap) return; const pts = cityPoints(), pd = cityPad();
-  if (!pts.length) return;
-  if (pts.length === 1) { cmap.setView(pts[0], 15); flyVisible(L.latLng(pts[0]), 15); }
-  else cmap.fitBounds(pts, {paddingTopLeft: pd.tl, paddingBottomRight: pd.br, maxZoom: 17});
-}
 function popHTML(it, g, i, j){
   return `<div class="pop"><b>${esc(it.n)}</b><span>${esc([g ? g.l : "", WHEN[it.when] || ""].filter(Boolean).join(" · "))}</span>
     <div class="pl"><a class="go" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>${j != null ? `<button data-popgo="${i}|${j}">${ic("eye", "sm")}Ver ficha</button>` : ""}</div></div>`;
 }
-const popOpts = () => { const pd = cityPad(); return {autoPanPaddingTopLeft: L.point(pd.tl[0], pd.tl[1]), autoPanPaddingBottomRight: L.point(pd.br[0], pd.br[1]), closeButton:true}; };
-function drawCity(){
-  const tr = curTrip(); cLayer.clearLayers(); cMarks.clear(); if (!tr) return;
-  const st = tr.stops || [];
-  const mk = (lat, lon, html, cls, sz) => L.marker([lat, lon], {icon: L.divIcon({className:"", html, iconSize:[sz, sz], iconAnchor:[sz/2, sz/2], popupAnchor:[0, -sz/2]}), riseOnHover:true});
-  if (tr.plan) {
-    st.forEach((s0, i) => {
-      const on = S.step == null || S.step === i; if (!on) return;
-      const line = [];
-      (s0.items || []).forEach((it, j) => {
-        if (!isFinite(it.lat)) return; const g = GT[it.t] || GT.ver; line.push([it.lat, it.lon]);
-        const num = S.step != null ? `<b>${j + 1}</b>` : `<b>${i + 1}</b>`;
-        const sm = S.step == null;
-        const m = mk(it.lat, it.lon, `<span class="cm ${it.done ? "done" : ""} ${sm ? "sm" : ""}" style="--c:${g.c}">${ic(g.ic, "sm")}${num}</span>`, "", sm ? 24 : 30).addTo(cLayer);
-        m.bindPopup(popHTML(it, g, i, j), popOpts()); cMarks.set(i + "|" + j, m);
-      });
-      if (S.step != null && line.length > 1) L.polyline(line, {color:"#24254A", weight:2.5, opacity:.55, dashArray:"2 7", lineCap:"round"}).addTo(cLayer);
-    });
-  } else {
-    const i = S.step, s0 = st[i]; if (!s0) return;
-    (s0.spots || []).forEach(p => { if (!isFinite(p.lat)) return;
-      mk(p.lat, p.lon, `<span class="cm spot"></span>`, "", 16).addTo(cLayer).bindPopup(popHTML(p, null, i, null), popOpts());
-      L.marker([p.lat, p.lon], {icon: L.divIcon({className:"", html:`<span class="cmlab">${esc(p.n)}</span>`, iconSize:[0, 0], iconAnchor:[-12, 7]}), interactive:false}).addTo(cLayer);
-    });
-    if (isFinite(s0.lat)) mk(s0.lat, s0.lon, `<span class="cm stop">${i + 1}</span>`, "", 36).addTo(cLayer).bindPopup(popHTML(s0, null, i, null), popOpts());
-  }
-}
-function flyVisible(ll, z){
-  const pd = cityPad(), off = L.point((pd.br[0] - pd.tl[0]) / 2, (pd.br[1] - pd.tl[1]) / 2);
-  const target = cmap.unproject(cmap.project(ll, z).add(off), z);
-  cmap.flyTo(target, z, {duration: reduced ? 0 : .6});
+function wirePop(el){
+  const b = el?.querySelector("[data-popgo]"); if (!b) return;
+  b.onclick = () => {
+    const [i, j] = b.dataset.popgo.split("|").map(Number); if (S.step !== i) markStep(i);
+    if (S.size === "min") setSize("half");
+    const it = panel.querySelector(`[data-pit="${i}|${j}"]`);
+    if (it) { it.scrollIntoView({block: "center", behavior: reduced ? "auto" : "smooth"}); it.classList.add("flash"); setTimeout(() => it.classList.remove("flash"), 1400); }
+  };
 }
 function focusCityItem(i, j){
-  syncCity(false);
-  const m = cMarks.get(i + "|" + j); if (!m) return;
-  cmap.closePopup(); flyVisible(m.getLatLng(), Math.max(cmap.getZoom(), 17));
-  setTimeout(() => m.openPopup(), reduced ? 0 : 650);
+  syncMap();
+  const r = MK.get("pi:" + i + "|" + j); if (!r) return;
+  MK.forEach(o => { if (o !== r && o.pop?.isOpen()) o.pop.remove(); });
+  const ll = r.mk.getLngLat(); flyTo(ll.lng, ll.lat, Math.max(zoomNow(), 16.5));
+  setTimeout(() => { if (r.pop && !r.pop.isOpen()) r.mk.togglePopup(); }, reduced ? 0 : 1100);
 }
-function syncCity(refit = true){
-  const want = cityWanted();
-  const was = document.body.classList.contains("city");
-  document.body.classList.toggle("city", want);
-  if (!want) { if (was) stopLocate(); return; }
-  if (!cmap) {
-    cmap = L.map("citymap", {zoomControl:false, attributionControl:false, tap:true});
-    L.control.attribution({position:"topright", prefix:false}).addTo(cmap);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {maxZoom:20, subdomains:"abcd", attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(cmap);
-    cLayer = L.layerGroup().addTo(cmap);
-    cmap.setView([40.4, -3.7], 5);
-    cmap.on("popupopen", e => { const b = e.popup.getElement()?.querySelector("[data-popgo]"); if (b) b.onclick = () => {
-      const [i, j] = b.dataset.popgo.split("|").map(Number); if (S.step !== i) markStep(i);
-      if (S.size === "min") setSize("half");
-      const el = panel.querySelector(`[data-pit="${i}|${j}"]`); if (el) { el.scrollIntoView({block:"center", behavior: reduced ? "auto" : "smooth"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1400); }
-    }; });
-  }
-  cmap.invalidateSize(); drawCity();
-  if (refit || !was) { fitCity(); if (!was) setTimeout(() => { cmap.invalidateSize(); fitCity(); }, 60); }
-}
+let meMk = null, meWatch = null, meFirst = false;
 function stopLocate(){
   if (meWatch != null) navigator.geolocation.clearWatch(meWatch); meWatch = null;
-  if (meMk) { meMk.remove(); meMk = null; } const b = $("#zloc"); if (b) b.setAttribute("aria-pressed", "false");
+  if (meMk) { meMk.remove(); meMk = null; } $("#zloc")?.setAttribute("aria-pressed", "false");
 }
 $("#zloc").onclick = () => {
   if (meWatch != null) return stopLocate();
-  if (!navigator.geolocation) return toast("Tu móvil no deja ver la ubicación");
+  if (!navigator.geolocation || !map) return toast("Este móvil no comparte la ubicación");
   $("#zloc").setAttribute("aria-pressed", "true"); meFirst = true;
   meWatch = navigator.geolocation.watchPosition(pos => {
-    const ll = [pos.coords.latitude, pos.coords.longitude];
-    if (!meMk) meMk = L.marker(ll, {icon: L.divIcon({className:"", html:'<span class="me"></span>', iconSize:[18, 18], iconAnchor:[9, 9]}), interactive:false, zIndexOffset:1000}).addTo(cmap);
-    else meMk.setLatLng(ll);
-    if (meFirst) { meFirst = false;
-      const far = cmap.getCenter().distanceTo(ll) > 30000;
-      if (far) toast("Estás lejos de aquí: te enseño dónde estás"); flyVisible(L.latLng(ll), far ? 13 : Math.max(cmap.getZoom(), 16));
-    }
-  }, () => { stopLocate(); toast("Activa la ubicación para Safari en Ajustes"); }, {enableHighAccuracy:true, maximumAge:15000});
+    const ll = [pos.coords.longitude, pos.coords.latitude];
+    if (!meMk) { const el = document.createElement("div"); el.className = "me"; meMk = new maplibregl.Marker({element: el, opacityWhenCovered: "0"}).setLngLat(ll).addTo(map); }
+    else meMk.setLngLat(ll);
+    if (meFirst) { meFirst = false; const c = map.getCenter(), far = zoomNow() < 9 || Math.hypot(c.lng - ll[0], c.lat - ll[1]) > .3; flyTo(ll[0], ll[1], far ? 15 : Math.max(zoomNow(), 15)); }
+  }, () => { stopLocate(); toast("Activa la ubicación para Safari en Ajustes › Privacidad"); }, {enableHighAccuracy: true, maximumAge: 15000});
 };
 function render(){
   renderStats();
   const aiming = S.view === "form";
-  $("#aimbar").hidden = !aiming; cv.classList.toggle("aim", aiming);
+  $("#aimbar").hidden = !aiming; if (map) map.getCanvas().style.cursor = aiming ? "crosshair" : "";
   if (S.view === "detail") renderDetail();
   else if (S.view === "form") renderForm();
   else if (S.view === "country") renderCountry();
@@ -1480,7 +1361,7 @@ function render(){
   else if (S.view === "chat") renderChat();
   else if (S.view === "login") renderLogin();
   else renderList();
-  syncCity();
+  syncMap();
 }
 const mini = p => `<span class="mini">${CATS.map(c => `<span class="${c.cls}" title="${c.label}">${ic(c.icon, "sm")}${p[c.k]?.length || 0}</span>`).join("")}</span>`;
 function placeItem(p, showCountry = true){
@@ -1508,6 +1389,7 @@ function renderList(){
   panel.innerHTML = shell(`
     <div class="phead"><div><div class="kicker">${ro ? "Guía de viajes compartida" : "Mi diario de viaje"}</div><h2>${ro ? "Sitios recomendados" : "Mis viajes"}</h2></div>
       ${ro ? "" : `<button class="btn primary" id="b-new">${ic("plus")}Nuevo lugar</button>`}</div>
+    ${S.loaded ? statsLine() : ""}
     ${ro ? "" : `<button class="tellc" id="b-tell"><span class="tico">${ic("chat", "lg")}</span><span><b>Cuéntamelo</b><span class="muted small">Escribe lo que recuerdes de tus viajes, como en un chat</span></span>${MSGS.some(m => !m.done) ? `<em>${MSGS.filter(m => !m.done).length}</em>` : ""}</button>`}
     <div class="searchwrap" id="gwrap">${ic("search")}<input class="search" id="gsearch" type="search" placeholder="${ro ? "¿A dónde vas? Busca un país o ciudad" : "Busca un país, ciudad, plato…"}" autocomplete="off" enterkeyhint="search" aria-label="Buscar"></div>
     ${hasEx && !ro ? `<div class="note"><span>Lisboa, Roma y Kioto son ejemplos para que veas cómo queda. Bórralos cuando empieces con los tuyos.</span><div><button class="btn sm" id="b-clear-ex">${ic("trash", "sm")}Borrar ejemplos</button></div></div>` : ""}
@@ -1545,7 +1427,7 @@ function wireGlobalSearch(input){
     if (r.t === "mine") return select(r.p.id, true);
     const it = r.it;
     if (it.kind === "p") return openCountry(it.cc, true);
-    openCountry(it.cc, false); S.city = it.n; flyTo(it.lon, it.lat, it.kind === "c" ? 9 : 5);
+    openCountry(it.cc, false); S.city = it.n; flyTo(it.lon, it.lat, it.kind === "c" ? 11.5 : it.kind === "z" ? 10 : 6.5);
     if (isPhone()) setSize("half");
   };
   const run = () => {
@@ -1573,13 +1455,13 @@ function wireGlobalSearch(input){
   input.addEventListener("blur", () => setTimeout(() => { box.hidden = true; }, 150));
   input.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); if (res.length) go(res[0]); } });
 }
-function goList(){ if (S.country || S.sel) fly = { t0: performance.now(), dur: reduced ? 1 : 900, ir: d3.interpolate(rot.slice(), [rot[0], isGlobe() ? -25 : 0, 0]), iz: d3.interpolate(zoom, 1), im: isGlobe() ? null : d3.interpolate(mty, 0) }; S.city = null; S.sel = null; S.country = null; S.trip = null; S.play = null; S.view = "list"; S.share = null; setHash(""); render(); }
+function goList(force){ if (force || S.country || S.sel || S.trip || zoomNow() > 4) goWorld(); S.city = null; S.sel = null; S.country = null; S.trip = null; S.play = null; S.view = "list"; S.share = null; setHash(""); render(); }
 
 /* ---------- country ---------- */
 async function markCountry(cc, on){
   const prev = marks().find(m => m.country === cc);
   const ok = on ? await Store.save("pais-" + cc, {kind:"country", country:cc, cities: prev?.cities || [], updatedAt:new Date().toISOString()}) : await Store.remove("pais-" + cc);
-  if (ok && on && !reduced) S.stamp = {cc, t0: performance.now()};
+  if (ok && on) showStamp(cc);
   if (ok && S.view !== "checklist") toast(on ? `${flag(cc)} ${countryName(cc)} marcado` : `Has quitado ${countryName(cc)}`);
   return ok;
 }
@@ -1761,10 +1643,9 @@ function renderCountry(){
   const marked = marks().some(m => m.country === cc), visited = marked || ps.length, ro = !S.canEdit;
   const totals = CATS.map(c => ps.reduce((n, p) => n + (p[c.k]?.length || 0), 0));
   panel.innerHTML = shell(`
-    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Volver</button></div>
+    <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Todos los países</button></div>
     <div class="hero">
-      <div class="bigflag">${flag(cc)}</div>
-      <h2 style="font-size:36px">${esc(countryName(cc))}</h2>
+      <h2 style="font-size:36px"><span class="hflag" aria-hidden="true">${flag(cc)}</span>${esc(countryName(cc))}</h2>
       <div class="meta">
         <span class="chipmeta" style="${visited ? `background:${colorFor(cc)};color:#fff` : ""}">${ic(visited ? "check" : "flag", "sm")}${visited ? "Visitado" : "Sin visitar"}</span>
         ${ps.length ? CATS.map((c, i) => `<span class="chipmeta ${c.cls}" style="background:var(--cbg)">${ic(c.icon, "sm")}${totals[i]}</span>`).join("") : ""}
@@ -1792,9 +1673,9 @@ function renderCountry(){
   panel.querySelectorAll("details.gcity").forEach(d => d.addEventListener("toggle", () => {
     if (!d.open) return;
     const c = guideOf(cc)?.cities?.[+d.dataset.gc]; const g = c && (isFinite(c.lat) ? c : findPlace(c.n, cc));
-    if (g) { S.city = c.n; flyTo(g.lon, g.lat, Math.max(zoom, 9)); }
+    if (g) { S.city = c.n; flyTo(g.lon, g.lat, Math.max(zoomNow(), 11)); syncMap(); }
   }));
-  panel.querySelectorAll("[data-city]").forEach(b => b.onclick = () => { const c = citiesOf(cc)[+b.dataset.city], g = cityCoord(cc, c); if (!g) return; S.city = cityName(c); flyTo(g.lon, g.lat, Math.max(zoom * 1.6, 12)); if (isPhone()) setSize("min"); renderMinbar(); });
+  panel.querySelectorAll("[data-city]").forEach(b => b.onclick = () => { const c = citiesOf(cc)[+b.dataset.city], g = cityCoord(cc, c); if (!g) return; S.city = cityName(c); flyTo(g.lon, g.lat, Math.max(zoomNow() + 1.5, 12)); syncMap(); if (isPhone()) setSize("min"); renderMinbar(); });
   wireCityEditors(() => { if (S.mode !== "db") renderCountry(); });
   const bm = $("#b-mark"); if (bm) bm.onclick = async () => { bm.disabled = true; await markCountry(cc, !marked); };
   const ba = $("#b-addhere"); if (ba) ba.onclick = () => openForm(null, cc);
@@ -1837,7 +1718,7 @@ function renderDetail(){
 $("#lightbox").onclick = () => { $("#lightbox").hidden = true; };
 function select(id, flyIt){
   S.sel = id; S.confirmDel = false; S.view = id ? "detail" : "list"; S.country = null;
-  if (id && flyIt) { const p = places().find(x => x.id === id); if (p) flyTo(p.lon, p.lat, Math.max(zoom, 8)); }
+  if (id && flyIt) { const p = places().find(x => x.id === id); if (p) flyTo(p.lon, p.lat, Math.max(zoomNow(), 14)); }
   if (S.size === "min") setSize("half");
   render();
 }
@@ -1877,7 +1758,7 @@ function renderForm(){
     const nm = $("#f-name"), sel = $("#f-country");
     if (it.kind === "p") { f.country = it.cc; if (sel) sel.value = it.cc; nm.value = f.name; fitCountry(it.cc); if (!isFinite(f.lat)) { f.lat = +it.lat.toFixed(4); f.lon = +it.lon.toFixed(4); } renderLoc(); return; }
     f.name = it.n; nm.value = it.n; f.lat = it.lat; f.lon = it.lon; f.country = it.cc; if (sel) sel.value = it.cc;
-    renderLoc(); flyTo(it.lon, it.lat, it.kind === "c" ? 9 : 5);
+    renderLoc(); flyTo(it.lon, it.lat, it.kind === "c" ? 12 : 6);
   });
   $("#f-date").oninput = e => f.date = e.target.value;
   $("#f-note").oninput = e => f.note = e.target.value;
@@ -1928,6 +1809,7 @@ function renderFormPhotos(){
   };
 }
 function renderLoc(){
+  syncMap();
   const box = $("#f-loc"); if (!box) return; const f = S.form;
   box.innerHTML = isFinite(f.lat)
     ? `<div class="loc set">${ic("check", "sm")}<span>Punto marcado${f.country ? " en " + esc(countryName(f.country)) : ""}</span>${isPhone() ? `<button class="btn sm" id="b-aim">${ic("target", "sm")}Ajustar</button>` : `<span class="small" style="margin-left:auto;font-weight:600">Toca el mapa para moverlo</span>`}</div>`
@@ -2065,9 +1947,8 @@ function afterLoad(){
 /* ---------- boot ---------- */
 addEventListener("resize", layout);
 addEventListener("keydown", e => { if (e.key === "Escape") { if (!$("#lightbox").hidden) $("#lightbox").hidden = true; else if (S.view === "detail" || S.view === "country") goList(); } });
-layout(); setLook(S.look); render();
-if (!reduced) { const z1 = zoom; zoom = z1 * .78; const r1 = rot.slice(); rot = [r1[0] - 50, r1[1], 0]; fly = { t0: performance.now(), dur: 1700, ir: d3.interpolate(rot.slice(), r1), iz: d3.interpolate(zoom, z1) }; }
-requestAnimationFrame(frame);
+layout(); initMap(); render();
+if ("serviceWorker" in navigator && location.protocol === "https:") addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 
 (async () => {
   try { const c = await fetch("data/config.json?v=" + Date.now(), {cache:"no-store"}); if (c.ok) CFG = {...CFG, ...(await c.json())}; } catch(e) {}
