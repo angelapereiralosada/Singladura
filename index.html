@@ -153,6 +153,55 @@ body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
 .pop p{margin:-4px 0 8px;font-size:12.5px;line-height:1.35;color:var(--ink);opacity:.85}
 @media (min-width:901px){.maplegend{top:calc(88px + env(safe-area-inset-top, 0px));left:calc(22px + env(safe-area-inset-left, 0px))}}
 @media (max-width:900px){#map .maplibregl-ctrl-top-right{top:calc(114px + env(safe-area-inset-top, 0px));right:calc(12px + env(safe-area-inset-right, 0px))}}
+.pin-mk{position:relative;width:44px;height:44px;display:block}
+.pin{position:absolute;left:4px;top:0;width:36px;height:36px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--c);box-shadow:-3px 4px 10px rgba(36,37,74,.35);display:grid;place-items:center;transition:transform .18s}
+.pin-in{transform:rotate(45deg);width:30px;height:30px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;background:var(--c)}
+.pin-in img{width:100%;height:100%;object-fit:cover;display:block}
+.pin-in .ic{width:17px;height:17px}
+.pin-badge{position:absolute;right:0;top:-4px;width:19px;height:19px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;border:2px solid #fff}
+.pin-badge .ic{width:10px;height:10px}
+.pin-num{position:absolute;left:-4px;top:-5px;min-width:18px;height:18px;border-radius:9px;background:#fff;color:var(--ink);font:700 10.5px/18px var(--f-body);text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.pin-stars{position:absolute;left:50%;top:44px;transform:translateX(-50%);font-size:9px;letter-spacing:-.5px;color:#E8A71C;text-shadow:0 0 2px #fff,0 0 2px #fff;white-space:nowrap}
+.pin-mk.sm{transform:scale(.78);transform-origin:50% 100%}
+.pin-mk.sel{transform:scale(1.3);transform-origin:50% 100%}
+.pin-mk.done .pin{filter:saturate(.4) brightness(1.1)}
+.pin-mk:hover .pin{transform:rotate(-45deg) scale(1.08)}
+.spotcard{position:fixed;z-index:30;left:calc(10px + env(safe-area-inset-left, 0px));right:calc(10px + env(safe-area-inset-right, 0px));bottom:calc(10px + env(safe-area-inset-bottom, 0px));max-height:72%;overflow:auto;background:#fff;border-radius:26px;box-shadow:0 18px 50px rgba(150,40,70,.32);animation:scin .28s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes scin{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@media (min-width:901px){.spotcard{left:24px;right:auto;bottom:24px;width:380px}}
+.sc-x{position:absolute;right:10px;top:10px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18);color:var(--ink)}
+.sc-photos{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px;scrollbar-width:none}
+.sc-photos::-webkit-scrollbar{display:none}
+.sc-photos img{flex:none;width:78%;height:190px;object-fit:cover;border-radius:18px;scroll-snap-align:center;cursor:zoom-in}
+.sc-photos.one img{width:100%}
+.sc-hero{height:110px;margin:8px;border-radius:18px;background:var(--gb);color:var(--c);display:grid;place-items:center}
+.sc-hero .ic{width:42px;height:42px}
+.sc-body{padding:6px 18px 18px;display:grid;gap:8px}
+.sc-cat{justify-self:start;display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--gb);color:var(--c);font-weight:700;font-size:12.5px;letter-spacing:.04em}
+.sc-body h3{margin:0;font:italic 500 26px/1.1 var(--f-display);color:var(--ink)}
+.sc-stars{display:flex;gap:2px}
+.sc-stars button,.sc-stars span{border:0;background:none;padding:2px;color:#E3DCE6;display:grid}
+.sc-stars .on{color:#E8A71C}.sc-stars .on .ic{fill:#E8A71C}
+.sc-stars .ic{width:22px;height:22px}
+.sc-txt{margin:0;font:italic 400 17px/1.45 var(--f-display);color:var(--ink);padding-left:12px;border-left:3px solid var(--red)}
+.sc-tip,.sc-by{margin:0;display:flex;gap:7px;align-items:flex-start;font-size:13.5px;color:var(--mute)}
+.sc-by{color:var(--red);font-weight:700}
+.sc-where{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--mute)}
+.sc-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.sc-acts .btn{min-height:42px;text-decoration:none}
+.spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:14px 10px;margin:6px 0 12px}
+.spotc{display:grid;gap:6px;justify-items:center;border:0;background:none;padding:0;text-align:center;color:var(--ink)}
+.spth{position:relative;width:86px;height:86px;border-radius:18px;background:var(--gb);color:var(--c);display:grid;place-items:center;box-shadow:0 4px 12px rgba(150,40,70,.16)}
+.spth img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;display:block}
+.spic{position:absolute;right:-5px;bottom:-5px;width:26px;height:26px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;border:2.5px solid #fff}
+.spic .ic{width:13px;height:13px}
+.spn{font-weight:700;font-size:12.5px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.spst{font-size:11px;color:#E8A71C;margin-top:-4px}
+.story.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.linkb.more{margin:-4px 0 6px;padding:0}
+.num.ph{position:relative;padding:0;overflow:visible;background:none}
+.num.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.num.ph em{position:absolute;right:-4px;bottom:-4px;font-style:normal;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:11px;line-height:18px;text-align:center;border:2px solid #fff}
 .kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
 .kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
 .kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
@@ -516,6 +565,7 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
 <div id="map" role="application" aria-label="Mapa de tus viajes. Arrastra para moverlo, pellizca para acercarte y toca un país."></div>
 <div class="maptip" id="maptip" hidden></div>
 <div class="maplegend" id="maplegend" hidden></div>
+<div class="spotcard" id="spotcard" hidden role="dialog" aria-label="Sitio"></div>
 <div class="mapfail" id="mapfail" hidden>No se ha podido cargar el mapa. Comprueba la conexión y recarga.</div>
 
 <div class="top">
@@ -1003,10 +1053,11 @@ function renderTrip(){
     ${!st.length ? `<div class="empty">${ic("route")}<b>Ruta sin etapas</b><span>Añade la primera parada del viaje.</span></div>` : ""}
     <ol class="tl">${st.map((s0, i) => { const m = modeOf(s0); return `<li data-step="${i}" class="${S.step === i ? "cur" : ""}" style="--lc:${m.col}">
       ${s0.by || s0.leg ? `<div class="leg">${ic(m.ic, "sm")}<span>${esc(s0.leg || m.label)}</span></div>` : ""}
-      <button class="stopb" data-go="${i}" aria-expanded="${S.step === i}"><span class="num">${i + 1}</span><span class="sn"><b>${esc(s0.n)}</b>${s0.sub ? `<span class="muted small">${esc(s0.sub)}</span>` : ""}</span>${ic("plus", "sm")}</button>
+      <button class="stopb" data-go="${i}" aria-expanded="${S.step === i}">${(() => { const ph = (s0.items || []).flatMap(it => it.photos || [])[0] || (s0.photos || [])[0]; return ph ? `<span class="num ph"><img src="${esc(photoSrc(ph))}" alt="" loading="lazy"><em>${i + 1}</em></span>` : `<span class="num">${i + 1}</span>`; })()}<span class="sn"><b>${esc(s0.n)}</b>${s0.sub ? `<span class="muted small">${esc(s0.sub)}</span>` : ""}</span>${ic("plus", "sm")}</button>
       <div class="sd">
-        ${s0.story ? `<p class="story">${esc(s0.story)}</p>` : ""}
-        ${(s0.items || []).length ? planItemsHTML(s0, i, !tr.plan) : ""}
+        ${!tr.plan && (s0.items || []).length ? `<div class="spots">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver, ph = (it.photos || [])[0]; return `<button class="spotc" data-spot="${i}|${j}" style="--c:${g.c};--gb:${g.bg}"><span class="spth">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : ic(g.ic, "lg")}<span class="spic">${ic(g.ic, "sm")}</span></span><span class="spn">${esc(it.n)}</span>${it.rating ? `<span class="spst">${"★".repeat(it.rating)}</span>` : ""}</button>`; }).join("")}</div>` : ""}
+        ${s0.story ? `<p class="story ${!tr.plan && (s0.items || []).length ? "clamp" : ""}">${esc(s0.story)}</p>${!tr.plan && (s0.items || []).length ? `<button class="linkb more" data-more>Leer la historia</button>` : ""}` : ""}
+        ${tr.plan && (s0.items || []).length ? planItemsHTML(s0, i) : ""}
         ${(s0.did || []).length ? `<div class="sgrp c-done"><span class="lbl">${ic("compass", "sm")}Qué hicimos</span>${s0.did.map(x => `<div class="sdi"><span>${esc(x)}</span></div>`).join("")}</div>` : ""}
         ${(s0.ate || []).length ? `<div class="sgrp c-ate"><span class="lbl">${ic("food", "sm")}Dónde comimos</span>${s0.ate.map(x => `<div class="sdi"><span>${esc(x)}</span></div>`).join("")}</div>` : ""}
         ${s0.sleep ? `<div class="sgrp c-seen"><span class="lbl">${ic("bed", "sm")}Dónde dormimos</span><div class="sdi"><span>${esc(s0.sleep)}</span></div></div>` : ""}
@@ -1031,6 +1082,8 @@ function renderTrip(){
   };
   panel.querySelectorAll("[data-edit]").forEach(b => b.onclick = () => openStage(+b.dataset.edit));
   wirePlanItems(tr); wireToday(tr); wireNear(tr);
+  panel.querySelectorAll("[data-spot]").forEach(b => b.onclick = () => { const [i, j] = b.dataset.spot.split("|").map(Number); openSpot(tr.id, i, j); });
+  panel.querySelectorAll("[data-more]").forEach(b => b.onclick = () => { const p = b.previousElementSibling; p.classList.toggle("clamp"); b.textContent = p.classList.contains("clamp") ? "Leer la historia" : "Ocultar"; });
   const bsh = $("#b-share"); if (bsh) bsh.onclick = () => shareLink("ruta-" + tr.id, tr.title || "Mi ruta", tr.plan ? "Mi plan de viaje" : "Mi ruta");
   const bas = $("#b-addstage"); if (bas) bas.onclick = () => openStage(null);
   const btt = $("#b-telltrip"); if (btt) btt.onclick = () => openChat({trip:tr.id, country:tr.country});
@@ -1297,8 +1350,46 @@ function itemMk(key, it, i, j, opt = {}){
   const g = GT[it.t] || GT.ver, cat = catOf(it.t);
   if (cat) legendCounts[cat] = (legendCounts[cat] || 0) + 1;
   if (cat && S.hide.has(cat)) return null;
-  return {key, ll: [it.lon, it.lat], z: opt.z || 20, cls: "pi" + (opt.sm ? " sm" : "") + (opt.lab ? " lab" : "") + (it.done && opt.plan ? " done" : ""),
-    html: `<span class="cm" style="--c:${g.c}">${ic(g.ic, "sm")}${opt.num != null ? `<b>${opt.num}</b>` : ""}</span>${mlab(it.n)}`, pop: popHTML(it, g, i, j, opt.trip)};
+  const ph = (it.photos || [])[0], tid = opt.trip || S.trip, sel = SPOT && SPOT.trip === tid && SPOT.i === i && SPOT.j === j;
+  return {key, ll: [it.lon, it.lat], anchor: "bottom", z: sel ? 90 : (opt.z || 20) + (ph ? 5 : 0), cls: "pin-mk" + (opt.sm ? " sm" : "") + (sel ? " sel" : "") + (it.done && opt.plan ? " done" : ""),
+    html: `<span class="pin" style="--c:${g.c}"><span class="pin-in">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : ic(g.ic)}</span></span>${ph ? `<span class="pin-badge" style="--c:${g.c}">${ic(g.ic, "sm")}</span>` : ""}${opt.num != null ? `<b class="pin-num">${opt.num}</b>` : ""}${it.rating ? `<span class="pin-stars">${"★".repeat(it.rating)}</span>` : ""}`,
+    on: () => openSpot(tid, i, j)};
+}
+let SPOT = null;
+function spotRef(){ if (!SPOT) return null; const tr = trips().find(t => t.id === SPOT.trip); const s0 = tr?.stops?.[SPOT.i], it = s0?.items?.[SPOT.j]; return it ? {tr, s0, it} : null; }
+function openSpot(tripId, i, j, fly = true){
+  SPOT = {trip: tripId, i, j}; const r = spotRef(); if (!r) { SPOT = null; return; }
+  renderSpot(); syncMap();
+  if (fly && isFinite(r.it.lat)) flyTo(r.it.lon, r.it.lat, Math.max(zoomNow(), 15.5));
+}
+function closeSpot(){ SPOT = null; $("#spotcard").hidden = true; document.body.classList.remove("spoton"); syncMap(); }
+function renderSpot(){
+  const el = $("#spotcard"), r = spotRef(); if (!r) { el.hidden = true; return; }
+  const {tr, s0, it} = r, g = GT[it.t] || GT.ver, ph = it.photos || [], edit = S.canEdit;
+  el.innerHTML = `<button class="sc-x" id="sc-x" aria-label="Cerrar">${ic("x")}</button>
+    ${ph.length ? `<div class="sc-photos ${ph.length === 1 ? "one" : ""}">${ph.map(id => `<img src="${esc(photoSrc(id))}" alt="Foto de ${esc(it.n)}" data-full="${esc(photoSrc(id))}">`).join("")}</div>`
+      : `<div class="sc-hero" style="--c:${g.c};--gb:${g.bg}">${ic(g.ic, "lg")}</div>`}
+    <div class="sc-body">
+      <div class="sc-cat" style="--c:${g.c};--gb:${g.bg}">${ic(g.ic, "sm")}${g.l}</div>
+      <h3>${esc(it.n)}</h3>
+      <div class="sc-stars">${[1, 2, 3, 4, 5].map(k => edit ? `<button data-srate="${k}" class="${k <= (it.rating || 0) ? "on" : ""}" aria-label="${k} estrellas">${ic("star")}</button>` : `<span class="${k <= (it.rating || 0) ? "on" : ""}">${ic("star")}</span>`).join("")}</div>
+      ${it.txt ? `<p class="sc-txt">${esc(it.txt)}</p>` : ""}
+      ${it.save ? `<p class="sc-tip">${ic("coin", "sm")}${esc(it.save)}</p>` : ""}
+      ${it.by ? `<p class="sc-by">${ic("heart", "sm")}Recomendado por ${esc(it.by)}</p>` : ""}
+      <div class="sc-where">${ic("route", "sm")}${esc(tr.title)} · ${esc(s0.n)}</div>
+      <div class="sc-acts">
+        ${isFinite(it.lat) ? `<a class="btn primary" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>` : ""}
+        ${edit && assets ? `<label class="btn">${ic("camera", "sm")}Foto<input type="file" accept="image/*" id="sc-photo" hidden></label>` : ""}
+        ${S.trip !== tr.id ? `<button class="btn" id="sc-trip">${ic("eye", "sm")}Ver el viaje</button>` : ""}
+      </div>
+    </div>`;
+  el.hidden = false; document.body.classList.add("spoton");
+  $("#sc-x").onclick = closeSpot;
+  el.querySelectorAll(".sc-photos img").forEach(im => im.onclick = () => { $("#lbimg").src = im.dataset.full; $("#lightbox").hidden = false; });
+  const save = async () => { const ok = await Store.save(tr.id, tripData(tr)); if (!ok) toast("No se pudo guardar"); if (S.view === "trip") keepScroll(renderTrip); };
+  el.querySelectorAll("[data-srate]").forEach(b => b.onclick = async () => { const k = +b.dataset.srate; it.rating = it.rating === k ? 0 : k; if (it.rating && tr.plan) it.done = true; renderSpot(); syncMap(); await save(); });
+  const pf = $("#sc-photo"); if (pf) pf.onchange = async () => { const f = pf.files?.[0]; if (!f) return; try { toast("Subiendo foto…"); const up = await assets.upload(await shrink(f)); photoUrls.set(up.id, up.url); it.photos = [...(it.photos || []), up.id]; renderSpot(); syncMap(); await save(); toast("Foto guardada"); } catch(e) { toast("No se pudo subir la foto"); } };
+  const bt = $("#sc-trip"); if (bt) bt.onclick = () => { const ref = {...SPOT}; openTrip(ref.trip); S.step = ref.i; render(); fitStage(tr.stops[ref.i]); openSpot(ref.trip, ref.i, ref.j, false); };
 }
 function renderLegend(){
   const el = $("#maplegend"); if (!el) return;
@@ -1418,6 +1509,7 @@ function initMap(){
   map.on("mouseout", () => { tip.hidden = true; });
   map.on("click", e => {
     if (e.originalEvent?.target?.closest?.(".mk, .maplibregl-popup")) return;
+    if (SPOT) { closeSpot(); return; }
     const ll = e.lngLat;
     if (S.view === "form") {
       S.form.lon = +ll.lng.toFixed(5); S.form.lat = +ll.lat.toFixed(5);
@@ -1500,6 +1592,7 @@ function wirePop(el){
   };
 }
 function focusCityItem(i, j){
+  if (S.trip) { openSpot(S.trip, i, j); return; }
   syncMap();
   const r = MK.get("pi:" + i + "|" + j); if (!r) return;
   MK.forEach(o => { if (o !== r && o.pop?.isOpen()) o.pop.remove(); });
@@ -1524,6 +1617,7 @@ $("#zloc").onclick = () => {
 };
 function render(){
   renderStats();
+  if (SPOT && !(S.view === "trip" || S.view === "country")) closeSpot();
   const aiming = S.view === "form";
   $("#aimbar").hidden = !aiming; if (map) map.getCanvas().style.cursor = aiming ? "crosshair" : "";
   if (S.view === "detail") renderDetail();

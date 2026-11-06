@@ -1815,11 +1815,6 @@
     "by": "coche",
     "leg": "En coche desde España",
     "story": "Llegamos en coche y dejamos las cosas en Alfama Guest House, en Alfama: no está en pleno meollo, pero se llega cómodo a todo. Primer paseo por la Baixa entre tranvías amarillos y, para estrenar Lisboa, el atardecer en el Miradouro de Santa Catarina, con el puente 25 de Abril enfrente y muchísimo ambiente joven. La noche acabó de vuelta en Alfama, entre azulejos.",
-    "photos": [
-     "photos/lis22-tranvia.jpg",
-     "photos/lis22-santacatarina.jpg",
-     "photos/lis22-alfama-noche.jpg"
-    ],
     "items": [
      {
       "t": "dormir",
@@ -1832,20 +1827,29 @@
       "t": "hacer",
       "n": "Pasear por la Baixa entre tranvías",
       "lat": 38.7107,
-      "lon": -9.1437
+      "lon": -9.1437,
+      "photos": [
+       "photos/lis22-tranvia.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Miradouro de Santa Catarina",
       "lat": 38.7094,
       "lon": -9.1474,
-      "txt": "El mejor atardecer: el puente 25 de Abril enfrente y muchísimo ambiente joven."
+      "txt": "El mejor atardecer: el puente 25 de Abril enfrente y muchísimo ambiente joven.",
+      "photos": [
+       "photos/lis22-santacatarina.jpg"
+      ]
      },
      {
       "t": "ocio",
       "n": "Noche por las callejuelas de Alfama",
       "lat": 38.7115,
-      "lon": -9.1305
+      "lon": -9.1305,
+      "photos": [
+       "photos/lis22-alfama-noche.jpg"
+      ]
      }
     ]
    },
@@ -1858,43 +1862,52 @@
     "by": "bus",
     "leg": "En tranvía desde la Praça do Comércio",
     "story": "Empezamos bajo el Arco de la Rua Augusta, en la Praça do Comércio, y de ahí en tranvía hasta Belém. Torre de Belém, el Padrão dos Descobrimentos frente al Tajo, los Jerónimos y, por supuesto, parada obligatoria en la Antiga Confeitaria de Belém para comer los pastéis de Belém recién hechos.",
-    "photos": [
-     "photos/lis22-rua-augusta.jpg",
-     "photos/lis22-torre-belem.jpg",
-     "photos/lis22-padrao.jpg",
-     "photos/lis22-pasteis.jpg"
-    ],
     "items": [
      {
       "t": "ver",
       "n": "Arco de la Rua Augusta y Praça do Comércio",
       "lat": 38.7088,
-      "lon": -9.1366
+      "lon": -9.1366,
+      "photos": [
+       "photos/lis22-rua-augusta.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Torre de Belém",
       "lat": 38.6916,
-      "lon": -9.216
+      "lon": -9.216,
+      "photos": [
+       "photos/lis22-torre-belem.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Padrão dos Descobrimentos",
       "lat": 38.6936,
-      "lon": -9.2057
+      "lon": -9.2057,
+      "photos": [
+       "photos/lis22-padrao.jpg"
+      ]
      },
      {
       "t": "comer",
       "n": "Pastéis de Belém",
       "lat": 38.6975,
       "lon": -9.2032,
-      "txt": "La Antiga Confeitaria de Belém: los pasteles de nata recién hechos, imprescindibles."
+      "txt": "La Antiga Confeitaria de Belém: los pasteles de nata recién hechos, imprescindibles.",
+      "photos": [
+       "photos/lis22-pasteis.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Monasterio de los Jerónimos",
       "lat": 38.6979,
-      "lon": -9.2068
+      "lon": -9.2068,
+      "photos": [
+       "photos/lis22-jeronimos.jpg"
+      ]
      }
     ]
    },
@@ -1907,51 +1920,61 @@
     "by": "bus",
     "leg": "Vuelta en tranvía al centro",
     "story": "Vuelta al centro para comer y una tarde de las de callejear: la Pink Street con sus paraguas de colores, tiendas vintage, el Elevador da Bica subiendo la cuesta, el tranvía 28 y el Elevador de Santa Justa. Cena en el Bairro Alto, que por la noche se llena de gente tomando algo en la calle.",
-    "photos": [
-     "photos/lis22-comida.jpg",
-     "photos/lis22-pink-street.jpg",
-     "photos/lis22-bica.jpg",
-     "photos/lis22-tranvia-28.jpg",
-     "photos/lis22-santa-justa.jpg",
-     "photos/lis22-cena.jpg"
-    ],
     "items": [
      {
       "t": "comer",
       "n": "Comida en la Baixa",
       "lat": 38.7104,
-      "lon": -9.1353
+      "lon": -9.1353,
+      "photos": [
+       "photos/lis22-comida.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Pink Street y sus paraguas de colores",
       "lat": 38.7073,
       "lon": -9.144,
-      "txt": "La Rua Nova do Carvalho, en Cais do Sodré."
+      "txt": "La Rua Nova do Carvalho, en Cais do Sodré.",
+      "photos": [
+       "photos/lis22-pink-street.jpg"
+      ]
      },
      {
       "t": "hacer",
       "n": "Subir en el Elevador da Bica",
       "lat": 38.7085,
-      "lon": -9.1465
+      "lon": -9.1465,
+      "photos": [
+       "photos/lis22-bica.jpg"
+      ]
      },
      {
       "t": "hacer",
       "n": "Tranvía 28",
       "lat": 38.7107,
-      "lon": -9.1432
+      "lon": -9.1432,
+      "photos": [
+       "photos/lis22-tranvia-28.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Elevador de Santa Justa",
       "lat": 38.7121,
-      "lon": -9.1394
+      "lon": -9.1394,
+      "photos": [
+       "photos/lis22-santa-justa.jpg"
+      ]
      },
      {
       "t": "comer",
       "n": "Hamburguesas en el Bairro Alto",
       "lat": 38.7122,
-      "lon": -9.145
+      "lon": -9.145,
+      "photos": [
+       "photos/lis22-cena.jpg"
+      ]
      },
      {
       "t": "ocio",
@@ -1971,23 +1994,25 @@
     "by": "otro",
     "leg": "Al día siguiente",
     "story": "El último día lo dedicamos a LX Factory, una antigua fábrica bajo el puente convertida en tiendas, librerías, murales y restaurantes. Comimos sushi allí mismo y, de ahí, vuelta a casa en coche.",
-    "photos": [
-     "photos/lis22-lx-factory.jpg",
-     "photos/lis22-sushi.jpg"
-    ],
     "items": [
      {
       "t": "ver",
       "n": "LX Factory",
       "lat": 38.7036,
       "lon": -9.1787,
-      "txt": "Antigua fábrica bajo el puente con tiendas, librerías, murales y mercadillo."
+      "txt": "Antigua fábrica bajo el puente con tiendas, librerías, murales y mercadillo.",
+      "photos": [
+       "photos/lis22-lx-factory.jpg"
+      ]
      },
      {
       "t": "comer",
       "n": "Sushi en LX Factory",
       "lat": 38.7034,
-      "lon": -9.1782
+      "lon": -9.1782,
+      "photos": [
+       "photos/lis22-sushi.jpg"
+      ]
      }
     ]
    }
@@ -2012,9 +2037,6 @@
     "by": "coche",
     "leg": "En coche desde España",
     "story": "A la ida paramos en Évora, a mitad de camino: un pueblo precioso y muy barato, de callejuelas blancas con zócalos amarillos que suben hacia la catedral. Perfecto para estirar las piernas, comer y seguir, o incluso para pasar un día entero.",
-    "photos": [
-     "photos/lis26-evora.jpg"
-    ],
     "note": "Consejo: Évora queda justo a mitad de camino desde España. Merece la parada, y es muy barato.",
     "items": [
      {
@@ -2022,7 +2044,10 @@
       "n": "Casco histórico de Évora",
       "lat": 38.5723,
       "lon": -7.9046,
-      "txt": "Callejuelas blancas con zócalos amarillos. Muy barato y precioso: parada perfecta a mitad de camino."
+      "txt": "Callejuelas blancas con zócalos amarillos. Muy barato y precioso: parada perfecta a mitad de camino.",
+      "photos": [
+       "photos/lis26-evora.jpg"
+      ]
      },
      {
       "t": "ver",
@@ -2061,24 +2086,26 @@
     "by": "taxi",
     "leg": "En Uber al centro (unos 7 €)",
     "story": "Primera noche en Lisboa: cena en Baixamar, en la Rua dos Bacalhoeiros, un sitio algo turístico pero con un arroz de marisco y unas almejas riquísimos. De remate, una ginjinha en la Ginginha do Carmo, un local enano bajo las escaleras que suben al Largo do Carmo, donde sirven el chupito en vasito de chocolate.",
-    "photos": [
-     "photos/lis26-arroz.jpg",
-     "photos/lis26-ginjinha.jpg"
-    ],
     "items": [
      {
       "t": "comer",
       "n": "Baixamar",
       "lat": 38.70903,
       "lon": -9.13421,
-      "txt": "Rua dos Bacalhoeiros, 28C. Algo turístico, pero el arroz de marisco y las almejas, riquísimos."
+      "txt": "Rua dos Bacalhoeiros, 28C. Algo turístico, pero el arroz de marisco y las almejas, riquísimos.",
+      "photos": [
+       "photos/lis26-arroz.jpg"
+      ]
      },
      {
       "t": "ocio",
       "n": "Ginginha do Carmo",
       "lat": 38.7134,
       "lon": -9.1407,
-      "txt": "Un local enano bajo las escaleras que suben al Largo do Carmo. La ginjinha, en vasito de chocolate."
+      "txt": "Un local enano bajo las escaleras que suben al Largo do Carmo. La ginjinha, en vasito de chocolate.",
+      "photos": [
+       "photos/lis26-ginjinha.jpg"
+      ]
      }
     ]
    },
@@ -2091,42 +2118,48 @@
     "by": "taxi",
     "leg": "Al día siguiente, de nuevo en Uber",
     "story": "Tarde de disfrutar sin prisa: happy hour de ostras a 1 € en el antiguo Barbica, en la Rua dos Cordoeiros junto al Elevador da Bica (hoy tiene otro nombre); unas cervezas enormes y fotomatón en blanco y negro en Lisboa Bar, un bar pequeñito del Largo do Carmo con una azotea muy chula; y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. Cena en Nonna Goes Crazy, el sitio de pasta fresca que se ha puesto de moda: buenísimo.",
-    "photos": [
-     "photos/lis26-happy-hour.jpg",
-     "photos/lis26-ostras.jpg",
-     "photos/lis26-ostras-2.jpg",
-     "photos/lis26-fotomaton.jpg",
-     "photos/lis26-mirador.jpg",
-     "photos/lis26-cena.jpg"
-    ],
     "items": [
      {
       "t": "ocio",
       "n": "Antiguo Barbica",
       "lat": 38.709,
       "lon": -9.1468,
-      "txt": "Rua dos Cordoeiros, 8-10, junto al Elevador da Bica (hoy con otro nombre). Happy hour de ostras a 1 €."
+      "txt": "Rua dos Cordoeiros, 8-10, junto al Elevador da Bica (hoy con otro nombre). Happy hour de ostras a 1 €.",
+      "photos": [
+       "photos/lis26-happy-hour.jpg",
+       "photos/lis26-ostras.jpg",
+       "photos/lis26-ostras-2.jpg"
+      ]
      },
      {
       "t": "ocio",
       "n": "Lisboa Bar",
       "lat": 38.712,
       "lon": -9.1405,
-      "txt": "Bar pequeñito en el Largo do Carmo con una azotea muy chula. Cervezas enormes y fotomatón."
+      "txt": "Bar pequeñito en el Largo do Carmo con una azotea muy chula. Cervezas enormes y fotomatón.",
+      "photos": [
+       "photos/lis26-fotomaton.jpg"
+      ]
      },
      {
       "t": "ver",
       "n": "Miradouro de São Pedro de Alcântara",
       "lat": 38.7151,
       "lon": -9.1443,
-      "txt": "Al atardecer, bajo un techo de sombreros de paja, con música y gente bailando."
+      "txt": "Al atardecer, bajo un techo de sombreros de paja, con música y gente bailando.",
+      "photos": [
+       "photos/lis26-mirador.jpg"
+      ]
      },
      {
       "t": "comer",
       "n": "Nonna Goes Crazy",
       "lat": 38.7163,
       "lon": -9.1443,
-      "txt": "Rua de Santo António da Glória, 6B. Pasta fresca, se ha puesto de moda y está buenísimo."
+      "txt": "Rua de Santo António da Glória, 6B. Pasta fresca, se ha puesto de moda y está buenísimo.",
+      "photos": [
+       "photos/lis26-cena.jpg"
+      ]
      }
     ]
    }
