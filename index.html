@@ -1132,6 +1132,7 @@ function renderChat(){
     <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Volver</button></div>
     <div class="hero"><div class="kicker">Cuéntamelo</div><h2>Como a una amiga</h2>
       <p class="tintro">Escribe lo que te acuerdes, a lo bruto y en mensajes sueltos. Luego dile a Claude «ordena lo que te he contado» y lo pondrá en su sitio. Esto solo lo ves tú.</p></div>
+    ${!CFG.api && MSGS.some(m => !m.done) ? `<div class="note warn"><span>Ahora mismo tus notas se quedan en este móvil y Claude no puede leerlas. Pulsa el botón, pégalas en el chat con Claude y las ordenará.</span><div><button class="btn primary sm" id="b-sendclaude">${ic("copy", "sm")}Copiar mis notas para Claude</button></div></div>` : ""}
     <div class="bubbles">${list.length ? list.map(m => { const d = day(m.at); const sep = d !== lastDay ? `<div class="bday">${esc(d)}</div>` : ""; lastDay = d;
       return `${sep}<div class="bub ${m.done ? "done" : ""}">${ctxLabel(m) ? `<span class="bctx">${esc(ctxLabel(m))}</span>` : ""}<span class="btxt">${esc(m.text)}</span><span class="bmeta">${m.done ? `${ic("check", "sm")}Ordenado por Claude` : "Pendiente de ordenar"}</span></div>`; }).join("")
       : `<div class="empty">${ic("chat")}<b>Empieza a contar</b><span>Por ejemplo: «En Medellín fuimos a la Comuna 13 con un guía, buenísimo».</span></div>`}</div>`,
@@ -1141,6 +1142,11 @@ function renderChat(){
   const sc = $("#pscroll"); if (sc) sc.scrollTop = sc.scrollHeight;
   $("#b-back").onclick = () => { const c = S.chatCtx || {}; S.chatCtx = null; setSize("half"); if (c.trip && trips().some(t => t.id === c.trip)) openTrip(c.trip); else if (c.country) openCountry(c.country, false); else goList(); };
   const nc = $("#b-noctx"); if (nc) nc.onclick = () => { S.chatCtx = {}; renderChat(); };
+  const bsc = $("#b-sendclaude"); if (bsc) bsc.onclick = async () => {
+    const txt = "Ordena lo que te he contado en Singladura:\n\n" + list.filter(m => !m.done).map(m => `- ${ctxLabel(m) ? "[" + ctxLabel(m) + "] " : ""}${m.text}`).join("\n");
+    try { await navigator.clipboard.writeText(txt); toast("Copiado. Pégalo en el chat con Claude."); }
+    catch(e) { try { await navigator.share({text: txt}); } catch(err) { prompt("Copia esto:", txt); } }
+  };
   const inp = $("#chat-in");
   inp.oninput = () => { inp.style.height = "auto"; inp.style.height = Math.min(140, inp.scrollHeight) + "px"; };
   const send = async () => {
