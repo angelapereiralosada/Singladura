@@ -2055,15 +2055,15 @@
     "lon": -9.145,
     "by": "taxi",
     "leg": "Al día siguiente, de nuevo en Uber",
-    "story": "Tarde de disfrutar sin prisa: happy hour de ostras a 1 € en el antiguo Barbica, en la Rua dos Cordoeiros junto al Elevador da Bica (hoy tiene otro nombre); unas cervezas enormes y fotomatón en blanco y negro en un bar pequeñito del Largo do Carmo con una azotea muy chula; y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. Cena en Nonna Goes Crazy, el sitio de pasta fresca que se ha puesto de moda: buenísimo.",
+    "story": "Tarde de disfrutar sin prisa: happy hour de ostras a 1 € en el antiguo Barbica, en la Rua dos Cordoeiros junto al Elevador da Bica (hoy tiene otro nombre); unas cervezas enormes y fotomatón en blanco y negro en Lisboa Bar, un bar pequeñito del Largo do Carmo con una azotea muy chula; y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. Cena en Nonna Goes Crazy, el sitio de pasta fresca que se ha puesto de moda: buenísimo.",
     "did": [
      "Happy hour de ostras a 1 €",
-     "Cervezas enormes y fotomatón en un bar con azotea del Largo do Carmo",
+     "Cervezas enormes y fotomatón en Lisboa Bar (Largo do Carmo)",
      "Fiesta en el Miradouro de São Pedro de Alcântara"
     ],
     "ate": [
      "Ostras a 1 € y tabla de quesos en el antiguo Barbica (Rua dos Cordoeiros, 8-10)",
-     "Cervezas enormes en un bar pequeño con azotea en el Largo do Carmo",
+     "Cervezas enormes en Lisboa Bar, pequeño y con una azotea muy chula (Largo do Carmo)",
      "Pasta fresca en Nonna Goes Crazy (Rua de Santo António da Glória, 6B)"
     ],
     "spots": [
@@ -2073,7 +2073,7 @@
       "lon": -9.1468
      },
      {
-      "n": "Bar con azotea del Largo do Carmo",
+      "n": "Lisboa Bar",
       "lat": 38.712,
       "lon": -9.1405
      },
