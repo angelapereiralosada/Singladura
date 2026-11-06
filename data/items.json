@@ -1746,5 +1746,54 @@
   "cities": [],
   "updatedAt": "2026-11-06T13:41:53.872885Z",
   "id": "pais-CU"
+ },
+ {
+  "kind": "country",
+  "country": "PL",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-PL"
+ },
+ {
+  "kind": "country",
+  "country": "LT",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-LT"
+ },
+ {
+  "kind": "country",
+  "country": "EE",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-EE"
+ },
+ {
+  "kind": "country",
+  "country": "LV",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-LV"
+ },
+ {
+  "kind": "country",
+  "country": "CZ",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-CZ"
+ },
+ {
+  "kind": "country",
+  "country": "RU",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-RU"
+ },
+ {
+  "kind": "country",
+  "country": "HU",
+  "cities": [],
+  "updatedAt": "2026-11-06T14:16:21.858557Z",
+  "id": "pais-HU"
  }
 ]
