@@ -2087,6 +2087,20 @@ function afterLoad(){
 
 /* ---------- boot ---------- */
 addEventListener("resize", layout);
+// coming back to the app (it stays open in the background on the phone): fetch the latest diary and notes
+let lastFresh = Date.now();
+async function refreshData(force){
+  if (!S.loaded || (!force && Date.now() - lastFresh < 20000)) return; lastFresh = Date.now();
+  let items = null;
+  try {
+    if (isGhKey(KEY)) items = (await ghRead(SITE_REPO(), "data/items.json", [])).data;
+    else { const r = await fetch("data/items.json?v=" + Date.now(), {cache: "no-store"}); if (r.ok) items = await r.json(); }
+  } catch(e) {}
+  if (Array.isArray(items)) { S.items = applyPending(items); afterLoad(); }
+  if (LIVE()) loadNotes();
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshData(); });
+addEventListener("focus", () => refreshData());
 addEventListener("hashchange", () => {
   const m = /^#pais-([a-z]{2})$/.exec(location.hash), r = /^#ruta-(.+)$/.exec(location.hash);
   if (m && byId.get(m[1].toUpperCase())) openCountry(m[1].toUpperCase(), true);
@@ -2099,7 +2113,8 @@ if ("serviceWorker" in navigator && location.protocol === "https:") addEventList
 (async () => {
   try { const c = await fetch("data/config.json?v=" + Date.now(), {cache:"no-store"}); if (c.ok) CFG = {...CFG, ...(await c.json())}; } catch(e) {}
   let items = [];
-  try { const r = await fetch("data/items.json?v=" + Date.now(), {cache:"no-store"}); if (r.ok) items = await r.json(); } catch(e) {}
+  try { if (isGhKey(KEY)) items = (await ghRead(SITE_REPO(), "data/items.json", [])).data; } catch(e) {}
+  if (!items.length) try { const r = await fetch("data/items.json?v=" + Date.now(), {cache:"no-store"}); if (r.ok) items = await r.json(); } catch(e) {}
   S.mode = "gh";
   S.items = applyPending(Array.isArray(items) ? items : []);
   S.loaded = true;
