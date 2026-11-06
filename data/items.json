@@ -1795,5 +1795,267 @@
   "cities": [],
   "updatedAt": "2026-11-06T14:16:21.858557Z",
   "id": "pais-HU"
+ },
+ {
+  "id": "viaje-lisboa-2022",
+  "kind": "trip",
+  "country": "PT",
+  "date": "2022-09",
+  "title": "Lisboa con Ana",
+  "with": "Ana",
+  "intro": "El primer viaje a Lisboa, en septiembre de 2022: tres días con Ana para conocer la ciudad de punta a punta. Tranvías, miradores, Belém y sus pasteles, y una noche de atardecer que no se olvida. Toca cada parada para verla.",
+  "note": "",
+  "stops": [
+   {
+    "n": "Alfama y la Baixa",
+    "sub": "Llegada · viernes 9 de septiembre",
+    "cc": "PT",
+    "lat": 38.7107,
+    "lon": -9.1437,
+    "by": "coche",
+    "leg": "En coche desde España",
+    "story": "Llegamos en coche y dejamos las cosas en Alfama Guest House, en Alfama: no está en pleno meollo, pero se llega cómodo a todo. Primer paseo por la Baixa entre tranvías amarillos y, para estrenar Lisboa, el atardecer en el Miradouro de Santa Catarina, con el puente 25 de Abril enfrente y muchísimo ambiente joven. La noche acabó de vuelta en Alfama, entre azulejos.",
+    "did": [
+     "Paseo por la Baixa entre tranvías",
+     "Atardecer en el Miradouro de Santa Catarina, con vistas al puente 25 de Abril",
+     "Noche por las callejuelas de Alfama"
+    ],
+    "ate": [],
+    "sleep": "Alfama Guest House (Alfama)",
+    "spots": [
+     {
+      "n": "Miradouro de Santa Catarina",
+      "lat": 38.7094,
+      "lon": -9.1474
+     },
+     {
+      "n": "Alfama Guest House",
+      "lat": 38.7112,
+      "lon": -9.1297
+     }
+    ],
+    "photos": [
+     "photos/lis22-tranvia.jpg",
+     "photos/lis22-santacatarina.jpg",
+     "photos/lis22-alfama-noche.jpg"
+    ]
+   },
+   {
+    "n": "Belém",
+    "sub": "Sábado por la mañana",
+    "cc": "PT",
+    "lat": 38.6966,
+    "lon": -9.2066,
+    "by": "bus",
+    "leg": "En tranvía desde la Praça do Comércio",
+    "story": "Empezamos bajo el Arco de la Rua Augusta, en la Praça do Comércio, y de ahí en tranvía hasta Belém. Torre de Belém, el Padrão dos Descobrimentos frente al Tajo, los Jerónimos y, por supuesto, parada obligatoria en la Antiga Confeitaria de Belém para comer los pastéis de Belém recién hechos.",
+    "did": [
+     "Arco de la Rua Augusta y Praça do Comércio",
+     "Torre de Belém",
+     "Padrão dos Descobrimentos",
+     "Monasterio de los Jerónimos"
+    ],
+    "ate": [
+     "Pastéis de Belém en la Antiga Confeitaria de Belém"
+    ],
+    "spots": [
+     {
+      "n": "Arco da Rua Augusta",
+      "lat": 38.7088,
+      "lon": -9.1366
+     },
+     {
+      "n": "Torre de Belém",
+      "lat": 38.6916,
+      "lon": -9.216
+     },
+     {
+      "n": "Padrão dos Descobrimentos",
+      "lat": 38.6936,
+      "lon": -9.2057
+     },
+     {
+      "n": "Pastéis de Belém",
+      "lat": 38.6975,
+      "lon": -9.2032
+     },
+     {
+      "n": "Mosteiro dos Jerónimos",
+      "lat": 38.6979,
+      "lon": -9.2068
+     }
+    ],
+    "photos": [
+     "photos/lis22-rua-augusta.jpg",
+     "photos/lis22-torre-belem.jpg",
+     "photos/lis22-padrao.jpg",
+     "photos/lis22-pasteis.jpg"
+    ]
+   },
+   {
+    "n": "Chiado, Cais do Sodré y Bairro Alto",
+    "sub": "Sábado por la tarde y noche",
+    "cc": "PT",
+    "lat": 38.7105,
+    "lon": -9.142,
+    "by": "bus",
+    "leg": "Vuelta en tranvía al centro",
+    "story": "Vuelta al centro para comer y una tarde de las de callejear: la Pink Street con sus paraguas de colores, tiendas vintage, el Elevador da Bica subiendo la cuesta, el tranvía 28 y el Elevador de Santa Justa. Cena en el Bairro Alto, que por la noche se llena de gente tomando algo en la calle.",
+    "did": [
+     "Pink Street (Rua Nova do Carvalho) y sus paraguas",
+     "Elevador da Bica",
+     "Tranvía 28",
+     "Elevador de Santa Justa",
+     "Noche en el Bairro Alto"
+    ],
+    "ate": [
+     "Cena de hamburguesas en el Bairro Alto"
+    ],
+    "spots": [
+     {
+      "n": "Pink Street",
+      "lat": 38.7073,
+      "lon": -9.144
+     },
+     {
+      "n": "Elevador da Bica",
+      "lat": 38.7085,
+      "lon": -9.1465
+     },
+     {
+      "n": "Elevador de Santa Justa",
+      "lat": 38.7121,
+      "lon": -9.1394
+     },
+     {
+      "n": "Bairro Alto",
+      "lat": 38.7122,
+      "lon": -9.145
+     }
+    ],
+    "photos": [
+     "photos/lis22-comida.jpg",
+     "photos/lis22-pink-street.jpg",
+     "photos/lis22-bica.jpg",
+     "photos/lis22-tranvia-28.jpg",
+     "photos/lis22-santa-justa.jpg",
+     "photos/lis22-cena.jpg"
+    ]
+   },
+   {
+    "n": "LX Factory",
+    "sub": "Domingo, antes de volver",
+    "cc": "PT",
+    "lat": 38.7036,
+    "lon": -9.1787,
+    "by": "otro",
+    "leg": "Al día siguiente",
+    "story": "El último día lo dedicamos a LX Factory, una antigua fábrica bajo el puente convertida en tiendas, librerías, murales y restaurantes. Comimos sushi allí mismo y, de ahí, vuelta a casa en coche.",
+    "did": [
+     "Pasear por LX Factory: tiendas, murales y mercadillo"
+    ],
+    "ate": [
+     "Sushi en LX Factory"
+    ],
+    "spots": [
+     {
+      "n": "LX Factory",
+      "lat": 38.7036,
+      "lon": -9.1787
+     }
+    ],
+    "photos": [
+     "photos/lis22-lx-factory.jpg",
+     "photos/lis22-sushi.jpg"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "viaje-lisboa-2026",
+  "kind": "trip",
+  "country": "PT",
+  "date": "2026-10",
+  "title": "Lisboa, la vuelta",
+  "with": "María y Mario",
+  "intro": "Octubre de 2026, con María y Mario: esta vez nada de correr a ver monumentos, sino disfrutar de Lisboa. Coincidió con la maratón, así que dormimos en Moscavide y nos movimos en Uber. Toca cada parada para verla.",
+  "note": "",
+  "stops": [
+   {
+    "n": "Évora",
+    "sub": "Parada de camino · 10 de octubre",
+    "cc": "PT",
+    "lat": 38.5715,
+    "lon": -7.907,
+    "by": "coche",
+    "leg": "En coche desde España",
+    "story": "De camino a Lisboa paramos en Évora para estirar las piernas: callejuelas blancas con zócalos amarillos que suben hacia la catedral. Una parada perfecta a mitad de viaje.",
+    "did": [
+     "Paseo por el casco histórico de Évora"
+    ],
+    "ate": [],
+    "photos": [
+     "photos/lis26-evora.jpg"
+    ]
+   },
+   {
+    "n": "Moscavide",
+    "sub": "Dónde dormimos",
+    "cc": "PT",
+    "lat": 38.779,
+    "lon": -9.102,
+    "by": "coche",
+    "leg": "En coche hasta Lisboa",
+    "story": "Ese fin de semana había maratón y Lisboa estaba carísima, así que nos quedamos en Moscavide, junto al Parque das Nações. Queda lejos del centro, pero el Uber era muy barato: unos 7 € cada trayecto.",
+    "did": [],
+    "ate": [],
+    "sleep": "Moscavide (cerca del Parque das Nações)",
+    "note": "Consejo: si Lisboa está cara, Moscavide o el Parque das Nações salen mucho mejor de precio, y el Uber al centro cuesta unos 7 €."
+   },
+   {
+    "n": "Bica, Chiado y São Pedro de Alcântara",
+    "sub": "Domingo 11 de octubre",
+    "cc": "PT",
+    "lat": 38.712,
+    "lon": -9.145,
+    "by": "taxi",
+    "leg": "En Uber al centro (unos 7 €)",
+    "story": "Tarde de disfrutar sin prisa: ostras a 1 € en happy hour por la zona de la Bica, fotomatón en blanco y negro con cerveza en mano y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. La noche terminó con una cena de tapas por el Príncipe Real.",
+    "did": [
+     "Happy hour de ostras a 1 €",
+     "Fotomatón en blanco y negro",
+     "Fiesta en el Miradouro de São Pedro de Alcântara"
+    ],
+    "ate": [
+     "Ostras a 1 € y tabla de quesos en happy hour",
+     "Cena de tapas por el Príncipe Real"
+    ],
+    "spots": [
+     {
+      "n": "Ostras en happy hour",
+      "lat": 38.709,
+      "lon": -9.1468
+     },
+     {
+      "n": "Miradouro de São Pedro de Alcântara",
+      "lat": 38.7151,
+      "lon": -9.1443
+     },
+     {
+      "n": "Cena de tapas",
+      "lat": 38.7163,
+      "lon": -9.1443
+     }
+    ],
+    "photos": [
+     "photos/lis26-happy-hour.jpg",
+     "photos/lis26-ostras.jpg",
+     "photos/lis26-ostras-2.jpg",
+     "photos/lis26-fotomaton.jpg",
+     "photos/lis26-mirador.jpg",
+     "photos/lis26-cena.jpg"
+    ]
+   }
+  ]
  }
 ]

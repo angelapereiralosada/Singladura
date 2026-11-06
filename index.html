@@ -840,7 +840,7 @@ function markStep(i){
 function fitStage(s0){
   const pts = [[s0.lon, s0.lat], ...(s0.spots || []).map(p => [p.lon, p.lat]), ...(s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])];
   const plan = !!curTrip()?.plan;
-  if (pts.length > 1) fitLLs(pts, plan ? 16.5 : 12); else flyTo(s0.lon, s0.lat, plan ? 15 : 11);
+  if (pts.length > 1) fitLLs(pts, plan ? 16.5 : 15.5); else flyTo(s0.lon, s0.lat, plan ? 15 : 13);
 }
 function fitTrip(tr){
   const pts = (tr.stops || []).filter(s0 => !tr.country || s0.cc === tr.country || !s0.cc).map(s0 => [s0.lon, s0.lat]);
