@@ -54,6 +54,38 @@ body{
 }
 #globe{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
 #globe.grabbing{cursor:grabbing}
+#citymap{position:fixed;inset:0;z-index:2;display:none;background:#F3E6E4}
+body.city #citymap{display:block}
+body.city .stats,body.city .seg,body.city .hint{display:none}
+#citymap .leaflet-tile-pane{filter:saturate(.9) sepia(.1) hue-rotate(-10deg)}
+#citymap .leaflet-control-attribution{font-size:9px;background:rgba(255,255,255,.7);border-radius:8px 0 0 0}
+.cm{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c,#24254A);color:#fff;border:2.5px solid #fff;box-shadow:0 3px 8px rgba(36,37,74,.35);font:700 12px/1 system-ui,sans-serif;position:relative}
+.cm .ic{width:15px;height:15px}
+.cm b{position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#fff;color:var(--ink);font-size:10.5px;display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.cm.sm{width:24px;height:24px;border-width:2px}.cm.sm .ic{width:12px;height:12px}.cm.sm b{top:-6px;right:-6px;min-width:15px;height:15px;font-size:9.5px}
+.cm.done{background:#fff;color:var(--c)}
+.cm.stop{background:#D71F2B;width:36px;height:36px;font:400 16px/1 Fraunces,Georgia,serif}
+.cm.spot{width:16px;height:16px;background:#fff;border:3px solid #24254A}
+.cmlab{font:700 12px/1.2 system-ui,sans-serif;color:var(--ink);white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}
+.me{width:18px;height:18px;border-radius:50%;background:#2F7BFF;border:3px solid #fff;box-shadow:0 0 0 6px rgba(47,123,255,.22),0 2px 6px rgba(0,0,0,.3)}
+.leaflet-popup-content-wrapper{border-radius:18px;box-shadow:0 10px 30px rgba(190,70,100,.25)}
+.leaflet-popup-content{margin:12px 14px;font-family:var(--f-body);color:var(--ink);min-width:170px}
+.pop b{display:block;font-size:15px;line-height:1.25}
+.pop span{display:block;font-size:12px;opacity:.7;margin:2px 0 8px}
+.pop .pl{display:flex;gap:6px;flex-wrap:wrap}
+.pop a,.pop button,.mapl a,.mapl button{display:inline-flex;align-items:center;gap:5px;font:700 12.5px/1 var(--f-body);padding:8px 11px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer}
+.pop a.go,.mapl a.go{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mapl{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pit.flash{outline:3px solid var(--red);outline-offset:2px;transition:outline .3s}
+#zloc{display:none;position:fixed;z-index:6;right:calc(16px + env(safe-area-inset-right, 0px));top:calc(70px + env(safe-area-inset-top, 0px));width:auto;height:40px;padding:0 14px 0 11px;border-radius:999px;gap:7px;align-items:center;font:700 13px/1 var(--f-body);color:var(--ink)}
+body.city #zloc{display:inline-flex}
+body.city .brand{background:rgba(255,255,255,.92);padding:5px 16px 5px 5px;border-radius:999px;box-shadow:0 4px 14px rgba(36,37,74,.12)}
+body.city .brand .rose{width:30px;height:30px}
+body.city .brand .wm b{font-size:22px}
+body.city .brand .wm span{display:none}
+#citymap .leaflet-top.leaflet-right{top:calc(116px + env(safe-area-inset-top, 0px))}
+@media (min-width:901px){ #zloc{right:calc(432px + env(safe-area-inset-right, 0px));top:calc(22px + env(safe-area-inset-top, 0px))} #citymap .leaflet-top.leaflet-right{top:auto;bottom:0;right:416px} }
+#zloc[aria-pressed="true"]{background:#2F7BFF;color:#fff}
 #globe.aim{cursor:crosshair}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -400,6 +432,7 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
 </svg>
 
+<div id="citymap" aria-label="Mapa de calles"></div>
 <canvas id="globe" aria-label="Mapa con tus viajes. Arrastra para moverlo, toca un país o una chincheta."></canvas>
 
 <div class="top">
@@ -422,11 +455,14 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
 </div>
 
 <div class="aimbar" id="aimbar" hidden><svg class="ic"><use href="#i-target"/></svg>Toca el mapa donde estuviste</div>
+<button class="ctrl locb" id="zloc" aria-label="Dónde estoy" aria-pressed="false"><svg class="ic"><use href="#i-target"/></svg><span>Dónde estoy</span></button>
 <aside class="panel" id="panel" data-size="half"></aside>
 <div class="toast" id="toast" hidden role="status"></div>
 <div class="lightbox" id="lightbox" hidden><img id="lbimg" alt=""></div>
 <datalist id="gz"></datalist>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@amcharts/amcharts4-geodata@4.1.31/dist/script/worldLow.js"></script>
 <script>if(!window.am4geodata_worldLow){document.write('<script src="https://unpkg.com/@amcharts/amcharts4-geodata@4.1.31/dist/script/worldLow.js"><\/script>');}</script>
@@ -542,6 +578,7 @@ function layout(){
   if (!isPhone()) { aw = W - 432; top = 110; ah = H - top - 70; cx = aw/2 + 8; cy = top + ah/2; }
   else { const ph = S.size === "min" ? 110 : S.size === "tall" ? H*.85 : H*.52; top = 96; ah = Math.max(150, H - ph - top - 12); aw = W; cx = W/2; cy = top + ah/2; }
   AW = aw; AH = ah;
+  if (cmap) setTimeout(() => cmap.invalidateSize(), 280);
   base = Math.min(aw - 24, ah) * .48;
   mbase = Math.min((aw - 24) / 5.45, ah / 2.85);
 }
@@ -723,6 +760,7 @@ function markStep(i){
   panel.querySelectorAll(".tl li").forEach(li => { const on = +li.dataset.step === i; li.classList.toggle("cur", on); li.querySelector(".stopb")?.setAttribute("aria-expanded", on); });
   const li = panel.querySelector(`.tl li[data-step="${i}"]`); if (li) li.scrollIntoView({block:"nearest", behavior: reduced ? "auto" : "smooth"});
   const pb = $("#b-play"); if (pb && !S.play) pb.innerHTML = `${ic("play", "sm")}Ver la ruta en movimiento`;
+  if (S.view === "trip") syncCity();
 }
 function fitStage(s0){
   const pts = [[s0.lon, s0.lat], ...(s0.spots || []).map(p => [p.lon, p.lat]), ...(s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])];
@@ -749,16 +787,23 @@ function planProgress(tr){
   return all.length ? `<span class="chipmeta">${ic("check", "sm")}${done}/${all.length} hechos</span>` : "";
 }
 function planItemsHTML(s0, i){
-  return `<div class="pitems">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver; return `<div class="pit ${it.done ? "done" : ""}" style="--gc:${g.c};--gb:${g.bg}">
+  return `<div class="pitems">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver; return `<div class="pit ${it.done ? "done" : ""}" data-pit="${i}|${j}" style="--gc:${g.c};--gb:${g.bg}">
     <div class="pih"><span class="gi">${ic(g.ic, "sm")}</span><span class="pit-t"><b>${esc(it.n)}</b><span class="muted small">${esc([WHEN[it.when] || "", g.l].filter(Boolean).join(" · "))}</span></span>
       ${S.canEdit ? `<button class="pdone" data-done="${i}|${j}" aria-pressed="${!!it.done}" aria-label="Marcar como hecho">${ic("check", "sm")}</button>` : ""}</div>
     ${it.txt ? `<p class="pit-x">${esc(it.txt)}</p>` : ""}
     ${it.save ? `<p class="pit-s">${ic("coin", "sm")}<span>${esc(it.save)}</span></p>` : ""}
     ${it.by ? `<p class="pit-s reco">${ic("heart", "sm")}<span>Recomendado por ${esc(it.by)}</span></p>` : ""}
+    ${isFinite(it.lat) ? `<div class="mapl"><button data-mapit="${i}|${j}">${ic("pin", "sm")}Ver en el mapa</button><a class="go" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a></div>` : ""}
     ${S.canEdit || it.rating ? `<div class="stars" role="group" aria-label="Tu valoración">${[1, 2, 3, 4, 5].map(k => S.canEdit ? `<button data-rate="${i}|${j}|${k}" class="${k <= (it.rating || 0) ? "on" : ""}" aria-label="${k} estrellas">${ic("star", "sm")}</button>` : `<span class="${k <= (it.rating || 0) ? "on" : ""}">${ic("star", "sm")}</span>`).join("")}${!it.rating && S.canEdit ? `<span class="muted small">Valóralo cuando lo hagas</span>` : ""}</div>` : ""}
   </div>`; }).join("")}</div>`;
 }
 function wirePlanItems(tr){
+  panel.querySelectorAll("[data-mapit]").forEach(b => b.onclick = e => {
+    e.stopPropagation(); const [i, j] = b.dataset.mapit.split("|").map(Number);
+    if (S.step !== i) markStep(i);
+    if (isPhone() && S.size === "tall") setSize("half");
+    focusCityItem(i, j);
+  });
   const save = async () => { const ok = await Store.save(tr.id, tripData(tr)); if (!ok) toast("No se pudo guardar"); };
   const keep = () => { const sc = $("#pscroll"); return sc ? sc.scrollTop : 0; };
   const back = y => { const sc = $("#pscroll"); if (sc) sc.scrollTop = y; };
@@ -1010,6 +1055,7 @@ function tripCards(list){
 }
 const countFor = cc => places().filter(p => p.country === cc).length + (marks().find(m => m.country === cc)?.cities?.length || 0);
 function frame(t){
+  if (document.body.classList.contains("city")) { last = t; requestAnimationFrame(frame); return; }
   const dt = Math.min(64, t - last); last = t;
   if (fly) { const k = Math.min(1, (t - fly.t0) / fly.dur), e = d3.easeCubicInOut(k); rot = fly.ir(e); zoom = fly.iz(e); if (fly.im) mty = fly.im(e); if (k >= 1) fly = null; }
   else if (isGlobe() && !reduced && t - lastTouch > 4000 && !S.sel && !S.country && S.view !== "form") rot[0] += dt * 0.004;
@@ -1244,8 +1290,8 @@ cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
 cv.addEventListener("pointerleave", () => { S.hover = null; hoverXY = null; });
 cv.addEventListener("wheel", e => { e.preventDefault(); fly = null; const nz = clampZ(zoom * Math.exp(-e.deltaY * .0015)); if (!isGlobe()) mty *= nz / zoom; zoom = nz; clampY(); lastTouch = performance.now(); }, {passive:false});
 const zoomBy = f => { const nz = clampZ(zoom*f); fly = { t0: performance.now(), dur: 350, ir: d3.interpolate(rot.slice(), rot.slice()), iz: d3.interpolate(zoom, nz), im: isGlobe() ? null : d3.interpolate(mty, mty * nz / zoom) }; lastTouch = performance.now(); };
-$("#zin").onclick = () => zoomBy(1.6); $("#zout").onclick = () => zoomBy(1/1.6);
-$("#zreset").onclick = () => { fly = { t0: performance.now(), dur: 900, ir: d3.interpolate(rot.slice(), [rot[0], isGlobe() ? -25 : 0, 0]), iz: d3.interpolate(zoom, 1), im: isGlobe() ? null : d3.interpolate(mty, 0) }; goList(); };
+$("#zin").onclick = () => cityActive() ? cmap.zoomIn() : zoomBy(1.6); $("#zout").onclick = () => cityActive() ? cmap.zoomOut() : zoomBy(1/1.6);
+$("#zreset").onclick = () => { if (cityActive()) return fitCity(); fly = { t0: performance.now(), dur: 900, ir: d3.interpolate(rot.slice(), [rot[0], isGlobe() ? -25 : 0, 0]), iz: d3.interpolate(zoom, 1), im: isGlobe() ? null : d3.interpolate(mty, 0) }; goList(); };
 
 function hit(x, y){ let best = null, bd = 22; for (const p of pinScreen) { const d = Math.hypot(p.x - x, p.y - y); if (d < bd) { bd = d; best = p; } } return best; }
 function onMap(x, y){ if (isGlobe()) return Math.hypot(x - cx, y - cy) <= base * zoom; const ll = proj.invert([x, y]); return !!ll && d3.geoContains(SPHERE, ll) && Math.abs(ll[1]) <= 90; }
@@ -1310,6 +1356,117 @@ function renderMinbar(){
     $("#mb-open").onclick = () => setSize("half");
   }
 }
+// ── Mapa de calles (Leaflet) para planes de viaje y etapas ──
+var cmap = null; let cLayer = null, cMarks = new Map(), meMk = null, meWatch = null, meFirst = false;
+const cityActive = () => !!cmap && document.body.classList.contains("city");
+const dirUrl = it => `https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lon}&travelmode=walking`;
+function cityWanted(){
+  if (S.view !== "trip" || S.play || !window.L) return false;
+  const tr = curTrip(); if (!tr) return false;
+  return !!tr.plan || S.step != null;
+}
+function cityPad(){
+  if (isPhone()) return {tl:[24, 132], br:[24, Math.max(40, H - (96 + AH)) + 16]};
+  return {tl:[30, 110], br:[W - AW + 20, 70]};
+}
+function cityPoints(){
+  const tr = curTrip(); if (!tr) return [];
+  const st = tr.stops || [];
+  const days = S.step != null ? [S.step] : st.map((_, i) => i);
+  const pts = [];
+  for (const i of days) { const s0 = st[i]; if (!s0) continue;
+    (s0.items || []).forEach((it, j) => { if (isFinite(it.lat)) pts.push([it.lat, it.lon]); });
+    (s0.spots || []).forEach(p => { if (isFinite(p.lat)) pts.push([p.lat, p.lon]); });
+    if (!tr.plan && isFinite(s0.lat)) pts.push([s0.lat, s0.lon]);
+  }
+  return pts;
+}
+function fitCity(){
+  if (!cmap) return; const pts = cityPoints(), pd = cityPad();
+  if (!pts.length) return;
+  if (pts.length === 1) { cmap.setView(pts[0], 15); flyVisible(L.latLng(pts[0]), 15); }
+  else cmap.fitBounds(pts, {paddingTopLeft: pd.tl, paddingBottomRight: pd.br, maxZoom: 17});
+}
+function popHTML(it, g, i, j){
+  return `<div class="pop"><b>${esc(it.n)}</b><span>${esc([g ? g.l : "", WHEN[it.when] || ""].filter(Boolean).join(" · "))}</span>
+    <div class="pl"><a class="go" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>${j != null ? `<button data-popgo="${i}|${j}">${ic("eye", "sm")}Ver ficha</button>` : ""}</div></div>`;
+}
+const popOpts = () => { const pd = cityPad(); return {autoPanPaddingTopLeft: L.point(pd.tl[0], pd.tl[1]), autoPanPaddingBottomRight: L.point(pd.br[0], pd.br[1]), closeButton:true}; };
+function drawCity(){
+  const tr = curTrip(); cLayer.clearLayers(); cMarks.clear(); if (!tr) return;
+  const st = tr.stops || [];
+  const mk = (lat, lon, html, cls, sz) => L.marker([lat, lon], {icon: L.divIcon({className:"", html, iconSize:[sz, sz], iconAnchor:[sz/2, sz/2], popupAnchor:[0, -sz/2]}), riseOnHover:true});
+  if (tr.plan) {
+    st.forEach((s0, i) => {
+      const on = S.step == null || S.step === i; if (!on) return;
+      const line = [];
+      (s0.items || []).forEach((it, j) => {
+        if (!isFinite(it.lat)) return; const g = GT[it.t] || GT.ver; line.push([it.lat, it.lon]);
+        const num = S.step != null ? `<b>${j + 1}</b>` : `<b>${i + 1}</b>`;
+        const sm = S.step == null;
+        const m = mk(it.lat, it.lon, `<span class="cm ${it.done ? "done" : ""} ${sm ? "sm" : ""}" style="--c:${g.c}">${ic(g.ic, "sm")}${num}</span>`, "", sm ? 24 : 30).addTo(cLayer);
+        m.bindPopup(popHTML(it, g, i, j), popOpts()); cMarks.set(i + "|" + j, m);
+      });
+      if (S.step != null && line.length > 1) L.polyline(line, {color:"#24254A", weight:2.5, opacity:.55, dashArray:"2 7", lineCap:"round"}).addTo(cLayer);
+    });
+  } else {
+    const i = S.step, s0 = st[i]; if (!s0) return;
+    (s0.spots || []).forEach(p => { if (!isFinite(p.lat)) return;
+      mk(p.lat, p.lon, `<span class="cm spot"></span>`, "", 16).addTo(cLayer).bindPopup(popHTML(p, null, i, null), popOpts());
+      L.marker([p.lat, p.lon], {icon: L.divIcon({className:"", html:`<span class="cmlab">${esc(p.n)}</span>`, iconSize:[0, 0], iconAnchor:[-12, 7]}), interactive:false}).addTo(cLayer);
+    });
+    if (isFinite(s0.lat)) mk(s0.lat, s0.lon, `<span class="cm stop">${i + 1}</span>`, "", 36).addTo(cLayer).bindPopup(popHTML(s0, null, i, null), popOpts());
+  }
+}
+function flyVisible(ll, z){
+  const pd = cityPad(), off = L.point((pd.br[0] - pd.tl[0]) / 2, (pd.br[1] - pd.tl[1]) / 2);
+  const target = cmap.unproject(cmap.project(ll, z).add(off), z);
+  cmap.flyTo(target, z, {duration: reduced ? 0 : .6});
+}
+function focusCityItem(i, j){
+  syncCity(false);
+  const m = cMarks.get(i + "|" + j); if (!m) return;
+  cmap.closePopup(); flyVisible(m.getLatLng(), Math.max(cmap.getZoom(), 17));
+  setTimeout(() => m.openPopup(), reduced ? 0 : 650);
+}
+function syncCity(refit = true){
+  const want = cityWanted();
+  const was = document.body.classList.contains("city");
+  document.body.classList.toggle("city", want);
+  if (!want) { if (was) stopLocate(); return; }
+  if (!cmap) {
+    cmap = L.map("citymap", {zoomControl:false, attributionControl:false, tap:true});
+    L.control.attribution({position:"topright", prefix:false}).addTo(cmap);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {maxZoom:20, subdomains:"abcd", attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(cmap);
+    cLayer = L.layerGroup().addTo(cmap);
+    cmap.setView([40.4, -3.7], 5);
+    cmap.on("popupopen", e => { const b = e.popup.getElement()?.querySelector("[data-popgo]"); if (b) b.onclick = () => {
+      const [i, j] = b.dataset.popgo.split("|").map(Number); if (S.step !== i) markStep(i);
+      if (S.size === "min") setSize("half");
+      const el = panel.querySelector(`[data-pit="${i}|${j}"]`); if (el) { el.scrollIntoView({block:"center", behavior: reduced ? "auto" : "smooth"}); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1400); }
+    }; });
+  }
+  cmap.invalidateSize(); drawCity();
+  if (refit || !was) { fitCity(); if (!was) setTimeout(() => { cmap.invalidateSize(); fitCity(); }, 60); }
+}
+function stopLocate(){
+  if (meWatch != null) navigator.geolocation.clearWatch(meWatch); meWatch = null;
+  if (meMk) { meMk.remove(); meMk = null; } const b = $("#zloc"); if (b) b.setAttribute("aria-pressed", "false");
+}
+$("#zloc").onclick = () => {
+  if (meWatch != null) return stopLocate();
+  if (!navigator.geolocation) return toast("Tu móvil no deja ver la ubicación");
+  $("#zloc").setAttribute("aria-pressed", "true"); meFirst = true;
+  meWatch = navigator.geolocation.watchPosition(pos => {
+    const ll = [pos.coords.latitude, pos.coords.longitude];
+    if (!meMk) meMk = L.marker(ll, {icon: L.divIcon({className:"", html:'<span class="me"></span>', iconSize:[18, 18], iconAnchor:[9, 9]}), interactive:false, zIndexOffset:1000}).addTo(cmap);
+    else meMk.setLatLng(ll);
+    if (meFirst) { meFirst = false;
+      const far = cmap.getCenter().distanceTo(ll) > 30000;
+      if (far) toast("Estás lejos de aquí: te enseño dónde estás"); flyVisible(L.latLng(ll), far ? 13 : Math.max(cmap.getZoom(), 16));
+    }
+  }, () => { stopLocate(); toast("Activa la ubicación para Safari en Ajustes"); }, {enableHighAccuracy:true, maximumAge:15000});
+};
 function render(){
   renderStats();
   const aiming = S.view === "form";
@@ -1323,6 +1480,7 @@ function render(){
   else if (S.view === "chat") renderChat();
   else if (S.view === "login") renderLogin();
   else renderList();
+  syncCity();
 }
 const mini = p => `<span class="mini">${CATS.map(c => `<span class="${c.cls}" title="${c.label}">${ic(c.icon, "sm")}${p[c.k]?.length || 0}</span>`).join("")}</span>`;
 function placeItem(p, showCountry = true){
