@@ -1107,7 +1107,7 @@ const MKEY = "vitacora.msgs";
 const msgCol = () => null;
 async function loadNotes(){
   loadLocalMsgs();
-  if (!CFG.api || !KEY) return;
+  if (!LIVE()) return;
   try {
     const r = await api("/notes"); if (!r.ok) return;
     const remote = await r.json(), local = MSGS.filter(m => m.local);
@@ -1118,7 +1118,7 @@ async function loadNotes(){
 }
 function saveLocalMsgs(){ try { localStorage.setItem(MKEY, JSON.stringify(MSGS.filter(m => m.local))); } catch(e) {} }
 async function sendNote(m){
-  if (!CFG.api || !KEY) return false;
+  if (!LIVE()) return false;
   try { const {local, ...clean} = m; const r = await api("/note", {method:"POST", body: JSON.stringify(clean)}); return r.ok; } catch(e) { return false; }
 }
 function loadLocalMsgs(){ try { MSGS = JSON.parse(localStorage.getItem(MKEY) || "[]"); } catch(e) { MSGS = []; } }
@@ -1132,7 +1132,7 @@ function renderChat(){
     <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Volver</button></div>
     <div class="hero"><div class="kicker">Cuéntamelo</div><h2>Como a una amiga</h2>
       <p class="tintro">Escribe lo que te acuerdes, a lo bruto y en mensajes sueltos. Luego dile a Claude «ordena lo que te he contado» y lo pondrá en su sitio. Esto solo lo ves tú.</p></div>
-    ${!CFG.api && MSGS.some(m => !m.done) ? `<div class="note warn"><span>Ahora mismo tus notas se quedan en este móvil y Claude no puede leerlas. Pulsa el botón, pégalas en el chat con Claude y las ordenará.</span><div><button class="btn primary sm" id="b-sendclaude">${ic("copy", "sm")}Copiar mis notas para Claude</button></div></div>` : ""}
+    ${!LIVE() && MSGS.some(m => !m.done) ? `<div class="note warn"><span>Ahora mismo tus notas se quedan en este móvil y Claude no puede leerlas. Pulsa el botón, pégalas en el chat con Claude y las ordenará.</span><div><button class="btn primary sm" id="b-sendclaude">${ic("copy", "sm")}Copiar mis notas para Claude</button></div></div>` : ""}
     <div class="bubbles">${list.length ? list.map(m => { const d = day(m.at); const sep = d !== lastDay ? `<div class="bday">${esc(d)}</div>` : ""; lastDay = d;
       return `${sep}<div class="bub ${m.done ? "done" : ""}">${ctxLabel(m) ? `<span class="bctx">${esc(ctxLabel(m))}</span>` : ""}<span class="btxt">${esc(m.text)}</span><span class="bmeta">${m.done ? `${ic("check", "sm")}Ordenado por Claude` : "Pendiente de ordenar"}</span></div>`; }).join("")
       : `<div class="empty">${ic("chat")}<b>Empieza a contar</b><span>Por ejemplo: «En Medellín fuimos a la Comuna 13 con un guía, buenísimo».</span></div>`}</div>`,
@@ -1158,7 +1158,7 @@ function renderChat(){
     const ok = await sendNote(note);
     if (!ok) note.local = true;
     MSGS.push(note); saveLocalMsgs(); renderChat();
-    if (!ok && CFG.api) toast("Sin conexión: lo guardo en el móvil y lo envío luego");
+    if (!ok && LIVE()) toast("Sin conexión: lo guardo en el móvil y lo envío luego");
     setTimeout(() => $("#chat-in")?.focus(), 30);
   };
   $("#chat-send").onclick = send;
@@ -1474,7 +1474,7 @@ function renderList(){
     <div class="searchwrap" id="gwrap">${ic("search")}<input class="search" id="gsearch" type="search" placeholder="${ro ? "¿A dónde vas? Busca un país o ciudad" : "Busca un país, ciudad, plato…"}" autocomplete="off" enterkeyhint="search" aria-label="Buscar"></div>
     ${hasEx && !ro ? `<div class="note"><span>Lisboa, Roma y Kioto son ejemplos para que veas cómo queda. Bórralos cuando empieces con los tuyos.</span><div><button class="btn sm" id="b-clear-ex">${ic("trash", "sm")}Borrar ejemplos</button></div></div>` : ""}
     ${!world.length ? `<div class="note warn"><span>No se han podido cargar las formas de los países. Recarga la página; si sigue igual, avísame.</span></div>` : ""}
-    ${S.mode === "gh" && !ro && !CFG.api ? `<div class="note warn"><span>Tus cambios se guardan en este móvil hasta que conectemos Cloudflare.</span></div>` : ""}
+    ${S.mode === "gh" && !ro && !LIVE() ? `<div class="note warn"><span>Tus cambios se guardan solo en este móvil. Sal del modo edición y vuelve a entrar con tu llave de GitHub para que se guarden de verdad.</span></div>` : ""}
     ${S.mode === "local" && !ro ? `<div class="note warn"><span>Ahora mismo tus viajes se guardan solo en este navegador.</span></div>` : ""}
     <section class="sec">
       <div class="sectitle">${ic("flag")}Países visitados <span class="n">${vis.length}</span></div>
@@ -1937,11 +1937,40 @@ try { KEY = localStorage.getItem(KKEY) || ""; } catch(e) {}
 let PENDING = {}; try { PENDING = JSON.parse(localStorage.getItem(PKEY) || "{}") || {}; } catch(e) { PENDING = {}; }
 const savePending = () => { try { localStorage.setItem(PKEY, JSON.stringify(PENDING)); } catch(e) {} };
 const pendingCount = () => Object.values(PENDING).filter(p => !p.ok).length;
-const api = (path, opts = {}) => fetch(CFG.api.replace(/\/$/, "") + path, {...opts, headers: {"Content-Type":"application/json", "X-Key": KEY, ...(opts.headers || {})}});
+// two ways to save: a Cloudflare Worker (CFG.api) or, with a personal GitHub key kept only on this phone, straight to GitHub
+const isGhKey = k => /^(github_pat_|ghp_)/.test(k || "");
+const LIVE = () => !!KEY && (!!CFG.api || isGhKey(KEY));
+const SITE_REPO = () => CFG.site || "angelapereiralosada/Singladura", NOTES_REPO = () => CFG.notes || "angelapereiralosada/singladura-notas";
+const ghFetch = (repo, path, method = "GET", body) => fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {method, cache: "no-store",
+  headers: {Authorization: "Bearer " + KEY, Accept: "application/vnd.github+json"}, body: body ? JSON.stringify(body) : undefined});
+const b64e = str => { const by = new TextEncoder().encode(str); let bin = ""; for (let i = 0; i < by.length; i += 0x8000) bin += String.fromCharCode(...by.subarray(i, i + 0x8000)); return btoa(bin); };
+const b64d = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g, "")), c => c.charCodeAt(0)));
+async function ghRead(repo, path, fallback){ const r = await ghFetch(repo, path); if (r.status === 404) return {data: fallback, sha: null}; if (!r.ok) throw Object.assign(new Error("gh"), {status: r.status}); const j = await r.json(); return {data: JSON.parse(b64d(j.content)), sha: j.sha}; }
+async function ghMerge(repo, path, fallback, change, msg){
+  for (let k = 0; k < 3; k++) {
+    const {data, sha} = await ghRead(repo, path, fallback);
+    const r = await ghFetch(repo, path, "PUT", {message: msg, content: b64e(JSON.stringify(change(data), null, 1)), ...(sha ? {sha} : {})});
+    if (r.ok) return 200; if (r.status !== 409 && r.status !== 422) return r.status;
+  }
+  return 409;
+}
+const resp = (status, body) => new Response(JSON.stringify(body ?? {}), {status, headers: {"Content-Type": "application/json"}});
+async function ghApi(path, opts){
+  try {
+    const body = opts.body ? JSON.parse(opts.body) : {};
+    if (path === "/check") { const r = await fetch(`https://api.github.com/repos/${NOTES_REPO()}`, {headers: {Authorization: "Bearer " + KEY}, cache: "no-store"}); return resp(r.ok ? 200 : r.status === 401 || r.status === 403 || r.status === 404 ? 401 : r.status); }
+    if (path === "/save") return resp(await ghMerge(SITE_REPO(), "data/items.json", [], data => { const m = new Map(data.map(x => [x.id, x])); for (const [id, d] of Object.entries(body.set || {})) m.set(id, {...d, id}); for (const id of body.del || []) m.delete(id); return [...m.values()]; }, "Actualiza el diario desde la app"));
+    if (path === "/notes") { const {data} = await ghRead(NOTES_REPO(), "notas.json", []); return resp(200, data); }
+    if (path === "/note") return resp(await ghMerge(NOTES_REPO(), "notas.json", [], data => data.some(n => n.id === body.id) ? data : [...data, body], "Nueva nota"));
+    if (path === "/photo") { const ph = `photos/${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}.${body.ext === "png" ? "png" : "jpg"}`; const r = await ghFetch(SITE_REPO(), ph, "PUT", {message: "Añade una foto", content: body.data}); return r.ok ? resp(200, {path: ph}) : resp(r.status); }
+    return resp(404);
+  } catch(e) { return resp(e.status === 401 ? 401 : 503); }
+}
+const api = (path, opts = {}) => isGhKey(KEY) ? ghApi(path, opts) : fetch(CFG.api.replace(/\/$/, "") + path, {...opts, headers: {"Content-Type":"application/json", "X-Key": KEY, ...(opts.headers || {})}});
 let syncT = null, syncing = false;
 function queueSync(){ clearTimeout(syncT); syncT = setTimeout(sync, 1500); }
 async function sync(){
-  if (!CFG.api || !KEY || syncing) return;
+  if (!LIVE() || syncing) return;
   const ids = Object.keys(PENDING).filter(id => !PENDING[id].ok); if (!ids.length) return;
   const set = {}, del = [];
   for (const id of ids) { const p = PENDING[id]; if (p.doc) set[id] = p.doc; else del.push(id); }
@@ -1986,12 +2015,12 @@ async function uploadPhoto(blob){
   return {id: path, url};
 }
 function setEditing(on){
-  S.canEdit = on; assets = on && CFG.api ? {upload: uploadPhoto} : null;
+  S.canEdit = on; assets = on && LIVE() ? {upload: uploadPhoto} : null;
   $("#b-lock")?.classList.toggle("on", on);
 }
 async function unlock(pw){
   KEY = pw;
-  if (CFG.api) {
+  if (CFG.api || isGhKey(pw)) {
     try { const r = await api("/check"); if (r.status === 401) { KEY = ""; return "bad"; } if (!r.ok) throw 0; }
     catch(e) { KEY = ""; return "net"; }
   }
@@ -2004,11 +2033,11 @@ function renderLogin(){
     <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Volver</button></div>
     <div class="hero"><div class="kicker">Modo edición</div><h2>${S.canEdit ? "Estás editando" : "Solo para la dueña del diario"}</h2>
       <p class="tintro">${S.canEdit
-        ? (CFG.api ? "Tus cambios se guardan en tu diario y tus amigos los verán en un par de minutos." : "Todavía no está conectado Cloudflare: tus cambios se guardan en este móvil y se subirán solos en cuanto lo conectemos.")
-        : "Tus amigos ven el diario en modo lectura. Escribe tu contraseña para añadir viajes, valorar sitios y contarle cosas a Claude."}</p></div>
+        ? (LIVE() ? "Tus cambios y tus notas se guardan en tu diario; tus amigos verán los cambios en un par de minutos y Claude podrá leer lo que le cuentes." : "Ahora mismo tus cambios se quedan solo en este móvil. Sal y vuelve a entrar con tu llave de GitHub para que se guarden de verdad.")
+        : "Tus amigos ven el diario en modo lectura. Pega tu llave de GitHub (empieza por github_pat_) para añadir viajes, valorar sitios y contarle cosas a Claude. Solo se guarda en este móvil."}</p></div>
     ${S.canEdit
       ? `${pendingCount() ? `<div class="note warn"><span>${pendingCount()} ${pendingCount() === 1 ? "cambio pendiente" : "cambios pendientes"} de subir.</span></div>` : ""}<button class="btn" id="b-out">${ic("x", "sm")}Salir del modo edición</button>`
-      : `<form id="f-login" class="field" autocomplete="on"><label class="lbl" for="pw">${ic("edit", "sm")}Contraseña</label><input class="inp" id="pw" type="password" autocomplete="current-password" enterkeyhint="go"><div class="err" id="pw-err"></div><button class="btn primary" type="submit">Entrar</button></form>`}`);
+      : `<form id="f-login" class="field" autocomplete="on"><label class="lbl" for="pw">${ic("edit", "sm")}Tu llave de GitHub</label><input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="github_pat_…" autocapitalize="off" spellcheck="false" enterkeyhint="go"><div class="err" id="pw-err"></div><button class="btn primary" type="submit">Entrar</button></form>`}`);
   wireShell();
   $("#b-back").onclick = goList;
   const bo = $("#b-out"); if (bo) bo.onclick = () => { lock(); toast("Has salido del modo edición"); };
@@ -2018,7 +2047,7 @@ function renderLogin(){
     const btn = f.querySelector("button"); btn.disabled = true; btn.textContent = "Comprobando…";
     const r = await unlock(pw);
     if (r === "ok") { toast("Modo edición activado"); goList(); }
-    else { btn.disabled = false; btn.textContent = "Entrar"; $("#pw-err").textContent = r === "bad" ? "Esa contraseña no es. Prueba otra vez." : "No hay conexión. Inténtalo en un momento."; }
+    else { btn.disabled = false; btn.textContent = "Entrar"; $("#pw-err").textContent = r === "bad" ? (isGhKey(pw) ? "GitHub no acepta esa llave. Revisa que tenga permiso de «Contents: Read and write» en Singladura y singladura-notas." : "Esa contraseña no es. Prueba otra vez.") : "No hay conexión. Inténtalo en un momento."; }
   };
 }
 let toastT;
@@ -2063,7 +2092,7 @@ if ("serviceWorker" in navigator && location.protocol === "https:") addEventList
   S.loaded = true;
   if (KEY) {
     setEditing(true); loadNotes(); sync();
-    if (CFG.api) api("/check").then(r => { if (r.status === 401) lock(); }).catch(() => {});
+    if (LIVE()) api("/check").then(r => { if (r.status === 401) lock(); }).catch(() => {});
   } else loadLocalMsgs();
   afterLoad();
 })();
