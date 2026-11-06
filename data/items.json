@@ -1,0 +1,1617 @@
+[
+ {
+  "cities": [],
+  "country": "AD",
+  "intro": "Andorra es un pequeño país entre montañas en pleno Pirineo: picos, valles verdes, pueblos de piedra y mucho ambiente de nieve en invierno.",
+  "items": [
+   [
+    "ver",
+    "Iglesias románicas como Sant Joan de Caselles"
+   ],
+   [
+    "hacer",
+    "Esquí en Grandvalira o Vallnord"
+   ],
+   [
+    "hacer",
+    "Ruta a los lagos de Tristaina"
+   ],
+   [
+    "hacer",
+    "Relax en el balneario Caldea"
+   ],
+   [
+    "comer",
+    "Trinxat, el plato típico de col, patata y panceta"
+   ],
+   [
+    "dormir",
+    "Andorra la Vella o Canillo"
+   ]
+  ],
+  "kind": "guide",
+  "tip": "Los caminos de montaña están muy bien señalizados: merece la pena dejar las tiendas y subir a algún lago.",
+  "when": "En invierno para esquiar y de junio a septiembre para hacer senderismo.",
+  "id": "guia-AD"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "La Boca y Caminito"
+     ],
+     [
+      "ver",
+      "Cementerio de la Recoleta"
+     ],
+     [
+      "hacer",
+      "Feria de San Telmo los domingos"
+     ],
+     [
+      "comer",
+      "Asado en una parrilla y empanadas"
+     ],
+     [
+      "ocio",
+      "Una milonga para ver o bailar tango"
+     ],
+     [
+      "dormir",
+      "Palermo o Recoleta"
+     ]
+    ],
+    "n": "Buenos Aires",
+    "sub": "La París de Sudamérica",
+    "text": "Barrios con mucha personalidad, cafés históricos, tango y una vida nocturna que empieza tardísimo."
+   },
+   {
+    "items": [
+     [
+      "hacer",
+      "Ruta de bodegas en bici por Maipú o Luján de Cuyo"
+     ],
+     [
+      "ver",
+      "Vistas al Aconcagua"
+     ],
+     [
+      "comer",
+      "Malbec y asado en una bodega"
+     ]
+    ],
+    "n": "Mendoza",
+    "sub": "Tierra del malbec",
+    "text": "Viñedos infinitos con los Andes nevados de fondo."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Cerro Campanario y sus vistas"
+     ],
+     [
+      "hacer",
+      "Circuito Chico en coche o bici"
+     ],
+     [
+      "comer",
+      "Chocolate artesanal y cordero patagónico"
+     ]
+    ],
+    "n": "Bariloche",
+    "sub": "La Suiza patagónica",
+    "text": "Lagos, bosques y montañas: la puerta de entrada a la Patagonia de los lagos."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "La Garganta del Diablo"
+     ],
+     [
+      "hacer",
+      "Paseo en lancha bajo las cataratas"
+     ],
+     [
+      "tip",
+      "Lleva chubasquero: acabarás empapada"
+     ]
+    ],
+    "n": "Cataratas del Iguazú",
+    "sub": "Una de las maravillas naturales",
+    "text": "Cientos de saltos de agua en plena selva. Por el lado argentino se recorren por pasarelas que te dejan encima del agua."
+   },
+   {
+    "items": [
+     [
+      "hacer",
+      "Carretera a Cafayate y la Quebrada de las Conchas"
+     ],
+     [
+      "comer",
+      "Empanadas salteñas y locro"
+     ]
+    ],
+    "n": "Salta",
+    "sub": "La linda",
+    "text": "Ciudad colonial con mucho encanto y base perfecta para el norte argentino."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Cerro de los Siete Colores en Purmamarca"
+     ],
+     [
+      "ver",
+      "Quebrada de Humahuaca"
+     ],
+     [
+      "ver",
+      "Salinas Grandes"
+     ]
+    ],
+    "n": "Jujuy",
+    "sub": "Montañas de colores",
+    "text": "Paisajes que parecen pintados y pueblos andinos de adobe."
+   }
+  ],
+  "country": "AR",
+  "intro": "Argentina es inmensa y muy diversa: una capital con mucho tango, viñedos al pie de los Andes, lagos patagónicos, cataratas gigantes y un norte de montañas de colores.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Las distancias son enormes: los vuelos internos ahorran días.",
+  "when": "Primavera (octubre-noviembre) y otoño (marzo-abril); la Patagonia, mejor en verano austral.",
+  "id": "guia-AR"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Grand-Place y el Manneken Pis"
+     ],
+     [
+      "ver",
+      "Atomium"
+     ],
+     [
+      "comer",
+      "Moules-frites y gofres de Bruselas"
+     ],
+     [
+      "ocio",
+      "Cervezas belgas en el Delirium Café"
+     ]
+    ],
+    "n": "Bruselas",
+    "sub": "La capital de Europa",
+    "text": "Una mezcla curiosa de grandeza y humor: la plaza más bonita de Europa y una estatuilla diminuta que es su símbolo."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Markt y el campanario Belfort"
+     ],
+     [
+      "hacer",
+      "Paseo en barca por los canales"
+     ],
+     [
+      "comer",
+      "Chocolate artesano en cualquier chocolatería del centro"
+     ],
+     [
+      "tip",
+      "Quédate a dormir para verla sin turistas"
+     ]
+    ],
+    "n": "Brujas",
+    "sub": "La ciudad de cuento",
+    "text": "Canales, puentes de piedra y casitas medievales: Brujas parece un decorado."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "El retablo del Cordero Místico en la catedral de San Bavón"
+     ],
+     [
+      "ver",
+      "Castillo de los Condes"
+     ],
+     [
+      "hacer",
+      "Paseo por los muelles de Graslei y Korenlei"
+     ],
+     [
+      "ocio",
+      "Ambiente de bares junto a los canales"
+     ]
+    ],
+    "n": "Gante",
+    "sub": "La joya auténtica",
+    "text": "Igual de bonita que Brujas pero más viva y universitaria, con un ambiente muy local."
+   }
+  ],
+  "country": "BE",
+  "intro": "Bélgica es pequeña pero intensa: ciudades medievales de cuento, cervezas de abadía, chocolate y gofres. Se recorre en tren en muy poco tiempo.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Muévete en tren: Bruselas, Gante y Brujas están a menos de una hora entre sí.",
+  "when": "De abril a septiembre; en diciembre los mercados navideños tienen mucho encanto.",
+  "id": "guia-BE"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Cristo Redentor en el Corcovado"
+     ],
+     [
+      "ver",
+      "Pan de Azúcar al atardecer"
+     ],
+     [
+      "hacer",
+      "Playas de Copacabana e Ipanema"
+     ],
+     [
+      "ver",
+      "Escalera de Selarón"
+     ],
+     [
+      "ocio",
+      "Samba en Lapa"
+     ],
+     [
+      "comer",
+      "Feijoada y una caipirinha"
+     ]
+    ],
+    "n": "Río de Janeiro",
+    "sub": "La ciudad maravillosa",
+    "text": "Montañas verdes que caen al mar, playas míticas y samba."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Mirador frente a la Garganta del Diablo"
+     ],
+     [
+      "ver",
+      "Parque das Aves, junto al parque"
+     ]
+    ],
+    "n": "Cataratas del Iguazú",
+    "sub": "La vista panorámica",
+    "text": "Desde el lado brasileño se ve la panorámica completa de las cataratas."
+   }
+  ],
+  "country": "BR",
+  "intro": "Brasil es alegría, naturaleza exuberante y ritmo. Playas infinitas, selva y una energía contagiosa.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Usa transporte de confianza por la noche y no lleves cosas de valor a la playa.",
+  "when": "De abril a octubre llueve menos en Río.",
+  "id": "guia-BR"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Jet d'Eau, el gran chorro del lago"
+     ],
+     [
+      "ver",
+      "Casco antiguo y catedral de San Pedro"
+     ],
+     [
+      "hacer",
+      "Paseo por el lago y el Jardín Inglés"
+     ],
+     [
+      "comer",
+      "Fondue de queso y chocolate suizo"
+     ]
+    ],
+    "n": "Ginebra",
+    "sub": "Junto al lago Lemán",
+    "text": "Una ciudad internacional y tranquila a orillas del lago, con un casco antiguo en la colina."
+   }
+  ],
+  "country": "CH",
+  "intro": "Suiza es naturaleza perfecta: lagos de agua cristalina, montañas nevadas y ciudades impecables. Cara, pero preciosa.",
+  "items": [],
+  "kind": "guide",
+  "tip": "El transporte público es puntualísimo y funciona de maravilla.",
+  "when": "De junio a septiembre para lagos y montaña; en invierno, para la nieve.",
+  "id": "guia-CH"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Valle del Cocora y sus palmas de cera"
+     ],
+     [
+      "hacer",
+      "Visita a una finca cafetera"
+     ],
+     [
+      "hacer",
+      "Jugar al tejo"
+     ],
+     [
+      "comer",
+      "Trucha con patacón"
+     ]
+    ],
+    "n": "Eje Cafetero",
+    "sub": "Salento, Filandia y el Valle del Cocora",
+    "text": "Montañas verdes, fincas de café y pueblos de casas de colores."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Comuna 13 y su arte urbano"
+     ],
+     [
+      "hacer",
+      "Subir en metrocable"
+     ],
+     [
+      "comer",
+      "Bandeja paisa"
+     ],
+     [
+      "ocio",
+      "Parque Lleras en El Poblado"
+     ],
+     [
+      "dormir",
+      "El Poblado"
+     ]
+    ],
+    "n": "Medellín",
+    "sub": "La eterna primavera",
+    "text": "Una ciudad transformada, moderna y muy viva, con clima suave todo el año."
+   },
+   {
+    "items": [
+     [
+      "hacer",
+      "Caminata hasta Cabo San Juan en el Tayrona"
+     ],
+     [
+      "hacer",
+      "Bajar el río en neumático en Palomino"
+     ],
+     [
+      "tip",
+      "El Tayrona cierra algunas semanas al año: consulta antes de ir"
+     ]
+    ],
+    "n": "Tayrona y Palomino",
+    "sub": "Caribe salvaje",
+    "text": "Selva que llega al mar y playas salvajes."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Ciudad amurallada y barrio de Getsemaní"
+     ],
+     [
+      "hacer",
+      "Barco a las Islas del Rosario"
+     ],
+     [
+      "ocio",
+      "Atardecer en la muralla"
+     ],
+     [
+      "comer",
+      "Arepa de huevo y ceviche"
+     ]
+    ],
+    "n": "Cartagena de Indias",
+    "sub": "La ciudad amurallada",
+    "text": "Calles de colores, balcones con buganvillas y atardeceres en la muralla."
+   }
+  ],
+  "country": "CO",
+  "intro": "Colombia enamora: montañas cafeteras, ciudades que se han reinventado, Caribe de agua turquesa y una gente cálida como pocas.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Pide un tinto, el café solo colombiano, y prueba las frutas tropicales que no conoces.",
+  "when": "De diciembre a marzo y de julio a agosto, la época más seca.",
+  "id": "guia-CO"
+ },
+ {
+  "cities": [],
+  "country": "CR",
+  "intro": "Costa Rica es pura vida: selva, volcanes, dos océanos y una fauna increíble.",
+  "items": [
+   [
+    "ver",
+    "Volcán Arenal"
+   ],
+   [
+    "hacer",
+    "Puentes colgantes en el bosque nuboso de Monteverde"
+   ],
+   [
+    "ver",
+    "Parque Nacional Manuel Antonio"
+   ],
+   [
+    "comer",
+    "Gallo pinto y casado"
+   ],
+   [
+    "tip",
+    "Alquilar coche da mucha libertad"
+   ]
+  ],
+  "kind": "guide",
+  "tip": "Lleva prismáticos: verás perezosos, tucanes y monos.",
+  "when": "De diciembre a abril, la temporada seca.",
+  "id": "guia-CR"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Puerta de Brandeburgo y Reichstag"
+     ],
+     [
+      "ver",
+      "East Side Gallery, lo que queda del Muro"
+     ],
+     [
+      "hacer",
+      "Isla de los Museos"
+     ],
+     [
+      "comer",
+      "Currywurst y döner kebab, los clásicos callejeros"
+     ],
+     [
+      "ocio",
+      "Kreuzberg y Friedrichshain para salir"
+     ],
+     [
+      "dormir",
+      "Mitte o Prenzlauer Berg"
+     ]
+    ],
+    "n": "Berlín",
+    "sub": "Historia y vanguardia",
+    "text": "Berlín es historia viva y cultura alternativa: del muro a los mejores clubes de Europa."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Plaza del Römerberg"
+     ],
+     [
+      "hacer",
+      "Paseo por la orilla del Meno"
+     ],
+     [
+      "comer",
+      "Sidra de manzana y salsa verde en Sachsenhausen"
+     ]
+    ],
+    "n": "Frankfurt",
+    "sub": "Rascacielos junto al río",
+    "text": "La ciudad financiera de Alemania tiene un casco antiguo reconstruido precioso y mucha vida junto al río Meno."
+   }
+  ],
+  "country": "DE",
+  "intro": "Alemania sorprende por su variedad: metrópolis creativas, historia muy presente y una cultura cervecera y de mercados que se vive en la calle.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Los domingos casi todo cierra: planea museos y paseos ese día.",
+  "when": "De mayo a septiembre; en diciembre, mercados de Navidad.",
+  "id": "guia-DE"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Nyhavn y La Sirenita"
+     ],
+     [
+      "hacer",
+      "Jardines de Tivoli"
+     ],
+     [
+      "hacer",
+      "Recorrer la ciudad en bici"
+     ],
+     [
+      "comer",
+      "Smørrebrød y bollería danesa"
+     ],
+     [
+      "ocio",
+      "Christiania, el barrio alternativo"
+     ]
+    ],
+    "n": "Copenhague",
+    "sub": "Colores y diseño",
+    "text": "Casas de colores en el puerto, bicicletas por todas partes y una gastronomía de las mejores de Europa."
+   }
+  ],
+  "country": "DK",
+  "intro": "Dinamarca es diseño, bicicletas y «hygge», ese arte danés de estar a gusto. Ordenada, alegre y muy fácil de disfrutar.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Prueba un smørrebrød: es la comida danesa más típica.",
+  "when": "De mayo a septiembre, con días larguísimos.",
+  "id": "guia-DK"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Torre Eiffel, Louvre y Notre-Dame"
+     ],
+     [
+      "ver",
+      "Montmartre y el Sacré-Cœur"
+     ],
+     [
+      "hacer",
+      "Paseo por el Sena al atardecer"
+     ],
+     [
+      "hacer",
+      "Perderse por Le Marais"
+     ],
+     [
+      "comer",
+      "Croissant de mantequilla y un crêpe en la calle"
+     ],
+     [
+      "ocio",
+      "Copas en Le Marais o en el Canal Saint-Martin"
+     ],
+     [
+      "dormir",
+      "Le Marais o el Barrio Latino"
+     ]
+    ],
+    "n": "París",
+    "sub": "La Ciudad de la Luz",
+    "text": "París se camina: bulevares, cafés con terraza, el Sena y monumentos que has visto mil veces pero impresionan igual en directo."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Promenade des Anglais y Colina del Castillo"
+     ],
+     [
+      "hacer",
+      "Mercado de flores del Cours Saleya"
+     ],
+     [
+      "comer",
+      "Socca y salade niçoise"
+     ],
+     [
+      "tip",
+      "Escápate en tren a Mónaco o a Èze"
+     ]
+    ],
+    "n": "Niza",
+    "sub": "La perla de la Costa Azul",
+    "text": "Mar azul intenso, palmeras, casas de colores en el casco viejo y un paseo marítimo que es pura Riviera."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Iglesia de San Juan Bautista"
+     ],
+     [
+      "hacer",
+      "Paseo por la bahía hasta Ciboure"
+     ],
+     [
+      "comer",
+      "Macarons de la casa Adam y pintxos en la zona del mercado"
+     ],
+     [
+      "tip",
+      "Biarritz está a un paso"
+     ]
+    ],
+    "n": "San Juan de Luz",
+    "sub": "País Vasco francés",
+    "text": "Un pueblo de pescadores con casas blancas y rojas, una bahía protegida perfecta para bañarse y mucha vida en la calle."
+   }
+  ],
+  "country": "FR",
+  "intro": "Francia lo tiene todo: la ciudad más romántica del mundo, una Costa Azul de cine, un País Vasco con mucho sabor y una cultura gastronómica que es casi religión.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Para comer bien y barato busca la «formule» del día en las brasseries.",
+  "when": "Primavera y otoño son ideales para ciudades; de junio a septiembre para la costa.",
+  "id": "guia-FR"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Duomo y subida a sus terrazas"
+     ],
+     [
+      "ver",
+      "Galería Vittorio Emanuele II"
+     ],
+     [
+      "ver",
+      "La Última Cena de Leonardo (reserva con mucha antelación)"
+     ],
+     [
+      "ocio",
+      "Aperitivo en los Navigli"
+     ],
+     [
+      "comer",
+      "Risotto alla milanese"
+     ]
+    ],
+    "n": "Milán",
+    "sub": "Moda y diseño",
+    "text": "La capital del diseño italiano tiene una catedral espectacular y un ambiente muy cosmopolita."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Bellagio y Varenna"
+     ],
+     [
+      "hacer",
+      "Recorrer el lago en ferry"
+     ],
+     [
+      "ver",
+      "Villa del Balbianello"
+     ],
+     [
+      "tip",
+      "Compra el billete de ferry de un día y ve saltando de pueblo en pueblo"
+     ]
+    ],
+    "n": "Lago de Como",
+    "sub": "Villas de película",
+    "text": "Un lago entre montañas rodeado de villas elegantes y pueblos de colores."
+   }
+  ],
+  "country": "IT",
+  "intro": "Italia es belleza en cada esquina: arte, paisajes de lago y una cocina que no decepciona nunca.",
+  "items": [],
+  "kind": "guide",
+  "tip": "El café se toma de pie en la barra: es más barato y muy italiano.",
+  "when": "Primavera y principios de otoño.",
+  "id": "guia-IT"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Rijksmuseum y Museo Van Gogh"
+     ],
+     [
+      "ver",
+      "Casa de Ana Frank (reserva con antelación)"
+     ],
+     [
+      "hacer",
+      "Paseo en barco por los canales"
+     ],
+     [
+      "hacer",
+      "Alquilar bici y recorrer el Jordaan"
+     ],
+     [
+      "comer",
+      "Stroopwafels y patatas fritas con salsa"
+     ],
+     [
+      "dormir",
+      "Jordaan o De Pijp"
+     ]
+    ],
+    "n": "Ámsterdam",
+    "sub": "La ciudad de los canales",
+    "text": "Canales con casas de cuento, museos de primera y un ambiente muy relajado."
+   }
+  ],
+  "country": "NL",
+  "intro": "Países Bajos es bicis, canales y casas estrechas que se inclinan hacia el agua. Abierto, divertido y muy fácil de recorrer.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Cuidado con los carriles bici: allí la bicicleta manda.",
+  "when": "De abril a mayo para ver los tulipanes; en verano hay mucho ambiente.",
+  "id": "guia-NL"
+ },
+ {
+  "cities": [
+   {
+    "items": [
+     [
+      "ver",
+      "Torre de Belém y Monasterio de los Jerónimos"
+     ],
+     [
+      "ver",
+      "Miradores de Santa Luzia y Senhora do Monte"
+     ],
+     [
+      "hacer",
+      "Perderse por Alfama y subir al Castelo de São Jorge"
+     ],
+     [
+      "hacer",
+      "Tranvía 28 de punta a punta"
+     ],
+     [
+      "comer",
+      "Pastéis de nata recién hechos en Belém"
+     ],
+     [
+      "comer",
+      "Bacalhau à Brás y sardinas a la brasa en una tasca"
+     ],
+     [
+      "ocio",
+      "Fado en Alfama y copas por las calles del Bairro Alto"
+     ],
+     [
+      "dormir",
+      "Baixa o Chiado para tenerlo todo a pie"
+     ]
+    ],
+    "n": "Lisboa",
+    "sub": "La ciudad de las siete colinas",
+    "text": "Lisboa se disfruta subiendo y bajando cuestas: miradores con vistas al Tajo, tranvías amarillos que crujen por calles estrechísimas y barrios con mucha personalidad."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Boca do Inferno, el acantilado donde rompen las olas"
+     ],
+     [
+      "hacer",
+      "Paseo en bici por la costa hasta la playa de Guincho"
+     ],
+     [
+      "comer",
+      "Pescado del día en el puerto"
+     ],
+     [
+      "tip",
+      "Combínalo en el mismo día con Sintra"
+     ]
+    ],
+    "n": "Cascais",
+    "sub": "La escapada a la playa desde Lisboa",
+    "text": "Antiguo pueblo de pescadores convertido en refugio elegante junto al mar, a menos de una hora en tren desde Lisboa."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "La Ribeira y el puente Don Luis I"
+     ],
+     [
+      "ver",
+      "Estación de São Bento y sus azulejos"
+     ],
+     [
+      "hacer",
+      "Cata en una bodega de Vila Nova de Gaia"
+     ],
+     [
+      "hacer",
+      "Atardecer en el Jardim do Morro"
+     ],
+     [
+      "comer",
+      "Francesinha, el sándwich más contundente de Portugal"
+     ],
+     [
+      "dormir",
+      "Ribeira o la zona de Aliados"
+     ]
+    ],
+    "n": "Oporto",
+    "sub": "Puentes, vino y azulejos",
+    "text": "Oporto es más canalla y auténtica que Lisboa: casas de colores colgadas sobre el Duero, iglesias forradas de azulejo azul y bodegas de vino de Oporto al otro lado del río."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Praia da Marinha y la cueva de Benagil"
+     ],
+     [
+      "hacer",
+      "Excursión en barco o kayak por las grutas"
+     ],
+     [
+      "comer",
+      "Cataplana de marisco"
+     ],
+     [
+      "dormir",
+      "Lagos o Tavira para un ambiente más tranquilo"
+     ]
+    ],
+    "n": "Algarve",
+    "sub": "El sur de playas doradas",
+    "text": "Acantilados ocres, cuevas marinas y calas de agua turquesa: el Algarve es la postal del verano portugués."
+   },
+   {
+    "items": [
+     [
+      "ver",
+      "Cabo de San Vicente al atardecer"
+     ],
+     [
+      "hacer",
+      "Clase de surf en playa do Tonel"
+     ],
+     [
+      "tip",
+      "Lleva chaqueta: aquí el viento sopla siempre"
+     ]
+    ],
+    "n": "Sagres",
+    "sub": "El fin del mundo europeo",
+    "text": "El extremo suroeste de Europa: viento, surf y acantilados enormes donde los navegantes creían que acababa el mundo."
+   }
+  ],
+  "country": "PT",
+  "intro": "Portugal es el vecino que siempre apetece: luz atlántica, azulejos en cada fachada, pastelerías irresistibles y una costa que va de los acantilados salvajes a las calas de postal. Se recorre fácil, se come de maravilla y todo tiene un aire tranquilo y amable.",
+  "items": [],
+  "kind": "guide",
+  "tip": "Pide siempre el «prato do dia» en las tascas: es la forma más rica y barata de comer de verdad.",
+  "when": "De abril a junio y en septiembre: buen tiempo, menos gente y precios más razonables. En verano el Algarve se llena.",
+  "id": "guia-PT"
+ },
+ {
+  "cities": [],
+  "country": "AD",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-AD"
+ },
+ {
+  "cities": [
+   {
+    "lat": -34.604,
+    "lon": -58.382,
+    "n": "Buenos Aires"
+   },
+   {
+    "lat": -32.889,
+    "lon": -68.846,
+    "n": "Mendoza"
+   },
+   {
+    "lat": -41.134,
+    "lon": -71.31,
+    "n": "Bariloche"
+   },
+   {
+    "lat": -25.695,
+    "lon": -54.437,
+    "n": "Cataratas del Iguazú"
+   },
+   {
+    "lat": -24.786,
+    "lon": -65.412,
+    "n": "Salta"
+   },
+   {
+    "lat": -24.186,
+    "lon": -65.3,
+    "n": "Jujuy"
+   }
+  ],
+  "country": "AR",
+  "kind": "country",
+  "updatedAt": "2026-11-05T13:24:10.285Z",
+  "id": "pais-AR"
+ },
+ {
+  "cities": [
+   "Brujas",
+   "Gante",
+   "Bruselas"
+  ],
+  "country": "BE",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-BE"
+ },
+ {
+  "cities": [
+   {
+    "lat": -22.907,
+    "lon": -43.173,
+    "n": "Río de Janeiro"
+   },
+   {
+    "lat": -25.692,
+    "lon": -54.437,
+    "n": "Cataratas del Iguazú"
+   }
+  ],
+  "country": "BR",
+  "kind": "country",
+  "updatedAt": "2026-11-05T13:27:35.670Z",
+  "id": "pais-BR"
+ },
+ {
+  "cities": [
+   "Ginebra"
+  ],
+  "country": "CH",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-CH"
+ },
+ {
+  "cities": [
+   {
+    "lat": 4.711,
+    "lon": -74.072,
+    "n": "Bogotá"
+   },
+   {
+    "lat": 4.813,
+    "lon": -75.696,
+    "n": "Pereira"
+   },
+   {
+    "lat": 4.636,
+    "lon": -75.567,
+    "n": "Salento"
+   },
+   {
+    "lat": 4.675,
+    "lon": -75.658,
+    "n": "Filandia"
+   },
+   {
+    "lat": 6.244,
+    "lon": -75.581,
+    "n": "Medellín"
+   },
+   {
+    "lat": 10.391,
+    "lon": -75.479,
+    "n": "Cartagena de Indias"
+   },
+   {
+    "lat": 11.241,
+    "lon": -74.199,
+    "n": "Santa Marta"
+   },
+   {
+    "lat": 11.244,
+    "lon": -73.563,
+    "n": "Palomino"
+   },
+   {
+    "lat": 11.31,
+    "lon": -74.03,
+    "n": "Parque Tayrona"
+   },
+   {
+    "lat": 10.17,
+    "lon": -75.75,
+    "n": "Islas del Rosario"
+   }
+  ],
+  "country": "CO",
+  "kind": "country",
+  "updatedAt": "2026-11-05T13:27:51.446Z",
+  "id": "pais-CO"
+ },
+ {
+  "cities": [],
+  "country": "CR",
+  "kind": "country",
+  "updatedAt": "2026-11-05T13:27:51.447Z",
+  "id": "pais-CR"
+ },
+ {
+  "cities": [
+   "Frankfurt",
+   "Berlín"
+  ],
+  "country": "DE",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-DE"
+ },
+ {
+  "cities": [
+   "Copenhague"
+  ],
+  "country": "DK",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-DK"
+ },
+ {
+  "cities": [
+   "París",
+   "Niza",
+   "San Juan de Luz"
+  ],
+  "country": "FR",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-FR"
+ },
+ {
+  "cities": [
+   "Ámsterdam"
+  ],
+  "country": "NL",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-NL"
+ },
+ {
+  "cities": [
+   "Algarve",
+   "Lisboa",
+   "Cascais",
+   "Sagres",
+   "Oporto"
+  ],
+  "country": "PT",
+  "kind": "country",
+  "updatedAt": "2026-11-05T12:31:00Z",
+  "id": "pais-PT"
+ },
+ {
+  "country": "ES",
+  "date": "2026-11",
+  "intro": "Tres días a ritmo tranquilo, comiendo donde comen los granadinos y subiendo siempre en bus para bajar andando. Toca cada día para ver el plan y ve valorando cada cosa cuando la hagáis.",
+  "kind": "trip",
+  "plan": true,
+  "stops": [
+   {
+    "by": "",
+    "cc": "ES",
+    "items": [
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1752,
+      "lon": -3.5985,
+      "n": "Sube en el bus C30 a la Alhambra",
+      "rating": 0,
+      "save": "Billete: 1,40 €.",
+      "t": "hacer",
+      "txt": "Sale de Plaza Isabel la Católica cada 12 minutos y os deja arriba sin subir ni una cuesta.",
+      "when": "manana"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1765,
+      "lon": -3.5895,
+      "n": "Palacio de Carlos V y el bosque",
+      "rating": 0,
+      "save": "Gratis. Dentro está el Museo de Bellas Artes, gratis con DNI de la UE.",
+      "t": "ver",
+      "txt": "Se entra sin entrada: el patio circular del palacio impresiona, y el bosque de la Alhambra es un paseo fresco y a la sombra, todo cuesta abajo a la vuelta.",
+      "when": "manana"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1731,
+      "lon": -3.5869,
+      "n": "Carmen de los Mártires",
+      "rating": 0,
+      "save": "Gratis.",
+      "t": "ver",
+      "txt": "Un jardín romántico con estanques, pavos reales y vistas a Sierra Nevada, a dos pasos de la Alhambra. Casi no va nadie y es perfecto para sentarse un rato.",
+      "when": "mediodia"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1728,
+      "lon": -3.5932,
+      "n": "Tapeo por el Realejo",
+      "rating": 0,
+      "save": "Con cada caña va una tapa: cada ronda ronda los 2,60–3 €.",
+      "t": "comer",
+      "txt": "El barrio de los granadinos. Prueba El Conde (tapas modernas que cambian a menudo), La Taberna de Kafka (más de 80 cervezas, muchas artesanas) y La Tana, en la Placeta del Agua, para vinos y embutidos.",
+      "when": "mediodia"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1722,
+      "lon": -3.5918,
+      "n": "Sobremesa en el Campo del Príncipe",
+      "rating": 0,
+      "save": "",
+      "t": "ocio",
+      "txt": "Plaza de vecinos con terrazas al sol. Café, siesta de terraza y nada más.",
+      "when": "tarde"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.177,
+      "lon": -3.588,
+      "n": "Palacios Nazaríes de noche",
+      "rating": 0,
+      "save": "12 € en taquilla o 12,73 € online. Cómprala solo en la web oficial de la Alhambra.",
+      "t": "ver",
+      "txt": "Si no quedan entradas de día (en puente es lo normal), la visita nocturna es mágica: luz tenue, poca gente y silencio. Solo viernes y sábados.",
+      "when": "noche"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.166,
+      "lon": -3.5925,
+      "n": "Cena en El Rincón del Cofrade",
+      "rating": 0,
+      "save": "",
+      "t": "reco",
+      "txt": "Un bar histórico del barrio de Fígares, decorado entero con motivos de Semana Santa. Muy de granadinos.",
+      "when": "noche"
+     }
+    ],
+    "lat": 37.1745,
+    "lon": -3.5905,
+    "n": "Realejo y Alhambra",
+    "story": "Empezáis por lo grande pero sin sufrir: subís en bus y bajáis paseando entre jardines hasta el Realejo, el barrio donde tapean los granadinos. Por la noche, si hay suerte con las entradas, Palacios Nazaríes casi a solas.",
+    "sub": "Día 1 · La Alhambra sin agobios"
+   },
+   {
+    "by": "",
+    "cc": "ES",
+    "items": [
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1858,
+      "lon": -3.5928,
+      "n": "Bus C31 hasta el Mirador de San Cristóbal",
+      "rating": 0,
+      "save": "Mismo bono de bus.",
+      "t": "hacer",
+      "txt": "Vistas de la Alhambra y de todo el Albaicín, sin la multitud de San Nicolás. Desde aquí, todo el día es bajada.",
+      "when": "manana"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.181,
+      "lon": -3.5925,
+      "n": "Baja callejeando por el Albaicín",
+      "rating": 0,
+      "save": "Gratis.",
+      "t": "hacer",
+      "txt": "Sin mapa: cármenes, aljibes y placetas blancas. Si pasáis por San Nicolás a primera hora, todavía está tranquilo.",
+      "when": "manana"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1826,
+      "lon": -3.5965,
+      "n": "Comida en la Placeta de San Miguel Bajo",
+      "rating": 0,
+      "save": "",
+      "t": "comer",
+      "txt": "Plaza de barrio con terrazas: fritura de pescado, berenjenas con miel y patatas a lo pobre en Mesón El Yunque o Bar Ocaña. Justo al lado está el Mirador de la Lona, que casi nadie conoce.",
+      "when": "mediodia"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1785,
+      "lon": -3.5923,
+      "n": "El Bañuelo",
+      "rating": 0,
+      "save": "Gratis los domingos. El resto de días entra en la entrada de Monumentos Andalusíes (8,48 €).",
+      "t": "ver",
+      "txt": "Unos baños árabes del siglo XI escondidos en la Carrera del Darro. Pequeños y preciosos, se ven en diez minutos.",
+      "when": "tarde"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1815,
+      "lon": -3.5835,
+      "n": "Atardecer en la Vereda de Enmedio",
+      "rating": 0,
+      "save": "Gratis.",
+      "t": "ver",
+      "txt": "Subid en el bus C34 desde Plaza Nueva. Es un mirador de vecinos entre cuevas, con la Alhambra enfrente y mucha menos gente que San Nicolás. En noviembre el sol se pone hacia las 18:10.",
+      "when": "atardecer"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1757,
+      "lon": -3.596,
+      "n": "Pescaíto en Los Diamantes",
+      "rating": 0,
+      "save": "Os costará unos 7 € por persona con 3 cervezas cada uno y un tomate aliñado.",
+      "t": "reco",
+      "txt": "Todas las tapas son de pescado frito: cazón y coquinas buenísimos. Pedid también el tomate aliñado.",
+      "when": "noche"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1797,
+      "lon": -3.5918,
+      "n": "Flamenco en la Peña La Platería",
+      "rating": 0,
+      "save": "",
+      "t": "ocio",
+      "txt": "Una peña flamenca de aficionados en pleno Albaicín, lejos de los tablaos para turistas. Mira su programación antes de ir.",
+      "when": "noche"
+     }
+    ],
+    "lat": 37.1812,
+    "lon": -3.5935,
+    "n": "Albaicín y Sacromonte",
+    "story": "El truco del día: subir en bus y bajar callejeando. Vistas sin la multitud de San Nicolás, comida en una plaza de barrio y un atardecer en el Sacromonte que casi nadie conoce.",
+    "sub": "Día 2 · Siempre cuesta abajo"
+   },
+   {
+    "by": "",
+    "cc": "ES",
+    "items": [
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.172,
+      "lon": -3.5975,
+      "n": "Chocolate con churros en el Café Fútbol",
+      "rating": 0,
+      "save": "",
+      "t": "comer",
+      "txt": "Un clásico de toda la vida de los granadinos, en la Plaza Mariana Pineda.",
+      "when": "manana"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1772,
+      "lon": -3.5955,
+      "n": "Baños árabes en Hammam Al Ándalus",
+      "rating": 0,
+      "save": "Reserva antes: en puente se llena.",
+      "t": "hacer",
+      "txt": "Agua caliente, agua fría y vapor al pie de la Alhambra. El plan perfecto después de dos días de paseo.",
+      "when": "manana"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1766,
+      "lon": -3.598,
+      "n": "Vermut en Bodegas Castañeda",
+      "rating": 0,
+      "save": "Os costará unos 15 € por persona con 2 cervezas cada uno y la tabla.",
+      "t": "reco",
+      "txt": "Taberna antigua con barricas y siempre llena. Pedid la tabla fría Castañeda, que dicen que es espectacular, y probad el calicasas, la bebida de la casa.",
+      "when": "mediodia"
+     },
+     {
+      "by": "",
+      "done": false,
+      "lat": 37.1748,
+      "lon": -3.5985,
+      "n": "Corral del Carbón y Mercado de San Agustín",
+      "rating": 0,
+      "save": "El Corral del Carbón es gratis los domingos.",
+      "t": "ver",
+      "txt": "El Corral es la única alhóndiga árabe que se conserva en España. Después, pica algo en las barras del mercado.",
+      "when": "mediodia"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1752,
+      "lon": -3.6,
+      "n": "Terraza de Los Manueles en Bib-Rambla",
+      "rating": 0,
+      "save": "",
+      "t": "reco",
+      "txt": "Un poco más caro que el resto, pero la plaza es preciosa y tiene muchísimo ambiente. Ideal para unas tapas al sol.",
+      "when": "tarde"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.175,
+      "lon": -3.6004,
+      "n": "Helado en la Plaza Bib-Rambla",
+      "rating": 0,
+      "save": "Unos 3,50 €.",
+      "t": "reco",
+      "txt": "Helados enormes con dos sabores y dos toppings. Pedid el de tarta de la abuela.",
+      "when": "tarde"
+     },
+     {
+      "by": "",
+      "done": false,
+      "n": "Piononos de Casa Ysla",
+      "rating": 0,
+      "save": "",
+      "t": "comer",
+      "txt": "El dulce típico de Santa Fe, para merendar o llevar de recuerdo.",
+      "when": "tarde"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1761,
+      "lon": -3.6015,
+      "n": "Primera ronda en La Sitarilla",
+      "rating": 0,
+      "save": "Tapa gratis con cada bebida.",
+      "t": "reco",
+      "txt": "Bar de tapas en la calle San Miguel Alta, en pleno centro, para empezar la noche.",
+      "when": "noche"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1702,
+      "lon": -3.606,
+      "n": "Tapas por Pedro Antonio y Gonzalo Gallas",
+      "rating": 0,
+      "save": "Las tapas más generosas y baratas de Granada.",
+      "t": "reco",
+      "txt": "La zona universitaria: bares llenos de gente joven, tapas grandes y precios de estudiante.",
+      "when": "noche"
+     },
+     {
+      "by": "tus amigos",
+      "done": false,
+      "lat": 37.1729,
+      "lon": -3.5972,
+      "n": "Copas en la calle Ganivet",
+      "rating": 0,
+      "save": "",
+      "t": "reco",
+      "txt": "Para acabar la noche: la calle de las copas en pleno centro.",
+      "when": "noche"
+     }
+    ],
+    "lat": 37.1765,
+    "lon": -3.5985,
+    "n": "Centro, sin prisa",
+    "story": "Último día para no hacer casi nada: desayuno de churros, baños árabes y la ruta que os han recomendado vuestros amigos por el centro, de Castañeda a Bib-Rambla. Por la noche, tapas en la zona de estudiantes y copas en Ganivet.",
+    "sub": "Día 3 · Relax total"
+   }
+  ],
+  "tips": [
+   "En Granada cada bebida lleva su tapa gratis. Tres rondas por el Realejo salen por unos 8–10 € por persona y ya habéis cenado.",
+   "Compra la Alhambra solo en la web oficial. Si no quedan entradas generales, los Palacios Nazaríes de noche o Generalife y Alcazaba cuestan 12 €.",
+   "Gratis y sin entrada: el Palacio de Carlos V, el bosque de la Alhambra y el Carmen de los Mártires.",
+   "Los domingos son gratis el Bañuelo, el Corral del Carbón, la Casa de Zafra y el resto de monumentos andalusíes.",
+   "El Museo de Bellas Artes, dentro del Palacio de Carlos V, es gratis con DNI de la Unión Europea.",
+   "El bus urbano cuesta 1,40 €. Si vais a cogerlo varias veces, el bono de 5 € sale a unos 0,54 € el viaje (es una tarifa temporal).",
+   "Para comer, mejor evitar las terrazas de Calle Navas y Plaza Nueva con carta en mil idiomas. La excepción: Los Diamantes, que os han recomendado y es baratísimo."
+  ],
+  "title": "Granada en modo relax",
+  "id": "plan-granada"
+ },
+ {
+  "ate": [],
+  "country": "IT",
+  "date": "2026-11",
+  "done": [],
+  "lat": 45.464,
+  "lon": 9.19,
+  "name": "Milán",
+  "note": "",
+  "photos": [],
+  "seen": [],
+  "updatedAt": "2026-11-05T13:45:11.200Z",
+  "id": "pmw3llcf4urua"
+ },
+ {
+  "ate": [],
+  "country": "IT",
+  "date": "2026-11",
+  "done": [],
+  "lat": 46,
+  "lon": 9.27,
+  "name": "Lago de Como",
+  "note": "",
+  "photos": [],
+  "seen": [],
+  "updatedAt": "2026-11-05T13:45:20.347Z",
+  "id": "pmw3lljh7ivmw"
+ },
+ {
+  "country": "CO",
+  "date": "",
+  "intro": "Cuatro paradas para recorrer Colombia de las montañas del café hasta el Caribe. Toca cada una para ver qué hicimos.",
+  "kind": "trip",
+  "note": "",
+  "stops": [
+   {
+    "ate": [
+     "Casa Helena, en Filandia"
+    ],
+    "by": "avion",
+    "cc": "CO",
+    "did": [
+     "Ruta por el Valle del Cocora",
+     "Hacienda cafetera Buenos Aires",
+     "Tirolina en Salento",
+     "Tejo en el bar Los Amigos",
+     "Excursión de un día a Filandia"
+    ],
+    "lat": 4.636,
+    "leg": "Avión hasta Pereira y bus hasta Salento",
+    "lon": -75.567,
+    "n": "Salento",
+    "note": "",
+    "sleep": "Salento",
+    "spots": [
+     {
+      "lat": 4.638,
+      "lon": -75.487,
+      "n": "Valle del Cocora"
+     },
+     {
+      "lat": 4.675,
+      "lon": -75.658,
+      "n": "Filandia"
+     },
+     {
+      "lat": 4.813,
+      "lon": -75.696,
+      "n": "Pereira"
+     }
+    ],
+    "story": "Salento fue nuestra base en el Eje Cafetero: un pueblo de casitas de colores rodeado de montañas verdes y café por todas partes. Desde aquí hicimos la ruta por el Valle del Cocora, entre las palmas de cera gigantes, visitamos la Hacienda cafetera Buenos Aires para ver cómo se hace el café y nos tiramos por la tirolina. Un día nos escapamos a Filandia, otro pueblito precioso, y comimos en Casa Helena. Y por la noche, a jugar al tejo, el juego típico de lanzar un disco contra una diana con pólvora.",
+    "sub": "Eje Cafetero"
+   },
+   {
+    "ate": [],
+    "by": "avion",
+    "cc": "CO",
+    "did": [],
+    "lat": 6.244,
+    "leg": "En avión",
+    "lon": -75.581,
+    "n": "Medellín",
+    "note": "",
+    "sleep": "El Poblado",
+    "spots": [
+     {
+      "lat": 6.209,
+      "lon": -75.567,
+      "n": "El Poblado"
+     }
+    ],
+    "story": "De las montañas del café volamos a Medellín. Nos alojamos en El Poblado, el barrio con más ambiente de la ciudad, lleno de terrazas, cafeterías y vida por la noche. Vimos muchísimas cosas que ahora no recuerdo, así que esta parada está pendiente de completar.",
+    "sub": "La ciudad de la eterna primavera"
+   },
+   {
+    "ate": [],
+    "by": "otro",
+    "cc": "CO",
+    "did": [
+     "Un par de días de relax en Palomino",
+     "Visita al Parque Tayrona"
+    ],
+    "lat": 11.31,
+    "leg": "Hasta Cartagena, bus a Santa Marta y taxi al hotel",
+    "lon": -74.03,
+    "n": "Tayrona y Palomino",
+    "note": "",
+    "sleep": "Un hotel cerca de Palomino",
+    "spots": [
+     {
+      "lat": 11.241,
+      "lon": -74.199,
+      "n": "Santa Marta"
+     },
+     {
+      "lat": 11.244,
+      "lon": -73.563,
+      "n": "Palomino"
+     },
+     {
+      "lat": 11.31,
+      "lon": -74.03,
+      "n": "Parque Tayrona"
+     }
+    ],
+    "story": "Saltamos al Caribe. Desde Cartagena cogimos un bus hasta Santa Marta y de ahí un taxi hasta nuestro hotel, cerca de Palomino. Fueron un par de días de relax total, de playa y desconectar. Desde allí fuimos al Parque Tayrona, con sus playas salvajes entre la selva y el mar.",
+    "sub": "Caribe colombiano"
+   },
+   {
+    "ate": [
+     "Una cena riquísima en Cartagena (nombre pendiente)"
+    ],
+    "by": "bus",
+    "cc": "CO",
+    "did": [
+     "Barco privado por las Islas del Rosario"
+    ],
+    "lat": 10.18,
+    "leg": "En bus de vuelta a Cartagena",
+    "lon": -75.74,
+    "n": "Islas del Rosario",
+    "note": "",
+    "sleep": "Cartagena de Indias",
+    "spots": [
+     {
+      "lat": 10.391,
+      "lon": -75.479,
+      "n": "Cartagena de Indias"
+     },
+     {
+      "lat": 10.17,
+      "lon": -75.75,
+      "n": "Islas del Rosario"
+     }
+    ],
+    "story": "Volvimos en bus a Cartagena de Indias para el último tramo del viaje y nos quedamos un par de días. Alquilamos un barco privado y recorrimos las Islas del Rosario. Para despedirnos, cenamos en un sitio riquísimo de Cartagena cuyo nombre tengo pendiente de recordar. Aquí terminó el viaje.",
+    "sub": "Y Cartagena de Indias, el final del viaje"
+   }
+  ],
+  "title": "Colombia: café, ciudad y Caribe",
+  "id": "viaje-colombia"
+ }
+]
