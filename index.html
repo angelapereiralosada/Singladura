@@ -1958,7 +1958,17 @@ const resp = (status, body) => new Response(JSON.stringify(body ?? {}), {status,
 async function ghApi(path, opts){
   try {
     const body = opts.body ? JSON.parse(opts.body) : {};
-    if (path === "/check") { const r = await fetch(`https://api.github.com/repos/${NOTES_REPO()}`, {headers: {Authorization: "Bearer " + KEY}, cache: "no-store"}); return resp(r.ok ? 200 : r.status === 401 || r.status === 403 || r.status === 404 ? 401 : r.status); }
+    if (path === "/check") {
+      const h = {headers: {Authorization: "Bearer " + KEY, Accept: "application/vnd.github+json"}, cache: "no-store"};
+      const u = await fetch("https://api.github.com/user", h);
+      if (u.status === 401) return resp(401, {why: "llave"});
+      for (const repo of [SITE_REPO(), NOTES_REPO()]) {
+        const r = await fetch(`https://api.github.com/repos/${repo}`, h);
+        if (!r.ok) return resp(401, {why: "repo", repo: repo.split("/")[1], code: r.status});
+        const j = await r.json(); if (j.permissions && !j.permissions.push) return resp(401, {why: "permiso", repo: repo.split("/")[1]});
+      }
+      return resp(200);
+    }
     if (path === "/save") return resp(await ghMerge(SITE_REPO(), "data/items.json", [], data => { const m = new Map(data.map(x => [x.id, x])); for (const [id, d] of Object.entries(body.set || {})) m.set(id, {...d, id}); for (const id of body.del || []) m.delete(id); return [...m.values()]; }, "Actualiza el diario desde la app"));
     if (path === "/notes") { const {data} = await ghRead(NOTES_REPO(), "notas.json", []); return resp(200, data); }
     if (path === "/note") return resp(await ghMerge(NOTES_REPO(), "notas.json", [], data => data.some(n => n.id === body.id) ? data : [...data, body], "Nueva nota"));
@@ -2021,7 +2031,7 @@ function setEditing(on){
 async function unlock(pw){
   KEY = pw;
   if (CFG.api || isGhKey(pw)) {
-    try { const r = await api("/check"); if (r.status === 401) { KEY = ""; return "bad"; } if (!r.ok) throw 0; }
+    try { const r = await api("/check"); if (r.status === 401) { const j = await r.json().catch(() => ({})); KEY = ""; S.loginWhy = j; return "bad"; } if (!r.ok) throw 0; }
     catch(e) { KEY = ""; return "net"; }
   }
   try { localStorage.setItem(KKEY, pw); } catch(e) {}
@@ -2050,7 +2060,7 @@ function renderLogin(){
     const btn = f.querySelector("button"); btn.disabled = true; btn.textContent = "Comprobando…";
     const r = await unlock(pw);
     if (r === "ok") { toast("Modo edición activado"); goList(); }
-    else { btn.disabled = false; btn.textContent = "Entrar"; $("#pw-err").textContent = r === "bad" ? (isGhKey(pw) ? "GitHub no acepta esa llave. Revisa que tenga permiso de «Contents: Read and write» en Singladura y singladura-notas." : "Esa contraseña no es. Prueba otra vez.") : "No hay conexión. Inténtalo en un momento."; }
+    else { btn.disabled = false; btn.textContent = "Entrar"; $("#pw-err").textContent = r === "bad" ? (!isGhKey(pw) ? "Eso no parece una llave de GitHub: tiene que empezar por github_pat_" : S.loginWhy?.why === "llave" ? "GitHub dice que esa llave no existe o ha caducado. Cópiala otra vez entera." : S.loginWhy?.why === "repo" ? `La llave no puede ver el repositorio «${S.loginWhy.repo}». En GitHub, edita la llave: en «Repository access» elige «Only select repositories» y marca Singladura y singladura-notas.` : S.loginWhy?.why === "permiso" ? `La llave puede ver «${S.loginWhy.repo}» pero no escribir. En «Permissions», pon «Contents» en «Read and write».` : "GitHub no acepta esa llave.") : "No hay conexión. Inténtalo en un momento."; }
   };
 }
 let toastT;
