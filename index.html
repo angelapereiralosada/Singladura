@@ -2028,6 +2028,9 @@ async function unlock(pw){
   setEditing(true); loadNotes(); sync(); return "ok";
 }
 function lock(){ KEY = ""; try { localStorage.removeItem(KKEY); } catch(e) {} setEditing(false); S.view = "list"; render(); }
+function loginForm(){
+  return `<form id="f-login" class="field" autocomplete="on"><label class="lbl" for="pw">${ic("edit", "sm")}${S.canEdit ? "Conecta tu llave de GitHub" : "Tu llave de GitHub"}</label><input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="github_pat_…" autocapitalize="off" spellcheck="false" enterkeyhint="go"><div class="err" id="pw-err"></div><button class="btn primary" type="submit">${S.canEdit ? "Conectar" : "Entrar"}</button></form>`;
+}
 function renderLogin(){
   panel.innerHTML = shell(`
     <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}Volver</button></div>
@@ -2036,8 +2039,8 @@ function renderLogin(){
         ? (LIVE() ? "Tus cambios y tus notas se guardan en tu diario; tus amigos verán los cambios en un par de minutos y Claude podrá leer lo que le cuentes." : "Ahora mismo tus cambios se quedan solo en este móvil. Sal y vuelve a entrar con tu llave de GitHub para que se guarden de verdad.")
         : "Tus amigos ven el diario en modo lectura. Pega tu llave de GitHub (empieza por github_pat_) para añadir viajes, valorar sitios y contarle cosas a Claude. Solo se guarda en este móvil."}</p></div>
     ${S.canEdit
-      ? `${pendingCount() ? `<div class="note warn"><span>${pendingCount()} ${pendingCount() === 1 ? "cambio pendiente" : "cambios pendientes"} de subir.</span></div>` : ""}<button class="btn" id="b-out">${ic("x", "sm")}Salir del modo edición</button>`
-      : `<form id="f-login" class="field" autocomplete="on"><label class="lbl" for="pw">${ic("edit", "sm")}Tu llave de GitHub</label><input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="github_pat_…" autocapitalize="off" spellcheck="false" enterkeyhint="go"><div class="err" id="pw-err"></div><button class="btn primary" type="submit">Entrar</button></form>`}`);
+      ? `${pendingCount() ? `<div class="note warn"><span>${pendingCount()} ${pendingCount() === 1 ? "cambio pendiente" : "cambios pendientes"} de subir.</span></div>` : ""}${LIVE() ? "" : loginForm()}<button class="btn" id="b-out">${ic("x", "sm")}Salir del modo edición</button>`
+      : loginForm()}`);
   wireShell();
   $("#b-back").onclick = goList;
   const bo = $("#b-out"); if (bo) bo.onclick = () => { lock(); toast("Has salido del modo edición"); };
