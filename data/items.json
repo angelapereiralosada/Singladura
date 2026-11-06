@@ -1821,7 +1821,7 @@
       "n": "Alfama Guest House",
       "lat": 38.7112,
       "lon": -9.1297,
-      "txt": "No está en pleno meollo, pero muy bien ubicado y cómodo para llegar a todo."
+      "txt": "Bien ubicada y cómoda para llegar a todo."
      },
      {
       "t": "hacer",
@@ -1837,7 +1837,7 @@
       "n": "Miradouro de Santa Catarina",
       "lat": 38.7094,
       "lon": -9.1474,
-      "txt": "El mejor atardecer: el puente 25 de Abril enfrente y muchísimo ambiente joven.",
+      "txt": "El mejor atardecer, con el puente enfrente. Mucho ambiente.",
       "photos": [
        "photos/lis22-santacatarina.jpg"
       ]
@@ -1870,6 +1870,9 @@
       "lon": -9.1366,
       "photos": [
        "photos/lis22-rua-augusta.jpg"
+      ],
+      "videos": [
+       "photos/lis22-v-tranvia-belem.mp4"
       ]
      },
      {
@@ -1878,7 +1881,8 @@
       "lat": 38.6916,
       "lon": -9.216,
       "photos": [
-       "photos/lis22-torre-belem.jpg"
+       "photos/lis22-torre-belem.jpg",
+       "photos/lis22-torre-2.jpg"
       ]
      },
      {
@@ -1895,7 +1899,7 @@
       "n": "Pastéis de Belém",
       "lat": 38.6975,
       "lon": -9.2032,
-      "txt": "La Antiga Confeitaria de Belém: los pasteles de nata recién hechos, imprescindibles.",
+      "txt": "Recién hechos. Imprescindibles.",
       "photos": [
        "photos/lis22-pasteis.jpg"
       ]
@@ -1928,6 +1932,19 @@
       "lon": -9.1353,
       "photos": [
        "photos/lis22-comida.jpg"
+      ],
+      "videos": [
+       "photos/lis22-v-pasta.mp4"
+      ]
+     },
+     {
+      "t": "hacer",
+      "n": "Batucada por la Baixa",
+      "lat": 38.7103,
+      "lon": -9.1348,
+      "txt": "Nos cruzamos con una batucada en plena calle.",
+      "videos": [
+       "photos/lis22-v-batucada.mp4"
       ]
      },
      {
@@ -1935,9 +1952,12 @@
       "n": "Pink Street y sus paraguas de colores",
       "lat": 38.7073,
       "lon": -9.144,
-      "txt": "La Rua Nova do Carvalho, en Cais do Sodré.",
+      "txt": "La calle de los paraguas, en Cais do Sodré.",
       "photos": [
-       "photos/lis22-pink-street.jpg"
+       "photos/lis22-pink-street.jpg",
+       "photos/lis22-pink-street-2.jpg",
+       "photos/lis22-pink-street-3.jpg",
+       "photos/lis22-pink-street-4.jpg"
       ]
      },
      {
@@ -1946,7 +1966,8 @@
       "lat": 38.7085,
       "lon": -9.1465,
       "photos": [
-       "photos/lis22-bica.jpg"
+       "photos/lis22-bica.jpg",
+       "photos/lis22-vintage.jpg"
       ]
      },
      {
@@ -1981,7 +2002,7 @@
       "n": "Copas por el Bairro Alto",
       "lat": 38.7128,
       "lon": -9.1445,
-      "txt": "Por la noche se llena de gente tomando algo en la calle."
+      "txt": "De noche, todo el mundo tomando algo en la calle."
      }
     ]
    },
@@ -2000,9 +2021,12 @@
       "n": "LX Factory",
       "lat": 38.7036,
       "lon": -9.1787,
-      "txt": "Antigua fábrica bajo el puente con tiendas, librerías, murales y mercadillo.",
+      "txt": "Tiendas, murales y mercadillo bajo el puente.",
       "photos": [
-       "photos/lis22-lx-factory.jpg"
+       "photos/lis22-lx-factory.jpg",
+       "photos/lis22-lx-2.jpg",
+       "photos/lis22-lx-3.jpg",
+       "photos/lis22-lx-4.jpg"
       ]
      },
      {
@@ -2044,9 +2068,10 @@
       "n": "Casco histórico de Évora",
       "lat": 38.5723,
       "lon": -7.9046,
-      "txt": "Callejuelas blancas con zócalos amarillos. Muy barato y precioso: parada perfecta a mitad de camino.",
+      "txt": "Precioso y muy barato. Parada perfecta a mitad de camino.",
       "photos": [
-       "photos/lis26-evora.jpg"
+       "photos/lis26-evora.jpg",
+       "photos/lis26-evora-2.jpg"
       ]
      },
      {
@@ -2073,7 +2098,7 @@
       "n": "Hotel Holiday Inn (zona Moscavide)",
       "lat": 38.779,
       "lon": -9.102,
-      "txt": "Muy bien. Lejos del centro, pero el Uber cuesta unos 7 € el trayecto."
+      "txt": "Muy bien. El Uber al centro, unos 7 €."
      }
     ]
    },
@@ -2092,7 +2117,7 @@
       "n": "Baixamar",
       "lat": 38.70903,
       "lon": -9.13421,
-      "txt": "Rua dos Bacalhoeiros, 28C. Algo turístico, pero el arroz de marisco y las almejas, riquísimos.",
+      "txt": "Algo turístico, pero el arroz de marisco, riquísimo.",
       "photos": [
        "photos/lis26-arroz.jpg"
       ]
@@ -2102,9 +2127,12 @@
       "n": "Ginginha do Carmo",
       "lat": 38.7134,
       "lon": -9.1407,
-      "txt": "Un local enano bajo las escaleras que suben al Largo do Carmo. La ginjinha, en vasito de chocolate.",
+      "txt": "Un local enano bajo las escaleras. Chupito en vasito de chocolate.",
       "photos": [
        "photos/lis26-ginjinha.jpg"
+      ],
+      "videos": [
+       "photos/lis26-v-ginjinha.mp4"
       ]
      }
     ]
@@ -2124,11 +2152,12 @@
       "n": "Antiguo Barbica",
       "lat": 38.709,
       "lon": -9.1468,
-      "txt": "Rua dos Cordoeiros, 8-10, junto al Elevador da Bica (hoy con otro nombre). Happy hour de ostras a 1 €.",
+      "txt": "Happy hour de ostras a 1 €. Hoy tiene otro nombre.",
       "photos": [
        "photos/lis26-happy-hour.jpg",
        "photos/lis26-ostras.jpg",
-       "photos/lis26-ostras-2.jpg"
+       "photos/lis26-ostras-2.jpg",
+       "photos/lis26-ostras-3.jpg"
       ]
      },
      {
@@ -2136,7 +2165,7 @@
       "n": "Lisboa Bar",
       "lat": 38.712,
       "lon": -9.1405,
-      "txt": "Bar pequeñito en el Largo do Carmo con una azotea muy chula. Cervezas enormes y fotomatón.",
+      "txt": "Pequeñito, con una azotea muy chula. Cervezas enormes.",
       "photos": [
        "photos/lis26-fotomaton.jpg"
       ]
@@ -2146,9 +2175,13 @@
       "n": "Miradouro de São Pedro de Alcântara",
       "lat": 38.7151,
       "lon": -9.1443,
-      "txt": "Al atardecer, bajo un techo de sombreros de paja, con música y gente bailando.",
+      "txt": "Al atardecer, bajo un techo de sombreros, con música.",
       "photos": [
        "photos/lis26-mirador.jpg"
+      ],
+      "videos": [
+       "photos/lis26-v-mirador.mp4",
+       "photos/lis26-v-mirador-2.mp4"
       ]
      },
      {
@@ -2156,7 +2189,7 @@
       "n": "Nonna Goes Crazy",
       "lat": 38.7163,
       "lon": -9.1443,
-      "txt": "Rua de Santo António da Glória, 6B. Pasta fresca, se ha puesto de moda y está buenísimo.",
+      "txt": "Pasta fresca de moda. Buenísimo.",
       "photos": [
        "photos/lis26-cena.jpg"
       ]

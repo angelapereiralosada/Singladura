@@ -153,15 +153,15 @@ body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
 .pop p{margin:-4px 0 8px;font-size:12.5px;line-height:1.35;color:var(--ink);opacity:.85}
 @media (min-width:901px){.maplegend{top:calc(88px + env(safe-area-inset-top, 0px));left:calc(22px + env(safe-area-inset-left, 0px))}}
 @media (max-width:900px){#map .maplibregl-ctrl-top-right{top:calc(114px + env(safe-area-inset-top, 0px));right:calc(12px + env(safe-area-inset-right, 0px))}}
-.pin-mk{position:relative;width:44px;height:44px;display:block}
-.pin{position:absolute;left:4px;top:0;width:36px;height:36px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--c);box-shadow:-3px 4px 10px rgba(36,37,74,.35);display:grid;place-items:center;transition:transform .18s}
-.pin-in{transform:rotate(45deg);width:30px;height:30px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;background:var(--c)}
+.pin-mk{position:relative;width:54px;height:54px;display:block}
+.pin{position:absolute;left:5px;top:0;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--c);box-shadow:-3px 4px 10px rgba(36,37,74,.35);display:grid;place-items:center;transition:transform .18s}
+.pin-in{transform:rotate(45deg);width:37px;height:37px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;background:var(--c)}
 .pin-in img{width:100%;height:100%;object-fit:cover;display:block}
-.pin-in .ic{width:17px;height:17px}
-.pin-badge{position:absolute;right:0;top:-4px;width:19px;height:19px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;border:2px solid #fff}
+.pin-in .ic{width:20px;height:20px}
+.pin-badge{position:absolute;right:0;top:-5px;width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;border:2px solid #fff}
 .pin-badge .ic{width:10px;height:10px}
 .pin-num{position:absolute;left:-4px;top:-5px;min-width:18px;height:18px;border-radius:9px;background:#fff;color:var(--ink);font:700 10.5px/18px var(--f-body);text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.25)}
-.pin-stars{position:absolute;left:50%;top:44px;transform:translateX(-50%);font-size:9px;letter-spacing:-.5px;color:#E8A71C;text-shadow:0 0 2px #fff,0 0 2px #fff;white-space:nowrap}
+.pin-stars{position:absolute;left:50%;top:54px;transform:translateX(-50%);font-size:9px;letter-spacing:-.5px;color:#E8A71C;text-shadow:0 0 2px #fff,0 0 2px #fff;white-space:nowrap}
 .pin-mk.sm{transform:scale(.78);transform-origin:50% 100%}
 .pin-mk.sel{transform:scale(1.3);transform-origin:50% 100%}
 .pin-mk.done .pin{filter:saturate(.4) brightness(1.1)}
@@ -202,6 +202,43 @@ body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
 .num.ph{position:relative;padding:0;overflow:visible;background:none}
 .num.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 .num.ph em{position:absolute;right:-4px;bottom:-4px;font-style:normal;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:11px;line-height:18px;text-align:center;border:2px solid #fff}
+.pin-play{position:absolute;left:-2px;top:-5px;width:20px;height:20px;border-radius:50%;background:#24254A;color:#fff;font-size:9px;display:grid;place-items:center;border:2px solid #fff;padding-left:1px}
+.sc-media{position:relative}
+.sc-photos{padding:0;gap:4px}
+.sc-photos img,.sc-photos video{flex:none;width:86%;height:min(46vh,340px);object-fit:cover;border-radius:0;scroll-snap-align:start;background:#111}
+.sc-photos.one img,.sc-photos.one video{width:100%}
+.sc-photos video{object-fit:contain}
+.spotcard{max-height:86%;border-radius:28px;overflow-x:hidden}
+.sc-media{border-radius:28px 28px 0 0;overflow:hidden}
+.sc-title{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 14px;background:linear-gradient(transparent,rgba(20,16,40,.72));pointer-events:none}
+.sc-title h3{margin:4px 0 0;font:italic 500 30px/1.05 var(--f-display);color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.sc-title .sc-cat{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--c);color:#fff;font-weight:700;font-size:12.5px}
+.sc-hero+.sc-title{position:static;background:none;padding:6px 18px 0}.sc-hero+.sc-title h3{color:var(--ink);text-shadow:none}
+.sc-count{position:absolute;right:12px;top:12px;margin-right:44px;padding:5px 10px;border-radius:999px;background:rgba(20,16,40,.55);color:#fff;font-size:11.5px;font-weight:700}
+.sc-body{padding:12px 18px 20px;gap:12px}
+.sc-txt{font-size:19px}
+.sc-stars .ic{width:28px;height:28px}
+.mapgo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mg{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:16px;font-weight:700;font-size:15px;text-decoration:none}
+.mg.g{background:#24254A;color:#fff}.mg.a{background:#F3F1F7;color:var(--ink)}
+.mgi{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 13px/1 var(--f-body);background:#fff;color:#4285F4}
+.mg.a .mgi{background:#24254A;color:#fff;font-size:14px}
+.sc-add{justify-self:start}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}
+.tile{position:relative;aspect-ratio:4/5;border:0;padding:0;border-radius:20px;overflow:hidden;background:var(--gb);color:var(--c);display:block;box-shadow:0 6px 16px rgba(150,40,70,.18)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile .tbig{position:absolute;inset:0;display:grid;place-items:center}.tile .tbig .ic{width:44px;height:44px}
+.tile .tic{position:absolute;left:10px;top:10px;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;border:2px solid #fff}
+.tile .tplay,.tile .tn{position:absolute;right:10px;top:10px;min-width:28px;height:28px;padding:0 8px;border-radius:14px;background:rgba(20,16,40,.6);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.tile .tname{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 11px;text-align:left;font-weight:700;font-size:14.5px;line-height:1.2;color:#fff;background:linear-gradient(transparent,rgba(20,16,40,.78))}
+.tile.noimg .tname{color:var(--ink);background:none}
+.tile .tname i{display:block;font-style:normal;color:#FFD15C;font-size:12px;margin-top:3px}
+.collage{display:grid;gap:4px;border-radius:22px;overflow:hidden;height:190px;margin:4px 0 12px}
+.collage.c2{grid-template-columns:1fr 1fr}.collage.c3{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr}
+.collage.c3 img:first-child{grid-row:1/3}
+.collage img{width:100%;height:100%;object-fit:cover;display:block}
+.tintro.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stopb .num.ph{width:54px;height:54px;flex:none}
 .kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
 .kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
 .kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
@@ -907,8 +944,8 @@ function fitStage(s0){
 }
 function fitTrip(tr){
   const pts = (tr.stops || []).filter(s0 => !tr.country || s0.cc === tr.country || !s0.cc).map(s0 => [s0.lon, s0.lat]);
-  if (tr.plan) pts.push(...(tr.stops || []).flatMap(s0 => (s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])));
-  if (pts.length) fitLLs(pts, tr.plan ? 15.5 : 7);
+  pts.push(...(tr.stops || []).flatMap(s0 => (s0.items || []).filter(it => isFinite(it.lat)).map(it => [it.lon, it.lat])));
+  if (pts.length) fitLLs(pts, 15.5);
 }
 function openTrip(id){
   const tr = trips().find(t => t.id === id); if (!tr) return;
@@ -1042,6 +1079,7 @@ function renderTrip(){
     <div class="phead"><button class="btn ghost" id="b-back">${ic("back")}${esc(countryName(tr.country) || "Volver")}</button><button class="btn sm" id="b-share">${ic("share", "sm")}Compartir</button></div>
     ${tr.plan && onTrip(tr) ? todayHTML(tr) : ""}
     ${tr.plan ? `<button class="btn grow nearb" id="b-near">${ic("locate", "sm")}¿Qué tengo cerca?</button>${nearHTML(tr)}` : ""}
+    ${(() => { const cov = (tr.stops || []).flatMap(s0 => (s0.items || []).map(coverOf)).filter(Boolean).slice(0, 3); return cov.length >= 2 ? `<div class="collage c${cov.length}">${cov.map(src => `<img src="${esc(photoSrc(src))}" alt="" loading="lazy">`).join("")}</div>` : ""; })()}
     <div class="hero">
       <div class="kicker">${tr.plan ? (onTrip(tr) ? "De viaje" : "Próximo viaje") : "Mi ruta"}</div>
       <h2>${esc(tr.title || "Ruta")}</h2>
@@ -1049,13 +1087,13 @@ function renderTrip(){
     </div>
     <button class="btn primary" id="b-play"${st.length < 2 || tr.plan ? " hidden" : ""}>${ic(S.play ? "pause" : "play", "sm")}${S.play ? "Pausar" : "Ver la ruta en movimiento"}</button>
     ${tr.plan && st.length && !onTrip(tr) ? todayHTML(tr) : ""}
-    ${tr.intro ? `<p class="tintro">${esc(tr.intro)}</p>` : ""}
+    ${tr.intro ? `<p class="tintro ${tr.plan ? "" : "clamp2"}">${esc(tr.intro)}</p>` : ""}
     ${!st.length ? `<div class="empty">${ic("route")}<b>Ruta sin etapas</b><span>Añade la primera parada del viaje.</span></div>` : ""}
     <ol class="tl">${st.map((s0, i) => { const m = modeOf(s0); return `<li data-step="${i}" class="${S.step === i ? "cur" : ""}" style="--lc:${m.col}">
       ${s0.by || s0.leg ? `<div class="leg">${ic(m.ic, "sm")}<span>${esc(s0.leg || m.label)}</span></div>` : ""}
       <button class="stopb" data-go="${i}" aria-expanded="${S.step === i}">${(() => { const ph = (s0.items || []).flatMap(it => it.photos || [])[0] || (s0.photos || [])[0]; return ph ? `<span class="num ph"><img src="${esc(photoSrc(ph))}" alt="" loading="lazy"><em>${i + 1}</em></span>` : `<span class="num">${i + 1}</span>`; })()}<span class="sn"><b>${esc(s0.n)}</b>${s0.sub ? `<span class="muted small">${esc(s0.sub)}</span>` : ""}</span>${ic("plus", "sm")}</button>
       <div class="sd">
-        ${!tr.plan && (s0.items || []).length ? `<div class="spots">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver, ph = (it.photos || [])[0]; return `<button class="spotc" data-spot="${i}|${j}" style="--c:${g.c};--gb:${g.bg}"><span class="spth">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : ic(g.ic, "lg")}<span class="spic">${ic(g.ic, "sm")}</span></span><span class="spn">${esc(it.n)}</span>${it.rating ? `<span class="spst">${"★".repeat(it.rating)}</span>` : ""}</button>`; }).join("")}</div>` : ""}
+        ${!tr.plan && (s0.items || []).length ? `<div class="tiles">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver, ph = coverOf(it), n = (it.photos || []).length + (it.videos || []).length; return `<button class="tile ${ph ? "" : "noimg"}" data-spot="${i}|${j}" style="--c:${g.c};--gb:${g.bg}">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : `<span class="tbig">${ic(g.ic, "lg")}</span>`}<span class="tic">${ic(g.ic, "sm")}</span>${(it.videos || []).length ? `<span class="tplay">▶</span>` : n > 1 ? `<span class="tn">${n}</span>` : ""}<span class="tname">${esc(it.n)}${it.rating ? `<i>${"★".repeat(it.rating)}</i>` : ""}</span></button>`; }).join("")}</div>` : ""}
         ${s0.story ? `<p class="story ${!tr.plan && (s0.items || []).length ? "clamp" : ""}">${esc(s0.story)}</p>${!tr.plan && (s0.items || []).length ? `<button class="linkb more" data-more>Leer la historia</button>` : ""}` : ""}
         ${tr.plan && (s0.items || []).length ? planItemsHTML(s0, i) : ""}
         ${(s0.did || []).length ? `<div class="sgrp c-done"><span class="lbl">${ic("compass", "sm")}Qué hicimos</span>${s0.did.map(x => `<div class="sdi"><span>${esc(x)}</span></div>`).join("")}</div>` : ""}
@@ -1350,11 +1388,16 @@ function itemMk(key, it, i, j, opt = {}){
   const g = GT[it.t] || GT.ver, cat = catOf(it.t);
   if (cat) legendCounts[cat] = (legendCounts[cat] || 0) + 1;
   if (cat && S.hide.has(cat)) return null;
-  const ph = (it.photos || [])[0], tid = opt.trip || S.trip, sel = SPOT && SPOT.trip === tid && SPOT.i === i && SPOT.j === j;
+  const ph = coverOf(it), tid = opt.trip || S.trip, sel = SPOT && SPOT.trip === tid && SPOT.i === i && SPOT.j === j;
   return {key, ll: [it.lon, it.lat], anchor: "bottom", z: sel ? 90 : (opt.z || 20) + (ph ? 5 : 0), cls: "pin-mk" + (opt.sm ? " sm" : "") + (sel ? " sel" : "") + (it.done && opt.plan ? " done" : ""),
-    html: `<span class="pin" style="--c:${g.c}"><span class="pin-in">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : ic(g.ic)}</span></span>${ph ? `<span class="pin-badge" style="--c:${g.c}">${ic(g.ic, "sm")}</span>` : ""}${opt.num != null ? `<b class="pin-num">${opt.num}</b>` : ""}${it.rating ? `<span class="pin-stars">${"★".repeat(it.rating)}</span>` : ""}`,
+    html: `<span class="pin" style="--c:${g.c}"><span class="pin-in">${ph ? `<img src="${esc(photoSrc(ph))}" alt="" loading="lazy">` : ic(g.ic)}</span></span>${ph ? `<span class="pin-badge" style="--c:${g.c}">${ic(g.ic, "sm")}</span>` : ""}${(it.videos || []).length ? `<span class="pin-play">▶</span>` : ""}${opt.num != null ? `<b class="pin-num">${opt.num}</b>` : ""}${it.rating ? `<span class="pin-stars">${"★".repeat(it.rating)}</span>` : ""}`,
     on: () => openSpot(tid, i, j)};
 }
+const posterOf = v => String(v).replace(/\.(mp4|mov|m4v)$/i, ".jpg");
+const coverOf = it => (it.photos || [])[0] || ((it.videos || [])[0] ? posterOf(it.videos[0]) : null);
+const gmaps = it => `https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lon}&travelmode=walking`;
+const amaps = it => `https://maps.apple.com/?daddr=${it.lat},${it.lon}&dirflg=w`;
+const mapBtns = it => isFinite(it.lat) ? `<div class="mapgo"><a class="mg g" href="${gmaps(it)}" target="_blank" rel="noopener"><span class="mgi">G</span>Google Maps</a><a class="mg a" href="${amaps(it)}" target="_blank" rel="noopener"><span class="mgi">${ic("map", "sm")}</span>Apple Maps</a></div>` : "";
 let SPOT = null;
 function spotRef(){ if (!SPOT) return null; const tr = trips().find(t => t.id === SPOT.trip); const s0 = tr?.stops?.[SPOT.i], it = s0?.items?.[SPOT.j]; return it ? {tr, s0, it} : null; }
 function openSpot(tripId, i, j, fly = true){
@@ -1365,23 +1408,21 @@ function openSpot(tripId, i, j, fly = true){
 function closeSpot(){ SPOT = null; $("#spotcard").hidden = true; document.body.classList.remove("spoton"); syncMap(); }
 function renderSpot(){
   const el = $("#spotcard"), r = spotRef(); if (!r) { el.hidden = true; return; }
-  const {tr, s0, it} = r, g = GT[it.t] || GT.ver, ph = it.photos || [], edit = S.canEdit;
+  const {tr, s0, it} = r, g = GT[it.t] || GT.ver, edit = S.canEdit;
+  const media = [...(it.photos || []).map(src => ({src})), ...(it.videos || []).map(v => ({v}))];
   el.innerHTML = `<button class="sc-x" id="sc-x" aria-label="Cerrar">${ic("x")}</button>
-    ${ph.length ? `<div class="sc-photos ${ph.length === 1 ? "one" : ""}">${ph.map(id => `<img src="${esc(photoSrc(id))}" alt="Foto de ${esc(it.n)}" data-full="${esc(photoSrc(id))}">`).join("")}</div>`
+    <div class="sc-media">${media.length ? `<div class="sc-photos ${media.length === 1 ? "one" : ""}">${media.map(m => m.v
+        ? `<video src="${esc(photoSrc(m.v))}" poster="${esc(photoSrc(posterOf(m.v)))}" playsinline controls preload="none"></video>`
+        : `<img src="${esc(photoSrc(m.src))}" alt="Foto de ${esc(it.n)}" data-full="${esc(photoSrc(m.src))}">`).join("")}</div>${media.length > 1 ? `<span class="sc-count">${media.length} ${(it.videos || []).length ? "fotos y vídeos" : "fotos"} · desliza</span>` : ""}`
       : `<div class="sc-hero" style="--c:${g.c};--gb:${g.bg}">${ic(g.ic, "lg")}</div>`}
+      <div class="sc-title"><span class="sc-cat" style="--c:${g.c}">${ic(g.ic, "sm")}${g.l}</span><h3>${esc(it.n)}</h3></div></div>
     <div class="sc-body">
-      <div class="sc-cat" style="--c:${g.c};--gb:${g.bg}">${ic(g.ic, "sm")}${g.l}</div>
-      <h3>${esc(it.n)}</h3>
       <div class="sc-stars">${[1, 2, 3, 4, 5].map(k => edit ? `<button data-srate="${k}" class="${k <= (it.rating || 0) ? "on" : ""}" aria-label="${k} estrellas">${ic("star")}</button>` : `<span class="${k <= (it.rating || 0) ? "on" : ""}">${ic("star")}</span>`).join("")}</div>
       ${it.txt ? `<p class="sc-txt">${esc(it.txt)}</p>` : ""}
-      ${it.save ? `<p class="sc-tip">${ic("coin", "sm")}${esc(it.save)}</p>` : ""}
-      ${it.by ? `<p class="sc-by">${ic("heart", "sm")}Recomendado por ${esc(it.by)}</p>` : ""}
-      <div class="sc-where">${ic("route", "sm")}${esc(tr.title)} · ${esc(s0.n)}</div>
-      <div class="sc-acts">
-        ${isFinite(it.lat) ? `<a class="btn primary" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>` : ""}
-        ${edit && assets ? `<label class="btn">${ic("camera", "sm")}Foto<input type="file" accept="image/*" id="sc-photo" hidden></label>` : ""}
-        ${S.trip !== tr.id ? `<button class="btn" id="sc-trip">${ic("eye", "sm")}Ver el viaje</button>` : ""}
-      </div>
+      ${it.by ? `<p class="sc-by">${ic("heart", "sm")}Te lo recomendó ${esc(it.by)}</p>` : ""}
+      ${mapBtns(it)}
+      ${edit && assets ? `<label class="btn sc-add">${ic("camera", "sm")}Añadir foto<input type="file" accept="image/*" id="sc-photo" hidden></label>` : ""}
+      ${S.trip !== tr.id ? `<button class="linkb" id="sc-trip">Ver todo el viaje «${esc(tr.title)}»</button>` : ""}
     </div>`;
   el.hidden = false; document.body.classList.add("spoton");
   $("#sc-x").onclick = closeSpot;
