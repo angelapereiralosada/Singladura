@@ -1821,7 +1821,7 @@
       "n": "Alfama Guest House",
       "lat": 38.7112,
       "lon": -9.1297,
-      "txt": "Bien ubicada y cómoda para llegar a todo."
+      "txt": "Bastante bien ubicado. No está en pleno meollo, pero se llega cómodo a todo."
      },
      {
       "t": "hacer",
@@ -1830,14 +1830,15 @@
       "lon": -9.1437,
       "photos": [
        "photos/lis22-tranvia.jpg"
-      ]
+      ],
+      "txt": "Para dar una vuelta al llegar, está lleno de tranvías."
      },
      {
       "t": "ver",
       "n": "Miradouro de Santa Catarina",
       "lat": 38.7094,
       "lon": -9.1474,
-      "txt": "El mejor atardecer, con el puente enfrente. Mucho ambiente.",
+      "txt": "Aquí vimos el atardecer, con el puente rojo enfrente. Muy buen ambiente y mucha gente joven.",
       "photos": [
        "photos/lis22-santacatarina.jpg"
       ]
@@ -1849,7 +1850,8 @@
       "lon": -9.1305,
       "photos": [
        "photos/lis22-alfama-noche.jpg"
-      ]
+      ],
+      "txt": "Las calles de Alfama de noche, muy bonito para dar una vuelta."
      }
     ]
    },
@@ -1873,7 +1875,8 @@
       ],
       "videos": [
        "photos/lis22-v-tranvia-belem.mp4"
-      ]
+      ],
+      "txt": "De aquí sale el tranvía hacia Belém."
      },
      {
       "t": "ver",
@@ -1883,7 +1886,8 @@
       "photos": [
        "photos/lis22-torre-belem.jpg",
        "photos/lis22-torre-2.jpg"
-      ]
+      ],
+      "txt": "La foto típica. Está al lado de todo lo de Belém."
      },
      {
       "t": "ver",
@@ -1892,14 +1896,15 @@
       "lon": -9.2057,
       "photos": [
        "photos/lis22-padrao.jpg"
-      ]
+      ],
+      "txt": "A dos pasos de la torre, junto al río."
      },
      {
       "t": "comer",
       "n": "Pastéis de Belém",
       "lat": 38.6975,
       "lon": -9.2032,
-      "txt": "Recién hechos. Imprescindibles.",
+      "txt": "Tenéis que comer pasteles de Belém aquí sí o sí.",
       "photos": [
        "photos/lis22-pasteis.jpg"
       ]
@@ -1911,7 +1916,8 @@
       "lon": -9.2068,
       "photos": [
        "photos/lis22-jeronimos.jpg"
-      ]
+      ],
+      "txt": "Justo al lado de los pasteles."
      }
     ]
    },
@@ -1935,14 +1941,15 @@
       ],
       "videos": [
        "photos/lis22-v-pasta.mp4"
-      ]
+      ],
+      "txt": "Comimos por la Baixa."
      },
      {
       "t": "hacer",
       "n": "Batucada por la Baixa",
       "lat": 38.7103,
       "lon": -9.1348,
-      "txt": "Nos cruzamos con una batucada en plena calle.",
+      "txt": "Nos encontramos una batucada por la calle.",
       "videos": [
        "photos/lis22-v-batucada.mp4"
       ]
@@ -1952,7 +1959,7 @@
       "n": "Pink Street y sus paraguas de colores",
       "lat": 38.7073,
       "lon": -9.144,
-      "txt": "La calle de los paraguas, en Cais do Sodré.",
+      "txt": "La calle de los paraguas de colores, en Cais do Sodré.",
       "photos": [
        "photos/lis22-pink-street.jpg",
        "photos/lis22-pink-street-2.jpg",
@@ -1968,7 +1975,8 @@
       "photos": [
        "photos/lis22-bica.jpg",
        "photos/lis22-vintage.jpg"
-      ]
+      ],
+      "txt": "El funicular de la Bica. Por la zona hay tiendas vintage."
      },
      {
       "t": "hacer",
@@ -1977,7 +1985,8 @@
       "lon": -9.1432,
       "photos": [
        "photos/lis22-tranvia-28.jpg"
-      ]
+      ],
+      "txt": "El tranvía típico, hay que montarse."
      },
      {
       "t": "ver",
@@ -1986,7 +1995,8 @@
       "lon": -9.1394,
       "photos": [
        "photos/lis22-santa-justa.jpg"
-      ]
+      ],
+      "txt": "El elevador de hierro del centro."
      },
      {
       "t": "comer",
@@ -1995,14 +2005,15 @@
       "lon": -9.145,
       "photos": [
        "photos/lis22-cena.jpg"
-      ]
+      ],
+      "txt": "Cenamos hamburguesas por el Bairro Alto."
      },
      {
       "t": "ocio",
       "n": "Copas por el Bairro Alto",
       "lat": 38.7128,
       "lon": -9.1445,
-      "txt": "De noche, todo el mundo tomando algo en la calle."
+      "txt": "Por la noche está lleno de gente tomando algo en la calle."
      }
     ]
    },
@@ -2021,7 +2032,7 @@
       "n": "LX Factory",
       "lat": 38.7036,
       "lon": -9.1787,
-      "txt": "Tiendas, murales y mercadillo bajo el puente.",
+      "txt": "Una fábrica antigua con tiendas, murales y mercadillo, debajo del puente.",
       "photos": [
        "photos/lis22-lx-factory.jpg",
        "photos/lis22-lx-2.jpg",
@@ -2036,7 +2047,8 @@
       "lon": -9.1782,
       "photos": [
        "photos/lis22-sushi.jpg"
-      ]
+      ],
+      "txt": "Comimos sushi allí mismo."
      }
     ]
    }
@@ -2068,7 +2080,7 @@
       "n": "Casco histórico de Évora",
       "lat": 38.5723,
       "lon": -7.9046,
-      "txt": "Precioso y muy barato. Parada perfecta a mitad de camino.",
+      "txt": "Un pueblo muy barato y muy bonito. Perfecto para parar a mitad de camino.",
       "photos": [
        "photos/lis26-evora.jpg",
        "photos/lis26-evora-2.jpg"
@@ -2078,7 +2090,8 @@
       "t": "ver",
       "n": "Catedral de Évora",
       "lat": 38.5711,
-      "lon": -7.907
+      "lon": -7.907,
+      "txt": "Está en lo alto del casco antiguo."
      }
     ]
    },
@@ -2098,7 +2111,7 @@
       "n": "Hotel Holiday Inn (zona Moscavide)",
       "lat": 38.779,
       "lon": -9.102,
-      "txt": "Muy bien. El Uber al centro, unos 7 €."
+      "txt": "Súper bien. Está lejos del centro, pero el Uber eran unos 7 € cada trayecto."
      }
     ]
    },
@@ -2117,7 +2130,7 @@
       "n": "Baixamar",
       "lat": 38.70903,
       "lon": -9.13421,
-      "txt": "Algo turístico, pero el arroz de marisco, riquísimo.",
+      "txt": "Un poco de turistas, pero el arroz estaba riquísimo.",
       "photos": [
        "photos/lis26-arroz.jpg"
       ]
@@ -2127,7 +2140,7 @@
       "n": "Ginginha do Carmo",
       "lat": 38.7134,
       "lon": -9.1407,
-      "txt": "Un local enano bajo las escaleras. Chupito en vasito de chocolate.",
+      "txt": "Un sitio enano debajo de unas escaleras. Te ponen el chupito de ginjinha en un vaso de chocolate.",
       "photos": [
        "photos/lis26-ginjinha.jpg"
       ],
@@ -2152,7 +2165,7 @@
       "n": "Antiguo Barbica",
       "lat": 38.709,
       "lon": -9.1468,
-      "txt": "Happy hour de ostras a 1 €. Hoy tiene otro nombre.",
+      "txt": "Tenían happy hour de ostras a 1 €. Ahora el local se llama de otra forma.",
       "photos": [
        "photos/lis26-happy-hour.jpg",
        "photos/lis26-ostras.jpg",
@@ -2165,7 +2178,7 @@
       "n": "Lisboa Bar",
       "lat": 38.712,
       "lon": -9.1405,
-      "txt": "Pequeñito, con una azotea muy chula. Cervezas enormes.",
+      "txt": "Un bar pequeño en el Largo do Carmo con una azotea muy chula. Cervezas enormes.",
       "photos": [
        "photos/lis26-fotomaton.jpg"
       ]
@@ -2175,7 +2188,7 @@
       "n": "Miradouro de São Pedro de Alcântara",
       "lat": 38.7151,
       "lon": -9.1443,
-      "txt": "Al atardecer, bajo un techo de sombreros, con música.",
+      "txt": "Al atardecer había fiesta, con música y gente bailando.",
       "photos": [
        "photos/lis26-mirador.jpg"
       ],
@@ -2189,7 +2202,7 @@
       "n": "Nonna Goes Crazy",
       "lat": 38.7163,
       "lon": -9.1443,
-      "txt": "Pasta fresca de moda. Buenísimo.",
+      "txt": "Se ha puesto muy de moda y está buenísimo.",
       "photos": [
        "photos/lis26-cena.jpg"
       ]
@@ -2207,7 +2220,7 @@
   "lat": 38.7139,
   "lon": -9.1394,
   "radius": 25,
-  "tagline": "Miradores al atardecer, tranvías, pastéis y ostras a 1 €.",
+  "tagline": "Todo lo que hice en mis dos viajes. Apuntad lo que os cuadre.",
   "cover": "photos/lis22-santacatarina.jpg",
   "story": [
    "photos/lis22-santacatarina.jpg",
@@ -2223,11 +2236,11 @@
    "photos/lis26-cena.jpg"
   ],
   "tips": [
-   "Lisboa es todo cuestas: calzado cómodo y tranvía, elevador o Uber para subir.",
-   "Si coincide con la maratón o algún evento, el centro se dispara. Moscavide sale mucho más barato y el Uber al centro cuesta unos 7 €.",
-   "Para el atardecer: Santa Catarina (más joven y con el puente enfrente) o São Pedro de Alcântara.",
-   "Si vas en coche desde España, para en Évora: precioso, muy barato y a mitad de camino.",
-   "Pide la ginjinha en vasito de chocolate y cómete el vaso."
+   "Lisboa es todo cuestas, llevad calzado cómodo.",
+   "Si coincide con la maratón o con algún evento, el centro está carísimo. Nosotros dormimos en Moscavide y el Uber al centro eran unos 7 €.",
+   "Para el atardecer, el Miradouro de Santa Catarina: buen ambiente y mucha gente joven.",
+   "Si vais en coche, parad en Évora. Es muy barato y bonito, y os pilla a mitad de camino.",
+   "La ginjinha os la ponen en un vasito de chocolate."
   ]
  }
 ]

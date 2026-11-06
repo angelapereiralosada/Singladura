@@ -1727,7 +1727,7 @@ $("#zloc").onclick = () => {
   }, () => { stopLocate(); toast("Activa la ubicación para Safari en Ajustes › Privacidad"); }, {enableHighAccuracy: true, maximumAge: 15000});
 };
 /* ---------- city guides: what to see, eat, drink and where to sleep ---------- */
-const DSEC = [["ver", "Qué ver y hacer", ["ver", "hacer"], "eye", "#3552E0"], ["comer", "Dónde comer", ["comer"], "food", "#9A6400"], ["ocio", "Dónde tomar algo", ["ocio"], "glass", "#D71F2B"], ["dormir", "Dónde dormir", ["dormir"], "bed", "#24254A"]];
+const DSEC = [["ver", "Qué ver", ["ver", "hacer"], "eye", "#3552E0"], ["comer", "Dónde comer", ["comer"], "food", "#9A6400"], ["ocio", "Dónde tomar algo", ["ocio"], "glass", "#D71F2B"], ["dormir", "Dónde dormir", ["dormir"], "bed", "#24254A"]];
 let DEST = null, heroT = 0;
 function destItems(d){
   const out = [], seen = new Set();
@@ -1769,12 +1769,12 @@ function renderDest(){
       <div class="dtop"><button class="dround" id="d-close" aria-label="Volver">${ic("back")}</button><button class="dround" id="d-share" aria-label="Compartir">${ic("share")}</button></div>
       <div class="dtitle"><span class="dkick">${flag(d.country)} ${esc(countryName(d.country))}${years.length ? ` · ${years.join(" y ")}` : ""}</span>
         <h1>${esc(d.city)}</h1>${d.tagline ? `<p>${esc(d.tagline)}</p>` : ""}
-        ${story.length ? `<button class="dstory" id="d-story">${ic("play", "sm")}Ver la historia</button>` : ""}</div>
+        ${story.length ? `<button class="dstory" id="d-story">${ic("play", "sm")}Ver fotos y vídeos</button>` : ""}</div>
     </div>
     <nav class="dtabs">${secs.map(sc => `<button data-dsec="${sc.k}" style="--c:${sc.col}"><span>${ic(sc.icn, "sm")}</span>${sc.l.replace(/^Dónde |^Qué /, m => m)}<em>${sc.items.length}</em></button>`).join("")}${(d.tips || []).length ? `<button data-dsec="tips" style="--c:#9A6400"><span>${ic("bulb", "sm")}</span>Consejos</button>` : ""}</nav>
     <div class="dbody">
       ${secs.map(sc => `<section class="dsec" id="ds-${sc.k}"><h2 style="--c:${sc.col}"><span>${ic(sc.icn)}</span>${sc.l}</h2><div class="dgrid">${sc.items.map(card).join("")}</div></section>`).join("")}
-      ${(d.tips || []).length ? `<section class="dsec" id="ds-tips"><h2 style="--c:#9A6400"><span>${ic("bulb")}</span>Mis consejos</h2><ul class="dtips">${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>` : ""}
+      ${(d.tips || []).length ? `<section class="dsec" id="ds-tips"><h2 style="--c:#9A6400"><span>${ic("bulb")}</span>Consejos</h2><ul class="dtips">${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>` : ""}
       <button class="dmapbtn" id="d-map">${ic("map")}Ver todo en el mapa</button>
     </div>`;
   // hero slideshow
