@@ -1989,14 +1989,15 @@
     "lon": -7.907,
     "by": "coche",
     "leg": "En coche desde España",
-    "story": "De camino a Lisboa paramos en Évora para estirar las piernas: callejuelas blancas con zócalos amarillos que suben hacia la catedral. Una parada perfecta a mitad de viaje.",
+    "story": "A la ida paramos en Évora, a mitad de camino: un pueblo precioso y muy barato, de callejuelas blancas con zócalos amarillos que suben hacia la catedral. Perfecto para estirar las piernas, comer y seguir, o incluso para pasar un día entero.",
     "did": [
      "Paseo por el casco histórico de Évora"
     ],
     "ate": [],
     "photos": [
      "photos/lis26-evora.jpg"
-    ]
+    ],
+    "note": "Consejo: Évora queda justo a mitad de camino desde España. Merece la parada, y es muy barato."
    },
    {
     "n": "Moscavide",
@@ -2006,11 +2007,45 @@
     "lon": -9.102,
     "by": "coche",
     "leg": "En coche hasta Lisboa",
-    "story": "Ese fin de semana había maratón y Lisboa estaba carísima, así que nos quedamos en Moscavide, junto al Parque das Nações. Queda lejos del centro, pero el Uber era muy barato: unos 7 € cada trayecto.",
+    "story": "Ese fin de semana había maratón y Lisboa estaba carísima, así que dormimos en el Holiday Inn, en la zona de Moscavide, junto al Parque das Nações. El hotel, súper bien; queda lejos del centro, pero el Uber era muy barato: unos 7 € cada trayecto.",
     "did": [],
     "ate": [],
-    "sleep": "Moscavide (cerca del Parque das Nações)",
+    "sleep": "Hotel Holiday Inn, zona de Moscavide (muy bien)",
     "note": "Consejo: si Lisboa está cara, Moscavide o el Parque das Nações salen mucho mejor de precio, y el Uber al centro cuesta unos 7 €."
+   },
+   {
+    "n": "Baixa y Rossio",
+    "sub": "Primera noche · 10 de octubre",
+    "cc": "PT",
+    "lat": 38.7112,
+    "lon": -9.137,
+    "by": "taxi",
+    "leg": "En Uber al centro (unos 7 €)",
+    "story": "Primera noche en Lisboa: cena en una terraza de la Baixa con arroz de marisco, almejas y vino blanco, y de remate, una ginjinha, el licor de guindas típico de Lisboa, servida en vasito de chocolate por la zona del Rossio.",
+    "did": [
+     "Paseo nocturno por la Baixa",
+     "Ginjinha en vasito de chocolate"
+    ],
+    "ate": [
+     "Arroz de marisco y almejas en una terraza de la Baixa",
+     "Ginjinha en vasito de chocolate"
+    ],
+    "spots": [
+     {
+      "n": "Cena en la Baixa",
+      "lat": 38.70903,
+      "lon": -9.13421
+     },
+     {
+      "n": "Ginjinha",
+      "lat": 38.7134,
+      "lon": -9.1407
+     }
+    ],
+    "photos": [
+     "photos/lis26-arroz.jpg",
+     "photos/lis26-ginjinha.jpg"
+    ]
    },
    {
     "n": "Bica, Chiado y São Pedro de Alcântara",
@@ -2019,21 +2054,21 @@
     "lat": 38.712,
     "lon": -9.145,
     "by": "taxi",
-    "leg": "En Uber al centro (unos 7 €)",
-    "story": "Tarde de disfrutar sin prisa: ostras a 1 € en happy hour por la zona de la Bica, fotomatón en blanco y negro con cerveza en mano y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. La noche terminó con una cena de tapas por el Príncipe Real.",
+    "leg": "Al día siguiente, de nuevo en Uber",
+    "story": "Tarde de disfrutar sin prisa: ostras a 1 € en el happy hour de Vila Bica, junto al Elevador da Bica, fotomatón en blanco y negro con cerveza en mano y, al caer la tarde, el Miradouro de São Pedro de Alcântara bajo un techo de sombreros de paja, con música y gente bailando. La noche terminó con una cena de tapas por el Príncipe Real.",
     "did": [
      "Happy hour de ostras a 1 €",
      "Fotomatón en blanco y negro",
      "Fiesta en el Miradouro de São Pedro de Alcântara"
     ],
     "ate": [
-     "Ostras a 1 € y tabla de quesos en happy hour",
+     "Ostras a 1 € y tabla de quesos en el happy hour de Vila Bica",
      "Cena de tapas por el Príncipe Real"
     ],
     "spots": [
      {
-      "n": "Ostras en happy hour",
-      "lat": 38.709,
+      "n": "Vila Bica (ostras a 1 €)",
+      "lat": 38.7088,
       "lon": -9.1468
      },
      {
