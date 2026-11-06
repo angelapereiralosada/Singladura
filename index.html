@@ -141,6 +141,18 @@ body{
 .nrow .nt{flex:1;min-width:0}.nrow .nt b{display:block;font-size:14px;line-height:1.25}
 .iconb{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);background:#fff;color:var(--ink);flex:none}
 .iconb.go{background:var(--ink);color:#fff;border-color:var(--ink)}
+.maplegend{position:fixed;z-index:5;left:calc(12px + env(safe-area-inset-left, 0px));top:calc(62px + env(safe-area-inset-top, 0px));display:flex;gap:5px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100vw - 76px);padding:2px}
+.maplegend::-webkit-scrollbar{display:none}
+.mk.quiet{opacity:.55;transform:scale(.8)}
+.maplegend button{flex:none;display:inline-flex;align-items:center;gap:5px;border:0;border-radius:999px;padding:4px 9px 4px 4px;font-size:12px!important;background:rgba(255,255,255,.95);box-shadow:0 3px 10px rgba(36,37,74,.14);font:700 12.5px/1 var(--f-body);color:var(--ink)}
+.maplegend .lgi{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff}.maplegend .lgi .ic{width:12px;height:12px}
+.maplegend em{font-style:normal;color:var(--mute);font-weight:700}
+.maplegend button[aria-pressed="false"]{opacity:.45;box-shadow:none}.maplegend button[aria-pressed="false"] .lgi{background:#B9B6C9}
+.mk.pi .mlab{display:none;font-size:10px}
+body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
+.pop p{margin:-4px 0 8px;font-size:12.5px;line-height:1.35;color:var(--ink);opacity:.85}
+@media (min-width:901px){.maplegend{top:calc(88px + env(safe-area-inset-top, 0px));left:calc(22px + env(safe-area-inset-left, 0px))}}
+@media (max-width:900px){#map .maplibregl-ctrl-top-right{top:calc(114px + env(safe-area-inset-top, 0px));right:calc(12px + env(safe-area-inset-right, 0px))}}
 .kpis{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 4px}
 .kpis span{display:inline-flex;align-items:baseline;gap:5px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;color:var(--mute)}
 .kpis b{font:italic 500 19px/1 var(--f-display);color:var(--red)}
@@ -503,6 +515,7 @@ details.more>.cat+.cat,details.more>.cat+.field{margin-top:12px}
 
 <div id="map" role="application" aria-label="Mapa de tus viajes. Arrastra para moverlo, pellizca para acercarte y toca un país."></div>
 <div class="maptip" id="maptip" hidden></div>
+<div class="maplegend" id="maplegend" hidden></div>
 <div class="mapfail" id="mapfail" hidden>No se ha podido cargar el mapa. Comprueba la conexión y recarga.</div>
 
 <div class="top">
@@ -643,7 +656,7 @@ function layout(){
 function setSize(sz){ if (S.size === sz) return; S.size = sz; panel.dataset.size = sz; layout(); }
 // the part of the screen the map can really use (the panel covers the rest)
 function pad(){
-  let p = isPhone() ? {top: 76, bottom: Math.round(panelH() + 18), left: 22, right: 22} : {top: 96, bottom: 48, left: 48, right: 452};
+  let p = isPhone() ? {top: $("#maplegend")?.hidden === false ? 112 : 76, bottom: Math.round(panelH() + 18), left: 22, right: 22} : {top: 96, bottom: 48, left: 48, right: 452};
   const free = H - p.top - p.bottom; if (free < 140) p.bottom = Math.max(0, H - p.top - 140);
   return p;
 }
@@ -934,10 +947,10 @@ function planProgress(tr){
   const all = (tr.stops || []).flatMap(s0 => s0.items || []), done = all.filter(it => it.done).length;
   return all.length ? `<span class="chipmeta">${ic("check", "sm")}${done}/${all.length} hechos</span>` : "";
 }
-function planItemsHTML(s0, i){
+function planItemsHTML(s0, i, past){
   return `<div class="pitems">${s0.items.map((it, j) => { const g = GT[it.t] || GT.ver; return `<div class="pit ${it.done ? "done" : ""}" data-pit="${i}|${j}" style="--gc:${g.c};--gb:${g.bg}">
     <div class="pih"><span class="gi">${ic(g.ic, "sm")}</span><span class="pit-t"><b>${esc(it.n)}</b><span class="muted small">${esc([WHEN[it.when] || "", g.l].filter(Boolean).join(" · "))}</span></span>
-      ${S.canEdit ? `<button class="pdone" data-done="${i}|${j}" aria-pressed="${!!it.done}" aria-label="Marcar como hecho">${ic("check", "sm")}</button>` : ""}</div>
+      ${S.canEdit && !past ? `<button class="pdone" data-done="${i}|${j}" aria-pressed="${!!it.done}" aria-label="Marcar como hecho">${ic("check", "sm")}</button>` : ""}</div>
     ${it.txt ? `<p class="pit-x">${esc(it.txt)}</p>` : ""}
     ${it.save ? `<p class="pit-s">${ic("coin", "sm")}<span>${esc(it.save)}</span></p>` : ""}
     ${it.by ? `<p class="pit-s reco">${ic("heart", "sm")}<span>Recomendado por ${esc(it.by)}</span></p>` : ""}
@@ -993,7 +1006,7 @@ function renderTrip(){
       <button class="stopb" data-go="${i}" aria-expanded="${S.step === i}"><span class="num">${i + 1}</span><span class="sn"><b>${esc(s0.n)}</b>${s0.sub ? `<span class="muted small">${esc(s0.sub)}</span>` : ""}</span>${ic("plus", "sm")}</button>
       <div class="sd">
         ${s0.story ? `<p class="story">${esc(s0.story)}</p>` : ""}
-        ${(s0.items || []).length ? planItemsHTML(s0, i) : ""}
+        ${(s0.items || []).length ? planItemsHTML(s0, i, !tr.plan) : ""}
         ${(s0.did || []).length ? `<div class="sgrp c-done"><span class="lbl">${ic("compass", "sm")}Qué hicimos</span>${s0.did.map(x => `<div class="sdi"><span>${esc(x)}</span></div>`).join("")}</div>` : ""}
         ${(s0.ate || []).length ? `<div class="sgrp c-ate"><span class="lbl">${ic("food", "sm")}Dónde comimos</span>${s0.ate.map(x => `<div class="sdi"><span>${esc(x)}</span></div>`).join("")}</div>` : ""}
         ${s0.sleep ? `<div class="sgrp c-seen"><span class="lbl">${ic("bed", "sm")}Dónde dormimos</span><div class="sdi"><span>${esc(s0.sleep)}</span></div></div>` : ""}
@@ -1031,9 +1044,9 @@ function renderTrip(){
 const GT = {
   ver:{l:"Qué ver", ic:"eye", c:"#3552E0", bg:"#ECEFFF"},
   hacer:{l:"Qué hacer", ic:"compass", c:"#8C1D3F", bg:"#F8E6EC"},
-  comer:{l:"Dónde y qué comer", ic:"food", c:"#9A6400", bg:"#FFF4D6"},
-  ocio:{l:"Ocio y noche", ic:"glass", c:"#D71F2B", bg:"#FDE7E9"},
-  dormir:{l:"Dónde dormir", ic:"bed", c:"#24254A", bg:"#EEEEF5"},
+  comer:{l:"Restaurante", ic:"food", c:"#9A6400", bg:"#FFF4D6"},
+  ocio:{l:"Bar y copas", ic:"glass", c:"#D71F2B", bg:"#FDE7E9"},
+  dormir:{l:"Alojamiento", ic:"bed", c:"#24254A", bg:"#EEEEF5"},
   ahorro:{l:"Para ahorrar", ic:"coin", c:"#9A6400", bg:"#FFF4D6"},
   reco:{l:"Te lo recomendaron", ic:"heart", c:"#D71F2B", bg:"#FDE7E9"},
   tip:{l:"Consejo", ic:"bulb", c:"#9A6400", bg:"#FFF7E0"}
@@ -1270,7 +1283,29 @@ function focusMarkers(fc){
       html: (p.photos?.length ? `<span class="polam" style="--r:${(seed % 7 - 3) * 2}deg"><img src="${esc(photoSrc(p.photos[0]))}" alt=""></span>` : `<span class="pinm"></span>`) + mlab(p.name, sel),
       on: () => select(p.id, true)});
   }
+  for (const tr of trips().filter(t => t.country === fc && !t.plan)) (tr.stops || []).forEach((s0, i) => (s0.items || []).forEach((it, j) => {
+    if (!isFinite(it.lat)) return; const m = itemMk("ti:" + tr.id + ":" + i + "|" + j, it, i, j, {sm: zoomNow() < 13, trip: tr.id, z: 15}); if (m) out.push(m);
+  }));
   return out;
+}
+// the four kinds of point a friend looks for, used by the map legend and its filter
+const CATF = [["ver", "Ver", ["ver", "hacer"], "eye", "#3552E0"], ["comer", "Comer", ["comer"], "food", "#9A6400"], ["ocio", "Bares", ["ocio"], "glass", "#D71F2B"], ["dormir", "Dormir", ["dormir"], "bed", "#24254A"]];
+const catOf = t => (CATF.find(c => c[2].includes(t)) || [null])[0];
+S.hide = new Set();
+let legendCounts = {};
+function itemMk(key, it, i, j, opt = {}){
+  const g = GT[it.t] || GT.ver, cat = catOf(it.t);
+  if (cat) legendCounts[cat] = (legendCounts[cat] || 0) + 1;
+  if (cat && S.hide.has(cat)) return null;
+  return {key, ll: [it.lon, it.lat], z: opt.z || 20, cls: "pi" + (opt.sm ? " sm" : "") + (opt.lab ? " lab" : "") + (it.done && opt.plan ? " done" : ""),
+    html: `<span class="cm" style="--c:${g.c}">${ic(g.ic, "sm")}${opt.num != null ? `<b>${opt.num}</b>` : ""}</span>${mlab(it.n)}`, pop: popHTML(it, g, i, j, opt.trip)};
+}
+function renderLegend(){
+  const el = $("#maplegend"); if (!el) return;
+  const any = CATF.some(c => legendCounts[c[0]]);
+  el.hidden = !any; if (!any) { el.innerHTML = ""; return; }
+  el.innerHTML = CATF.filter(c => legendCounts[c[0]]).map(([k, l, , icn, col]) => `<button data-cat="${k}" aria-pressed="${!S.hide.has(k)}" style="--c:${col}"><span class="lgi">${ic(icn, "sm")}</span>${l}<em>${legendCounts[k]}</em></button>`).join("");
+  el.querySelectorAll("[data-cat]").forEach(b => b.onclick = () => { const k = b.dataset.cat; S.hide.has(k) ? S.hide.delete(k) : S.hide.add(k); if (S.hide.size === CATF.length) S.hide.clear(); syncMap(); });
 }
 function tripMarkers(){
   const tr = curTrip(); if (!tr) return [];
@@ -1279,25 +1314,30 @@ function tripMarkers(){
     st.forEach((s0, i) => {
       if (S.step != null && S.step !== i) return;
       (s0.items || []).forEach((it, j) => {
-        if (!isFinite(it.lat)) return; const g = GT[it.t] || GT.ver, one = S.step != null;
-        out.push({key: "pi:" + i + "|" + j, ll: [it.lon, it.lat], z: 20, cls: "pi" + (one ? "" : " sm") + (it.done ? " done" : ""),
-          html: `<span class="cm" style="--c:${g.c}">${ic(g.ic, "sm")}<b>${one ? j + 1 : i + 1}</b></span>`, pop: popHTML(it, g, i, j)});
+        if (!isFinite(it.lat)) return; const one = S.step != null;
+        const m = itemMk("pi:" + i + "|" + j, it, i, j, {sm: !one, lab: one, num: one ? j + 1 : i + 1, plan: true}); if (m) out.push(m);
       });
     });
     return out;
   }
   st.forEach((s0, i) => {
     if (!isFinite(s0.lat) || (pl && i > shown)) return;
-    const cur = S.step === i;
-    out.push({key: "s:" + i, ll: [s0.lon, s0.lat], z: cur ? 40 : 30, cls: "stop" + (cur ? " cur" : ""), html: `<span class="stopn">${i + 1}</span>${mlab(s0.n, cur)}`,
+    const cur = S.step === i, quiet = S.step != null && !cur && (st[S.step]?.items || []).length;
+    if (cur && (s0.items || []).some(it => isFinite(it.lat))) return;
+    out.push({key: "s:" + i, ll: [s0.lon, s0.lat], z: cur ? 40 : 30, cls: "stop" + (cur ? " cur" : "") + (quiet ? " quiet" : ""), html: `<span class="stopn">${i + 1}</span>${quiet ? "" : mlab(s0.n, cur)}`,
       on: () => { S.play = null; if (S.step === i) { markStep(null); fitTrip(tr); } else { markStep(i); fitStage(s0); } }});
     if (i > 0 && s0.by && isFinite(st[i - 1].lat) && !(pl && i === pl.i && (pl.frac ?? 1) < 1)) {
       const pts = legPts(st[i - 1], s0, s0.by), md = pts[Math.round(pts.length * .45)];
       out.push({key: "m:" + i, ll: md, z: 15, cls: "modem", html: `<span>${modeOf(s0).emo}</span>`});
     }
   });
+  st.forEach((s0, i) => {
+    if (pl && i > shown) return;
+    if (S.step != null && S.step !== i) return;
+    (s0.items || []).forEach((it, j) => { if (!isFinite(it.lat)) return; const m = itemMk("pi:" + i + "|" + j, it, i, j, {sm: S.step == null, lab: S.step != null, z: 25}); if (m) out.push(m); });
+  });
   const cs = S.step != null ? st[S.step] : null;
-  (cs?.spots || []).forEach((sp, k) => { if (isFinite(sp.lat)) out.push({key: "sp:" + S.step + ":" + k, ll: [sp.lon, sp.lat], z: 12, cls: "city", html: `<span class="dot"></span>${mlab(sp.n)}`, pop: popHTML(sp, null, S.step, null)}); });
+  (cs?.items?.length ? [] : cs?.spots || []).forEach((sp, k) => { if (isFinite(sp.lat)) out.push({key: "sp:" + S.step + ":" + k, ll: [sp.lon, sp.lat], z: 12, cls: "city", html: `<span class="dot"></span>${mlab(sp.n)}`, pop: popHTML(sp, null, S.step, null)}); });
   return out;
 }
 let lastCK = "";
@@ -1305,11 +1345,13 @@ function syncMap(){
   if (!map || !map.getSource("countries")) return;
   const fc = focusCC(), ck = [...visitedSet()].sort().join(",") + "|" + [...wishSet()].sort().join(",") + "|" + fc;
   const src = map.getSource("countries"); if (src && ck !== lastCK) { lastCK = ck; src.setData(countriesFC()); }
-  const inTrip = S.view === "trip" || S.view === "stage", list = [];
+  const inTrip = S.view === "trip" || S.view === "stage", list = []; legendCounts = {};
   if (!inTrip) list.push(...countryBadges(fc));
   if (inTrip) list.push(...tripMarkers()); else if (fc) list.push(...focusMarkers(fc));
   if (S.view === "form" && S.form && isFinite(S.form.lat)) list.push({key: "form", ll: [S.form.lon, S.form.lat], anchor: "bottom", z: 60, cls: "formpin", html: `<span class="pinm blue"></span>${mlab(S.form.name, true)}`});
   putMarkers(list);
+  renderLegend();
+  document.body.classList.toggle("zlab", zoomNow() >= 13.6);
   drawRoutes();
   declutter();
 }
@@ -1350,7 +1392,7 @@ function initMap(){
       attributionControl: false, dragRotate: false, pitchWithRotate: false, touchPitch: false, maxPitch: 0, renderWorldCopies: false, fadeDuration: 120, maxZoom: 19});
   } catch(e) { map = null; $("#mapfail").hidden = false; return; }
   map.touchZoomRotate.disableRotation(); map.keyboard.disableRotation?.();
-  map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>'}), isPhone() ? "top-left" : "bottom-left");
+  map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>'}), isPhone() ? "top-right" : "bottom-left");
   const closeAttrib = () => document.querySelectorAll(".maplibregl-ctrl-attrib.maplibregl-compact-show").forEach(a => { a.classList.remove("maplibregl-compact-show"); a.removeAttribute("open"); });
   map.once("idle", closeAttrib); setTimeout(closeAttrib, 1500);
   map.on("load", () => {
@@ -1442,14 +1484,16 @@ function renderMinbar(){
 }
 // ── plan items: "Cómo llegar", "Ver ficha" and where am I ──
 const dirUrl = it => `https://www.google.com/maps/dir/?api=1&destination=${it.lat},${it.lon}&travelmode=walking`;
-function popHTML(it, g, i, j){
-  return `<div class="pop"><b>${esc(it.n)}</b><span>${esc([g ? g.l : "", WHEN[it.when] || ""].filter(Boolean).join(" · "))}</span>
-    <div class="pl"><a class="go" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>${j != null ? `<button data-popgo="${i}|${j}">${ic("eye", "sm")}Ver ficha</button>` : ""}</div></div>`;
+function popHTML(it, g, i, j, tripId){
+  return `<div class="pop"><b>${esc(it.n)}</b><span>${esc([g ? g.l : "", WHEN[it.when] || "", it.rating ? "★".repeat(it.rating) : ""].filter(Boolean).join(" · "))}</span>${it.txt ? `<p>${esc(it.txt.length > 120 ? it.txt.slice(0, 117) + "…" : it.txt)}</p>` : ""}
+    <div class="pl"><a class="go" href="${dirUrl(it)}" target="_blank" rel="noopener">${ic("route", "sm")}Cómo llegar</a>${j != null ? `<button data-popgo="${i}|${j}"${tripId ? ` data-poptrip="${esc(tripId)}"` : ""}>${ic("eye", "sm")}Ver ficha</button>` : ""}</div></div>`;
 }
 function wirePop(el){
   const b = el?.querySelector("[data-popgo]"); if (!b) return;
   b.onclick = () => {
-    const [i, j] = b.dataset.popgo.split("|").map(Number); if (S.step !== i) markStep(i);
+    const [i, j] = b.dataset.popgo.split("|").map(Number);
+    if (b.dataset.poptrip && S.trip !== b.dataset.poptrip) { openTrip(b.dataset.poptrip); S.step = i; render(); }
+    else if (S.step !== i) markStep(i);
     if (S.size === "min") setSize("half");
     const it = panel.querySelector(`[data-pit="${i}|${j}"]`);
     if (it) { it.scrollIntoView({block: "center", behavior: reduced ? "auto" : "smooth"}); it.classList.add("flash"); setTimeout(() => it.classList.remove("flash"), 1400); }
