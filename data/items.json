@@ -1613,5 +1613,138 @@
   ],
   "title": "Colombia: café, ciudad y Caribe",
   "id": "viaje-colombia"
+ },
+ {
+  "kind": "country",
+  "country": "ES",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-ES"
+ },
+ {
+  "kind": "country",
+  "country": "MA",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-MA"
+ },
+ {
+  "kind": "country",
+  "country": "CV",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-CV"
+ },
+ {
+  "kind": "country",
+  "country": "GB",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-GB"
+ },
+ {
+  "kind": "country",
+  "country": "IE",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-IE"
+ },
+ {
+  "kind": "country",
+  "country": "SI",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-SI"
+ },
+ {
+  "kind": "country",
+  "country": "HR",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-HR"
+ },
+ {
+  "kind": "country",
+  "country": "FI",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-FI"
+ },
+ {
+  "kind": "country",
+  "country": "SE",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-SE"
+ },
+ {
+  "kind": "country",
+  "country": "SM",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-SM"
+ },
+ {
+  "kind": "country",
+  "country": "IT",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-IT"
+ },
+ {
+  "kind": "country",
+  "country": "CN",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-CN"
+ },
+ {
+  "kind": "country",
+  "country": "PH",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-PH"
+ },
+ {
+  "kind": "country",
+  "country": "MV",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-MV"
+ },
+ {
+  "kind": "country",
+  "country": "UY",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-UY"
+ },
+ {
+  "kind": "country",
+  "country": "MX",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-MX"
+ },
+ {
+  "kind": "country",
+  "country": "GT",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-GT"
+ },
+ {
+  "kind": "country",
+  "country": "DO",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-DO"
+ },
+ {
+  "kind": "country",
+  "country": "CU",
+  "cities": [],
+  "updatedAt": "2026-11-06T13:41:53.872885Z",
+  "id": "pais-CU"
  }
 ]
