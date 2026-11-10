@@ -45,7 +45,8 @@
     "photos/lis22-v-pasta.mp4"
    ],
    "top": true,
-   "addr": "Rua de Santo António da Glória 6B"
+   "addr": "Rua de Santo António da Glória 6B",
+   "cover": "photos/lis26-cena.jpg"
   },
   {
    "id": "baixamar",
@@ -67,7 +68,9 @@
    "media": [
     "photos/lis26-arroz.jpg"
    ],
-   "addr": "Rua dos Bacalhoeiros 28"
+   "addr": "Rua dos Bacalhoeiros 28",
+   "cover": "photos/lis26-arroz.jpg",
+   "top": true
   },
   {
    "id": "pasteis",
@@ -84,7 +87,6 @@
    "media": [
     "photos/lis22-pasteis.jpg"
    ],
-   "top": true,
    "addr": "Rua de Belém 84-92"
   },
   {
@@ -103,7 +105,8 @@
     "photos/lis26-v-ginjinha.mp4",
     "photos/lis26-ginjinha.jpg"
    ],
-   "top": true
+   "top": true,
+   "cover": "photos/lis26-ginjinha.jpg"
   },
   {
    "id": "lisboabar",
@@ -137,7 +140,9 @@
     "photos/lis26-ostras-2.jpg",
     "photos/lis26-ostras-3.jpg"
    ],
-   "addr": "Rua dos Cordoeiros 8"
+   "addr": "Rua dos Cordoeiros 8",
+   "cover": "photos/lis26-ostras-3.jpg",
+   "top": true
   },
   {
    "id": "bairroalto",
@@ -169,8 +174,7 @@
    "best": "Al atardecer",
    "media": [
     "photos/lis22-santacatarina.jpg"
-   ],
-   "top": true
+   ]
   },
   {
    "id": "saopedro",
@@ -189,7 +193,8 @@
     "photos/lis26-mirador.jpg",
     "photos/lis26-v-mirador-2.mp4"
    ],
-   "top": true
+   "top": true,
+   "cover": "photos/lis26-mirador.jpg"
   },
   {
    "id": "comercio",
@@ -273,7 +278,8 @@
    "tip": "Cuesta 6,20 €. Arriba sale al Largo do Carmo, al lado del Lisboa Bar.",
    "media": [
     "photos/lis22-santa-justa.jpg"
-   ]
+   ],
+   "cover": "photos/lis22-santa-justa.jpg"
   },
   {
    "id": "alfama",
@@ -360,7 +366,8 @@
     "photos/lis22-lx-3.jpg",
     "photos/lis22-lx-4.jpg",
     "photos/lis22-sushi.jpg"
-   ]
+   ],
+   "cover": "photos/lis22-sushi.jpg"
   },
   {
    "id": "alfamagh",

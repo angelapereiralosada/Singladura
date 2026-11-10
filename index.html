@@ -299,6 +299,12 @@ body.zlab .mk.pi .mlab,.mk.pi.lab .mlab{display:block}
 .sprev,.snext{position:absolute;top:0;bottom:0;z-index:2;border:0;background:none}
 .sprev{left:0;width:33%}.snext{right:0;width:67%}
 .dcards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,46%);gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.gcard{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;min-height:150px;margin:4px 0 14px;padding:18px;border-radius:24px;overflow:hidden;background:#2F4FD8;color:#fff;text-decoration:none;isolation:isolate;box-shadow:0 12px 26px -12px rgba(47,79,216,.6)}
+.gcard::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;background-size:56px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.6'%3E%3Cpath d='M32 8c6 10 14 18 24 24-10 6-18 14-24 24-6-10-14-18-24-24 10-6 18-14 24-24z'/%3E%3Ccircle cx='32' cy='32' r='7'/%3E%3Cpath d='M0 9a9 9 0 0 0 9-9M55 0a9 9 0 0 0 9 9M64 55a9 9 0 0 0-9 9M9 64a9 9 0 0 0-9-9'/%3E%3C/g%3E%3C/svg%3E")}
+.gcard em{display:block;font:700 22px/1 "Caveat",cursive;font-style:normal;color:#F7C6D3}
+.gcard b{display:block;font:900 44px/1 var(--f-display);letter-spacing:-.03em}
+.gcard small{display:block;margin-top:6px;font-size:13.5px;line-height:1.35;opacity:.9;max-width:26ch}
+.gcard i{font-style:normal;flex:none;background:#F6B100;color:#1F2147;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px}
 .dcover{position:relative;aspect-ratio:3/4;border:0;padding:0;border-radius:22px;overflow:hidden;background:#2B2540;color:#fff;text-align:left;box-shadow:0 8px 20px rgba(150,40,70,.2)}
 .dcover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dcover span{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 14px;background:linear-gradient(transparent,rgba(20,16,40,.8))}
@@ -1860,6 +1866,7 @@ function renderList(){
     <div class="phead"><div><div class="kicker">${ro ? "Guía de viajes compartida" : "Mi diario de viaje"}</div><h2>${ro ? "Sitios recomendados" : "Mis viajes"}</h2></div>
       ${ro ? "" : `<button class="btn primary" id="b-new">${ic("plus")}Nuevo lugar</button>`}</div>
     ${S.loaded ? statsLine() : ""}
+    ${dests().length ? `<section class="sec">${dests().map(d => `<a class="gcard" href="guia.html#${esc(d.slug || d.id.replace(/^dest-/, ""))}"><span><em>La guía de Ángela</em><b>${esc(d.city)}</b><small>Dónde comer, tomar algo, rutas a pie y qué hacer si te pierdes</small></span><i>Abrir</i></a>`).join("")}</section>` : ""}
     ${ro ? "" : `<button class="tellc" id="b-tell"><span class="tico">${ic("chat", "lg")}</span><span><b>Cuéntamelo</b><span class="muted small">Escribe lo que recuerdes de tus viajes, como en un chat</span></span>${MSGS.some(m => !m.done) ? `<em>${MSGS.filter(m => !m.done).length}</em>` : ""}</button>`}
     <div class="searchwrap" id="gwrap">${ic("search")}<input class="search" id="gsearch" type="search" placeholder="${ro ? "¿A dónde vas? Busca un país o ciudad" : "Busca un país, ciudad, plato…"}" autocomplete="off" enterkeyhint="search" aria-label="Buscar"></div>
     ${hasEx && !ro ? `<div class="note"><span>Lisboa, Roma y Kioto son ejemplos para que veas cómo queda. Bórralos cuando empieces con los tuyos.</span><div><button class="btn sm" id="b-clear-ex">${ic("trash", "sm")}Borrar ejemplos</button></div></div>` : ""}
@@ -1871,7 +1878,6 @@ function renderList(){
       ${vis.length ? `<div class="ccs">${vis.map(cc => `<button class="cc" data-cc="${cc}" style="--sw:${colorFor(cc)}"><span class="fl">${flag(cc)}</span>${esc(countryName(cc))}${countFor(cc) ? `<em>${countFor(cc)}</em>` : ""}</button>`).join("")}</div>` : `<span class="muted small">${ro ? "Sin países todavía." : "Marca los países donde has estado, aunque no tengas nada apuntado."}</span>`}
       ${ro ? "" : `<button class="btn" id="b-ckl">${ic("check", "sm")}Marcar países de la lista</button>`}
     </section>
-    ${dests().length ? `<section class="sec"><div class="sectitle">${ic("compass")}Mis guías</div><div class="dcards">${dests().map(d => { const cov = d.cover || (destStory(d, destItems(d))[0]?.m.src); return `<button class="dcover" data-dest="${esc(d.id)}">${cov ? `<img src="${esc(photoSrc(cov))}" alt="" loading="lazy">` : ""}<span><b>${esc(d.city)}</b><em>${flag(d.country)} ${destItems(d).length} sitios</em></span></button>`; }).join("")}</div></section>` : ""}
     ${wishSet().size || !ro ? `<section class="sec"><div class="sectitle">${ic("star")}Quiero ir <span class="n">${wishSet().size}</span></div>
       ${wishSet().size ? `<div class="ccs">${[...wishSet()].sort((a, b) => countryName(a).localeCompare(countryName(b), "es")).map(cc => `<button class="cc wish" data-cc="${cc}"><span class="fl">${flag(cc)}</span>${esc(countryName(cc))}</button>`).join("")}</div>` : `<span class="muted small">Busca un país arriba y pulsa «Quiero ir» para pintarlo en amarillo.</span>`}</section>` : ""}
     ${tripCards(trips())}
@@ -2151,7 +2157,7 @@ function renderCountry(){
       <button class="btn ${ps.length ? "primary" : ""} grow" id="b-addhere">${ic("plus", "sm")}Añadir un lugar aquí</button>
       <button class="btn grow" id="b-newtrip">${ic("route", "sm")}Crear una ruta</button>
       <button class="btn grow" id="b-tellc">${ic("chat", "sm")}Cuéntame algo</button></div>`}
-    ${dests().filter(d => d.country === cc).map(d => { const cov = d.cover || (destStory(d, destItems(d))[0]?.m.src); return `<button class="dcover wide" data-dest="${esc(d.id)}">${cov ? `<img src="${esc(photoSrc(cov))}" alt="" loading="lazy">` : ""}<span><b>Guía de ${esc(d.city)}</b><em>${destItems(d).length} sitios recomendados</em></span></button>`; }).join("")}
+    ${dests().filter(d => d.country === cc).map(d => `<a class="gcard" href="guia.html#${esc(d.slug || d.id.replace(/^dest-/, ""))}"><span><em>La guía de Ángela</em><b>${esc(d.city)}</b><small>Dónde comer, tomar algo, rutas a pie y qué hacer si te pierdes</small></span><i>Abrir</i></a>`).join("")}
     ${tabs.length > 1 ? `<div class="tabs" role="tablist">${tabs.map(([k, l, icn]) => `<button role="tab" aria-selected="${k === tab}" data-tab="${k}">${ic(icn, "sm")}${l}</button>`).join("")}</div>` : ""}
     ${tab ? `<div class="tabpane" role="tabpanel">${pane[tab]()}</div>`
       : `<div class="empty">${ic(visited ? "check" : "flag")}<span>${visited ? "Has estado aquí, pero aún no hay lugares apuntados." : ro ? "Sin recomendaciones en este país." : "Pulsa «Marcar como visitado» para pintarlo en tu mapa."}</span></div>`}`);

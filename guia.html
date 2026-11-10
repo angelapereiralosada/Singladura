@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
 <style>
 :root{
+  --az:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.6'%3E%3Cpath d='M32 8c6 10 14 18 24 24-10 6-18 14-24 24-6-10-14-18-24-24 10-6 18-14 24-24z'/%3E%3Ccircle cx='32' cy='32' r='7'/%3E%3Cpath d='M0 9a9 9 0 0 0 9-9M55 0a9 9 0 0 0 9 9M64 55a9 9 0 0 0-9 9M9 64a9 9 0 0 0-9-9'/%3E%3Cpath d='M32 0v4M32 60v4M0 32h4M60 32h4'/%3E%3C/g%3E%3C/svg%3E\");
   --paper:#FFF8F6;--ink:#1F2147;--mute:#6B6886;--line:#EFE2E6;--pink:#F7C6D3;--pink2:#FDE8EE;
   --cobalt:#2F4FD8;--tram:#F6B100;--red:#D7263D;--green:#12A06A;
   --f-d:"Fraunces",Georgia,serif;--f-b:"DM Sans",system-ui,-apple-system,sans-serif;--f-h:"Caveat",cursive;
@@ -38,19 +39,24 @@ h1,h2,h3{font-family:var(--f-d);font-weight:700;margin:0;letter-spacing:-.01em;l
 .loading{display:grid;place-items:center;min-height:100vh;font:700 34px var(--f-h);color:var(--mute)}
 
 /* hero */
-.hero{position:relative;height:min(68vh,560px);min-height:430px;overflow:hidden;background:var(--ink);color:#fff}
+.hero{position:relative;height:min(60vh,520px);min-height:430px;overflow:hidden;background:var(--cobalt);color:#fff}
+.hero .az{position:absolute;inset:0;background-image:var(--az);background-size:64px;opacity:.16}
+.hero .tram{position:absolute;right:-18px;bottom:64px;width:min(62vw,300px);filter:drop-shadow(0 18px 18px rgba(15,16,40,.35))}
+.hero .rail{position:absolute;left:0;right:0;bottom:62px;height:3px;background:rgba(255,255,255,.35)}
+.hero .wire{position:absolute;left:46%;right:0;bottom:calc(62px + min(62vw,300px) * .567 + 2px);height:2px;background:rgba(255,255,255,.3)}
+@media (prefers-reduced-motion:no-preference){.hero .tram{animation:tram 1.4s cubic-bezier(.2,.8,.2,1) both}@keyframes tram{from{transform:translateX(60%)}}}
 .hero .sl{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
 .hero .sl.on{opacity:1}
 .hero .sl img,.hero .sl video{width:100%;height:100%;object-fit:cover}
 .hero .sl.on img{animation:kb 9s ease-out forwards}
 @keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,16,40,.45) 0,rgba(15,16,40,0) 26%,rgba(15,16,40,0) 45%,rgba(15,16,40,.82) 100%);pointer-events:none}
+
 .htop{position:absolute;z-index:2;left:0;right:0;top:0;padding:calc(var(--st) + 12px) 16px 0;display:flex;justify-content:space-between;gap:8px}
 .chip-g{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 13px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-weight:700;font-size:14px;color:#fff}
-.hbody{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 20px 56px}
+.hbody{position:absolute;z-index:2;left:0;right:0;top:calc(var(--st) + 84px);padding:0 20px}
 .hbody .by{font:700 26px/1 var(--f-h);color:var(--pink);transform:rotate(-3deg);display:inline-block;margin-bottom:2px}
 .hbody h1{font-size:clamp(72px,22vw,124px);font-weight:900;letter-spacing:-.045em;line-height:.86}
-.hbody p{margin:12px 0 0;max-width:30ch;font-size:17px;line-height:1.4;opacity:.92}
+.hbody p{margin:14px 0 0;max-width:24ch;font-size:17px;line-height:1.4;opacity:.92}
 .dots{position:absolute;z-index:2;right:20px;bottom:40px;display:flex;gap:5px}
 .dots i{width:6px;height:6px;border-radius:9px;background:rgba(255,255,255,.45);transition:width .3s}
 .dots i.on{width:18px;background:#fff}
@@ -64,15 +70,14 @@ h1,h2,h3{font-family:var(--f-d);font-weight:700;margin:0;letter-spacing:-.01em;l
 
 /* big tiles */
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.tile{position:relative;overflow:hidden;border-radius:26px;aspect-ratio:1/1.08;color:#fff;text-align:left;background:var(--ink);isolation:isolate}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s}
-.tile:active img{transform:scale(1.06)}
-.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,var(--tg,rgba(15,16,40,.85)) 100%)}
-.tile .tic{position:absolute;top:12px;left:12px;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--tc);color:var(--tk,#fff)}
+.tile{position:relative;overflow:hidden;border-radius:26px;aspect-ratio:1/1.02;color:var(--tk,#fff);text-align:left;background:var(--tc);isolation:isolate}
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--az);background-size:56px;opacity:.14}
+.tile .big{position:absolute;right:-14px;bottom:-16px;opacity:.22}.tile .big .ic{width:118px;height:118px;stroke-width:1.6}
+.tile:active{transform:scale(.98)}
+.tile .tic{position:absolute;top:14px;left:14px;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.22)}
 .tile b{position:absolute;left:14px;right:12px;bottom:34px;font:700 23px/1.02 var(--f-d);letter-spacing:-.01em}
 .tile small{position:absolute;left:14px;bottom:13px;font-size:13.5px;font-weight:500;opacity:.9}
-.tile.lost{background:var(--cobalt)}
-.tile.lost::before{background:linear-gradient(180deg,rgba(47,79,216,.15),rgba(31,33,71,.9))}
+
 .minis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .mini{display:flex;align-items:center;gap:12px;padding:12px;border-radius:20px;background:#fff;box-shadow:0 1px 0 var(--line);text-align:left}
 .mini .tic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--tc);color:var(--tk,#fff);flex:none}
@@ -192,13 +197,13 @@ h1,h2,h3{font-family:var(--f-d);font-weight:700;margin:0;letter-spacing:-.01em;l
 .row .ic:last-child{color:var(--mute)}
 
 /* plans */
-.plan{position:relative;display:block;width:100%;text-align:left;border-radius:28px;overflow:hidden;aspect-ratio:16/12;color:#fff;background:var(--ink)}
-.plan img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.plan::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,16,40,.2),rgba(15,16,40,.05) 35%,rgba(15,16,40,.9))}
-.plan .in{position:absolute;z-index:1;left:18px;right:18px;bottom:18px}
+.plan{position:relative;display:block;width:100%;text-align:left;border-radius:28px;overflow:hidden;color:#fff;background:var(--pc,var(--cobalt));isolation:isolate;padding:64px 18px 18px}
+.plan::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--az);background-size:56px;opacity:.13}
+.plan svg.rt{display:block;width:100%;height:150px;margin-bottom:12px;overflow:visible}
+.plan .in{position:relative}
 .plan h3{font-size:28px;font-weight:900;letter-spacing:-.02em}
 .plan p{margin:6px 0 10px;opacity:.9;font-size:15px;line-height:1.35}
-.plan .tl{position:absolute;z-index:1;top:14px;left:14px;display:flex;gap:6px}
+.plan .tl{position:absolute;z-index:1;top:16px;left:16px;display:flex;gap:6px}
 .pmap{position:relative;height:46vh;min-height:300px}
 .pmap .top{position:absolute;z-index:3;top:calc(var(--st) + 12px);left:14px}
 .steps{position:relative;margin-top:6px}
@@ -335,7 +340,7 @@ const DN = ["lun", "mar", "mie", "jue", "vie", "sab", "dom"], DL = ["Lunes", "Ma
 
 let G = null; const S = {me: null, watch: null, scroll: {}, navd: false, peek: null, mapCat: new Set(), meAt: 0};
 const isVid = u => /\.mp4$/i.test(u), poster = u => u.replace(/\.mp4$/i, ".jpg"), th = u => poster(u).replace("photos/", "photos/th/");
-const coverOf = p => p.media && p.media.length ? th(p.media.find(m => !isVid(m)) || p.media[0]) : th(G.hero[0]);
+const coverOf = p => p.cover ? th(p.cover) : p.media && p.media.length ? th(p.media.find(m => !isVid(m)) || p.media[0]) : th(G.hero[0]);
 const byId = id => G.places.find(p => p.id === id);
 const favKey = () => "fav." + G.slug;
 const favs = () => LS.get(favKey(), []);
@@ -443,25 +448,25 @@ let lastHash = location.hash;
 window.addEventListener("hashchange", () => { $$(".scrim").forEach(x => x.remove()); S.scroll[lastHash] = scrollY; lastHash = location.hash; S.navd = true; S.peek = null; render(); });
 
 /* ---------- views ---------- */
+const TRAM = `<svg class="tram" viewBox="0 0 300 170" aria-hidden="true"><path d="M150 4 L120 36 M150 4 L180 36" stroke="#1F2147" stroke-width="3" fill="none"/><rect x="18" y="34" width="264" height="14" rx="7" fill="#1F2147"/><rect x="10" y="46" width="280" height="96" rx="18" fill="#F6B100"/><rect x="10" y="104" width="280" height="38" rx="0" fill="#FFF8F6"/><rect x="10" y="98" width="280" height="8" fill="#1F2147" opacity=".9"/><path d="M10 124 H290 V128 a16 16 0 0 1-16 16 H26 a16 16 0 0 1-16-16z" fill="#F6B100"/>${[0,1,2,3,4].map(i => `<rect x="${28 + i * 50}" y="58" width="38" height="34" rx="7" fill="#9FC1FF" opacity=".95"/><rect x="${28 + i * 50}" y="58" width="38" height="10" rx="5" fill="#fff" opacity=".55"/>`).join("")}<rect x="134" y="106" width="32" height="34" rx="4" fill="#F6B100"/><text x="250" y="122" font-family="DM Sans,Arial" font-weight="700" font-size="14" fill="#1F2147">28</text><circle cx="66" cy="148" r="14" fill="#1F2147"/><circle cx="234" cy="148" r="14" fill="#1F2147"/><circle cx="66" cy="148" r="5" fill="#fff"/><circle cx="234" cy="148" r="5" fill="#fff"/></svg>`;
 let heroT, heroI = 0;
 function vHome(){
   const counts = c => G.places.filter(p => p.cat === c).length;
   const w = whereCard();
-  const musts = G.places.filter(p => p.top);
+  const musts = G.places.filter(p => p.top && p.cover);
   return `
   <header class="hero">
-    ${G.hero.map((m, i) => `<div class="sl${i === 0 ? " on" : ""}">${isVid(m) ? `<video src="${m}" poster="${poster(m)}" muted playsinline loop preload="none"></video>` : `<img src="${m}" alt="" ${i ? 'loading="lazy"' : ""}>`}</div>`).join("")}
+    <span class="az"></span><span class="wire"></span><span class="rail"></span>${TRAM}
     <div class="htop"><a class="chip-g" href="index.html" aria-label="Volver a Singladura">${ic("back", "sm")}Singladura</a><span class="chip-g" id="wx" hidden></span></div>
     <div class="hbody"><span class="by">La guía de ${esc(G.by)}</span><h1>${esc(G.city)}</h1><p>${esc(G.tagline)}</p></div>
-    <div class="dots">${G.hero.map((m, i) => `<i class="${i === 0 ? "on" : ""}"></i>`).join("")}</div>
   </header>
   <div class="wrap">
     ${w}
     <div class="tiles">
-      <a class="tile" href="${href("comer")}" style="${catVars("comer")}"><img src="${th(G.tiles.comer)}" alt=""><span class="tic">${ic("food", "lg")}</span><b>Tengo hambre</b><small>${counts("comer")} sitios</small></a>
-      <a class="tile" href="${href("beber")}" style="${catVars("beber")}"><img src="${th(G.tiles.beber)}" alt=""><span class="tic">${ic("glass", "lg")}</span><b>Tomar algo</b><small>${counts("beber")} sitios</small></a>
-      <a class="tile" href="${href("planes")}" style="--tc:#fff;--tk:#1F2147"><img src="${th(G.tiles.plan)}" alt=""><span class="tic">${ic("route", "lg")}</span><b>¿Qué hago hoy?</b><small>${G.plans.length} planes hechos</small></a>
-      <a class="tile lost" href="${href("sos")}" style="--tc:rgba(255,255,255,.2)"><img src="${th(G.tiles.lost)}" alt="" style="opacity:.35"><span class="tic">${ic("life", "lg")}</span><b>Me he perdido</b><small>Volver, taxi y ayuda</small></a>
+      <a class="tile" href="${href("comer")}" style="${catVars("comer")}"><span class="big">${ic("food")}</span><span class="tic">${ic("food", "lg")}</span><b>Tengo hambre</b><small>${counts("comer")} sitios para comer</small></a>
+      <a class="tile" href="${href("beber")}" style="${catVars("beber")}"><span class="big">${ic("glass")}</span><span class="tic">${ic("glass", "lg")}</span><b>Tomar algo</b><small>${counts("beber")} bares</small></a>
+      <a class="tile" href="${href("planes")}" style="--tc:#2F4FD8;--tk:#fff"><span class="big">${ic("route")}</span><span class="tic">${ic("route", "lg")}</span><b>¿Qué hago hoy?</b><small>${G.plans.length} rutas a pie</small></a>
+      <a class="tile" href="${href("sos")}" style="--tc:#1F2147;--tk:#fff"><span class="big">${ic("life")}</span><span class="tic">${ic("life", "lg")}</span><b>Me he perdido</b><small>Volver, taxi y ayuda</small></a>
     </div>
     <div class="minis">
       <a class="mini" href="${href("ver")}" style="${catVars("ver")}"><span class="tic">${ic("eye")}</span><span><b>Qué ver</b><small>${counts("ver")} sitios</small></span></a>
@@ -473,13 +478,13 @@ function vHome(){
     <section class="sec"><h2>Antes de ir</h2>
       <div class="tips">${G.basics.map(b => `<details><summary><span class="tci">${ic(b.ic)}</span>${esc(b.t)}${ic("chev")}</summary><p>${esc(b.txt)}</p></details>`).join("")}</div>
     </section>
-    <p class="foot">Cualquier duda, escribidme ;)</p>
+    <p class="foot">Cualquier duda, me escribís</p>
   </div>`;
 }
 const short = (t, n) => { t = String(t || ""); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(" ")) + "…"; };
 function whereCard(){
-  if (!S.me) return `<div class="where"><span class="wi">${ic("locate")}</span><div><b>¿Ya estáis en ${esc(G.city)}?</b><span>Activa la ubicación y te digo qué te pilla cerca.</span></div><button class="go" data-locate>Activar</button></div>`;
-  if (!inCity()) return `<div class="where"><span class="wi">${ic("plane")}</span><div><b>Aún no estás en ${esc(G.city)}</b><span>Cuando llegues, verás a cuántos minutos te queda cada sitio.</span></div></div>`;
+  if (!S.me) return `<div class="where"><span class="wi">${ic("locate")}</span><div><b>¿Estás en ${esc(G.city)}?</b><span>Activa la ubicación para ver qué tienes cerca.</span></div><button class="go" data-locate>Activar</button></div>`;
+  if (!inCity()) return `<div class="where"><span class="wi">${ic("plane")}</span><div><b>Todavía no estás en ${esc(G.city)}</b><span>Cuando estés allí, te diré a cuántos minutos te queda cada sitio.</span></div></div>`;
   const [[k, p]] = nearest(S.me, 1);
   const food = G.places.filter(x => x.cat === "comer").map(x => [km(S.me, x), x]).sort((a, b) => a[0] - b[0])[0];
   return `<a class="where" href="${href("lugar/" + food[1].id)}"><span class="wi">${ic("pin")}</span><div><b>Estás cerca de ${esc(p.zone.split(" · ")[0])}</b><span>Para comer, lo más cerca es ${esc(food[1].n)}, a ${walkMin(food[0])} min.</span></div></a>`;
@@ -496,7 +501,7 @@ function vList(cat){
   return `${pHead(C.t)}
   <div class="ptitle" style="${catVars(cat)}"><div class="big"><span class="tic">${ic(C.ic, "lg")}</span><h2>${C.t}</h2></div><p>${C.s}</p></div>
   <div class="filters">
-    <button class="fl" data-near aria-pressed="${!!canNear}">${ic("locate", "sm")}${canNear ? "Lo más cerca primero" : "Ordenar por cercanía"}</button>
+    <button class="fl" data-near aria-pressed="${!!canNear}">${ic("locate", "sm")}Cerca de mí</button>
     ${hasHours ? `<button class="fl" data-f="open" aria-pressed="${!!f.open}">${ic("clock", "sm")}Abierto ahora</button>` : ""}
     ${cat !== "dormir" ? `<button class="fl" data-f="cheap" aria-pressed="${!!f.cheap}">Barato</button>` : ""}
   </div>
@@ -545,10 +550,20 @@ const rowHTML = (q, sub, extra = "") => `<a class="row" href="${href("lugar/" + 
 
 function vPlans(){
   return `${pHead("¿Qué hago hoy?")}
-  <div class="ptitle" style="--tc:#1F2147;--tk:#fff"><div class="big"><span class="tic">${ic("route", "lg")}</span><h2>¿Qué hago hoy?</h2></div><p>Planes ya pensados, con los sitios en orden para ir andando. Elige uno y sígueme.</p></div>
-  <div class="wrap"><div class="cards">${G.plans.map(pl => `<a class="plan" href="${href("plan/" + pl.id)}"><img src="${th(pl.cover)}" alt="" loading="lazy">
+  <div class="ptitle" style="--tc:#2F4FD8;--tk:#fff"><div class="big"><span class="tic">${ic("route", "lg")}</span><h2>¿Qué hago hoy?</h2></div><p>Rutas para ir andando, con los sitios en orden.</p></div>
+  <div class="wrap"><div class="cards">${G.plans.map((pl, k) => `<a class="plan" href="${href("plan/" + pl.id)}" style="--pc:${["#2F4FD8", "#D7263D", "#1F2147"][k % 3]}">${routeSVG(pl)}
     <div class="tl"><span class="tag glass">${ic("clock", "sm")}${esc(pl.dur)}</span><span class="tag glass">${ic("walk", "sm")}${pl.steps.length} paradas</span></div>
     <div class="in"><h3>${esc(pl.n)}</h3><p>${esc(pl.sub)}</p><span class="tag" style="background:var(--tram)">${esc(pl.when)}</span></div></a>`).join("")}</div></div>`;
+}
+function routeSVG(pl){
+  const st = pl.steps.map(s => byId(s[0])).filter(Boolean); if (st.length < 2) return "";
+  const W = 320, H = 150, pd = 18, cl = Math.cos(st[0].lat * Math.PI / 180);
+  const xs = st.map(p => p.lon * cl), ys = st.map(p => -p.lat);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const sc = Math.min((W - 2 * pd) / (x1 - x0 || 1), (H - 2 * pd) / (y1 - y0 || 1));
+  const ox = (W - (x1 - x0) * sc) / 2, oy = (H - (y1 - y0) * sc) / 2;
+  const pts = st.map((p, i) => [ox + (xs[i] - x0) * sc, oy + (ys[i] - y0) * sc]);
+  return `<svg class="rt" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><polyline points="${pts.map(q => q.map(v => v.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>${pts.map((q, i) => `<g transform="translate(${q[0].toFixed(1)},${q[1].toFixed(1)})"><circle r="11" fill="${i === pts.length - 1 ? "#F6B100" : "#fff"}"/><text text-anchor="middle" dy="5" font-family="Fraunces,Georgia,serif" font-weight="900" font-size="12" fill="#1F2147">${i + 1}</text></g>`).join("")}</svg>`;
 }
 function vPlan(id){
   const pl = G.plans.find(x => x.id === id); if (!pl) return vMissing();
@@ -594,8 +609,8 @@ function vLost(){
   const here = near[0];
   return `<div class="lmap" id="lmap"><div class="top"><button class="rb" data-back aria-label="Atrás">${ic("back")}</button></div></div>
   <div class="dbody"><div class="wrap">
-    <h1 style="margin-top:0">Tranqui, que esto se arregla</h1>
-    ${!S.me ? `<div class="where" style="margin:16px 0 0"><span class="wi">${ic("locate")}</span><div><b>Primero, dime dónde estás</b><span>Activa la ubicación y te ubico en el mapa.</span></div><button class="go" data-locate>Activar</button></div>`
+    <h1 style="margin-top:0">¿Te has perdido?</h1>
+    ${!S.me ? `<div class="where" style="margin:16px 0 0"><span class="wi">${ic("locate")}</span><div><b>Activa la ubicación</b><span>Así te sitúo en el mapa.</span></div><button class="go" data-locate>Activar</button></div>`
       : inCity() ? `<p style="margin:10px 0 0;font-size:17px">Estás a <b>${walkMin(here[0])} min andando</b> de ${esc(here[1].n)}, por ${esc(here[1].zone.split(" · ")[0])}.</p>`
       : `<p style="margin:10px 0 0;font-size:17px;color:var(--mute)">Ahora mismo no estás en ${esc(G.city)}.</p>`}
     <div class="big2">
@@ -606,8 +621,8 @@ function vLost(){
       <a class="act sos" href="tel:${G.help.emergency}"><span class="ai">${ic("phone")}</span><b>Emergencias</b><small>Llamar al ${G.help.emergency}</small></a>
     </div>
     ${home ? `<p style="text-align:center;margin:10px 0 0"><button data-sethome style="color:var(--mute);font-size:14px;text-decoration:underline">Cambiar mi alojamiento</button></p>` : ""}
-    ${near.length && inCity() ? `<section class="sec"><h2>Lo que tienes al lado</h2><div class="rows">${near.map(([k, q]) => rowHTML(q, walkMin(k) + " min andando, " + CAT[q.cat].l.toLowerCase())).join("")}</div></section>` : ""}
-    <section class="sec"><h2>Frases que te salvan</h2><div class="phr">${G.help.phrases.map(([a, b]) => `<div><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("")}</div></section>
+    ${near.length && inCity() ? `<section class="sec"><h2>Tienes cerca</h2><div class="rows">${near.map(([k, q]) => rowHTML(q, walkMin(k) + " min andando, " + CAT[q.cat].l.toLowerCase())).join("")}</div></section>` : ""}
+    <section class="sec"><h2>Frases en portugués</h2><div class="phr">${G.help.phrases.map(([a, b]) => `<div><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("")}</div></section>
   </div></div>`;
 }
 function setHome(){
@@ -760,7 +775,7 @@ function render(keep){
   tabbar(v);
   document.title = (v === "lugar" && byId(a) ? byId(a).n + " · " : "") + G.city + " · La guía de " + G.by;
   wire(view);
-  if (v === "home") { startHero(); weather(); }
+  if (v === "home") weather();
   if (v === "lugar") wireStrip();
   if (v === "mapa") drawMapView(a);
   if (v === "plan") drawPlanMap(a);
