@@ -1,0 +1,556 @@
+{
+ "slug": "lisboa",
+ "city": "Lisboa",
+ "country": "Portugal",
+ "cc": "PT",
+ "tz": "Europe/Lisbon",
+ "lat": 38.7139,
+ "lon": -9.1394,
+ "tagline": "Todo lo que hice en mis dos viajes. Apuntad lo que os cuadre.",
+ "by": "Ángela",
+ "hero": [
+  "photos/lis22-santacatarina.jpg",
+  "photos/lis26-v-mirador.mp4",
+  "photos/lis22-tranvia.jpg",
+  "photos/lis22-pink-street.jpg",
+  "photos/lis26-ginjinha.jpg"
+ ],
+ "tiles": {
+  "comer": "photos/lis26-arroz.jpg",
+  "beber": "photos/lis26-ostras.jpg",
+  "plan": "photos/lis22-tranvia-28.jpg",
+  "lost": "photos/lis22-rua-augusta.jpg"
+ },
+ "places": [
+  {
+   "id": "nonna",
+   "cat": "comer",
+   "n": "Nonna Goes Crazy",
+   "kind": "Pasta fresca",
+   "zone": "Avenida · Príncipe Real",
+   "price": 2,
+   "lat": 38.7163,
+   "lon": -9.1443,
+   "h": [
+    [
+     "mar-dom",
+     "12:30-15:00 19:30-22:30"
+    ]
+   ],
+   "txt": "Se ha puesto muy de moda y está buenísimo.",
+   "order": "El rigatoni Pomodoro con burrata y pistacho, que es su plato estrella. Y el tiramisú.",
+   "tip": "Como está de moda, id prontito o preguntad antes si hay sitio.",
+   "media": [
+    "photos/lis26-cena.jpg",
+    "photos/lis22-v-pasta.mp4"
+   ],
+   "top": true,
+   "addr": "Rua de Santo António da Glória 6B"
+  },
+  {
+   "id": "baixamar",
+   "cat": "comer",
+   "n": "Baixamar",
+   "kind": "Arroces y marisco",
+   "zone": "Baixa",
+   "price": 2,
+   "lat": 38.70903,
+   "lon": -9.13421,
+   "h": [
+    [
+     "todos",
+     "12:00-23:30"
+    ]
+   ],
+   "txt": "Un poco de turistas, pero el arroz estaba riquísimo.",
+   "order": "El arroz de marisco.",
+   "media": [
+    "photos/lis26-arroz.jpg"
+   ],
+   "addr": "Rua dos Bacalhoeiros 28"
+  },
+  {
+   "id": "pasteis",
+   "cat": "comer",
+   "n": "Pastéis de Belém",
+   "kind": "Pastelería",
+   "zone": "Belém",
+   "price": 1,
+   "lat": 38.6975,
+   "lon": -9.2032,
+   "txt": "Tenéis que comer pasteles de Belém aquí sí o sí.",
+   "order": "Los pasteles de nata, con canela y azúcar glas por encima.",
+   "tip": "Si la cola de fuera es larga, entrad y sentaos en las salas de dentro.",
+   "media": [
+    "photos/lis22-pasteis.jpg"
+   ],
+   "top": true,
+   "addr": "Rua de Belém 84-92"
+  },
+  {
+   "id": "ginjinha",
+   "cat": "beber",
+   "n": "Ginginha do Carmo",
+   "kind": "Chupito de ginjinha",
+   "zone": "Rossio · Carmo",
+   "price": 1,
+   "lat": 38.7134,
+   "lon": -9.1407,
+   "txt": "Un sitio enano debajo de unas escaleras. Te ponen el chupito de ginjinha en un vaso de chocolate.",
+   "order": "La ginjinha en vaso de chocolate, y os coméis el vaso.",
+   "tip": "Subiendo las escaleras llegáis al Largo do Carmo, que es una plaza muy bonita.",
+   "media": [
+    "photos/lis26-v-ginjinha.mp4",
+    "photos/lis26-ginjinha.jpg"
+   ],
+   "top": true
+  },
+  {
+   "id": "lisboabar",
+   "cat": "beber",
+   "n": "Lisboa Bar",
+   "kind": "Bar con azotea",
+   "zone": "Largo do Carmo",
+   "price": 1,
+   "lat": 38.712,
+   "lon": -9.1405,
+   "txt": "Un bar pequeño en el Largo do Carmo con una azotea muy chula. Cervezas enormes.",
+   "order": "Una cerveza de las grandes y a la azotea.",
+   "media": [
+    "photos/lis26-fotomaton.jpg"
+   ]
+  },
+  {
+   "id": "barbica",
+   "cat": "beber",
+   "n": "El antiguo Barbica",
+   "kind": "Ostras y vino",
+   "zone": "Bica",
+   "price": 1,
+   "lat": 38.7091,
+   "lon": -9.1468,
+   "txt": "Tenían happy hour de ostras a 1 €. Ahora el local se llama de otra forma, pero está en la misma calle de la Bica.",
+   "order": "Ostras en el happy hour y una tabla de quesos.",
+   "media": [
+    "photos/lis26-ostras.jpg",
+    "photos/lis26-happy-hour.jpg",
+    "photos/lis26-ostras-2.jpg",
+    "photos/lis26-ostras-3.jpg"
+   ],
+   "addr": "Rua dos Cordoeiros 8"
+  },
+  {
+   "id": "bairroalto",
+   "cat": "beber",
+   "n": "Bairro Alto de noche",
+   "kind": "Zona de copas",
+   "zone": "Bairro Alto",
+   "price": 1,
+   "lat": 38.7128,
+   "lon": -9.1445,
+   "txt": "Por la noche está lleno de gente tomando algo en la calle. Cenamos hamburguesas por aquí.",
+   "tip": "Se pide la bebida en la barra y se sale a la calle con ella, como hace todo el mundo.",
+   "media": [
+    "photos/lis22-cena.jpg"
+   ],
+   "best": "De noche"
+  },
+  {
+   "id": "santacatarina",
+   "cat": "ver",
+   "n": "Miradouro de Santa Catarina",
+   "kind": "Mirador",
+   "zone": "Bica · Santa Catarina",
+   "price": 0,
+   "lat": 38.7094,
+   "lon": -9.1474,
+   "h": "siempre",
+   "txt": "Aquí vimos el atardecer, con el puente rojo enfrente. Muy buen ambiente y mucha gente joven.",
+   "best": "Al atardecer",
+   "media": [
+    "photos/lis22-santacatarina.jpg"
+   ],
+   "top": true
+  },
+  {
+   "id": "saopedro",
+   "cat": "ver",
+   "n": "Miradouro de São Pedro de Alcântara",
+   "kind": "Mirador",
+   "zone": "Bairro Alto",
+   "price": 0,
+   "lat": 38.7151,
+   "lon": -9.1443,
+   "h": "siempre",
+   "txt": "Al atardecer había fiesta, con música y gente bailando.",
+   "best": "Al atardecer",
+   "media": [
+    "photos/lis26-v-mirador.mp4",
+    "photos/lis26-mirador.jpg",
+    "photos/lis26-v-mirador-2.mp4"
+   ],
+   "top": true
+  },
+  {
+   "id": "comercio",
+   "cat": "ver",
+   "n": "Praça do Comércio y Arco da Rua Augusta",
+   "kind": "Plaza",
+   "zone": "Baixa",
+   "price": 0,
+   "lat": 38.7088,
+   "lon": -9.1366,
+   "h": "siempre",
+   "txt": "La plaza grande junto al río. De aquí sale el tranvía hacia Belém.",
+   "media": [
+    "photos/lis22-rua-augusta.jpg",
+    "photos/lis22-v-tranvia-belem.mp4",
+    "photos/lis22-tranvia.jpg",
+    "photos/lis22-v-batucada.mp4"
+   ]
+  },
+  {
+   "id": "pink",
+   "cat": "ver",
+   "n": "Pink Street",
+   "kind": "Calle",
+   "zone": "Cais do Sodré",
+   "price": 0,
+   "lat": 38.7073,
+   "lon": -9.144,
+   "h": "siempre",
+   "txt": "La calle de los paraguas de colores, en Cais do Sodré.",
+   "best": "De noche hay ambiente",
+   "media": [
+    "photos/lis22-pink-street.jpg",
+    "photos/lis22-pink-street-2.jpg",
+    "photos/lis22-pink-street-3.jpg",
+    "photos/lis22-pink-street-4.jpg"
+   ]
+  },
+  {
+   "id": "bica",
+   "cat": "ver",
+   "n": "Elevador da Bica",
+   "kind": "Funicular",
+   "zone": "Bica",
+   "price": 1,
+   "lat": 38.7085,
+   "lon": -9.1465,
+   "txt": "El funicular de la Bica. Por la zona hay tiendas vintage.",
+   "tip": "El billete a bordo cuesta 4,30 € (dos viajes). Con el pase de 24 h va incluido.",
+   "media": [
+    "photos/lis22-bica.jpg",
+    "photos/lis22-vintage.jpg"
+   ]
+  },
+  {
+   "id": "tranvia28",
+   "cat": "ver",
+   "n": "Tranvía 28",
+   "kind": "Tranvía",
+   "zone": "Centro",
+   "price": 1,
+   "lat": 38.7107,
+   "lon": -9.1432,
+   "txt": "El tranvía típico, hay que montarse.",
+   "tip": "A bordo cuesta 3,30 €. Si vais a moveros mucho, el pase de 24 h (7,25 €) lo incluye.",
+   "media": [
+    "photos/lis22-tranvia-28.jpg"
+   ],
+   "roam": true
+  },
+  {
+   "id": "santajusta",
+   "cat": "ver",
+   "n": "Elevador de Santa Justa",
+   "kind": "Elevador",
+   "zone": "Baixa",
+   "price": 2,
+   "lat": 38.7121,
+   "lon": -9.1394,
+   "txt": "El elevador de hierro del centro.",
+   "tip": "Cuesta 6,20 €. Arriba sale al Largo do Carmo, al lado del Lisboa Bar.",
+   "media": [
+    "photos/lis22-santa-justa.jpg"
+   ]
+  },
+  {
+   "id": "alfama",
+   "cat": "ver",
+   "n": "Alfama de noche",
+   "kind": "Barrio",
+   "zone": "Alfama",
+   "price": 0,
+   "lat": 38.7115,
+   "lon": -9.1305,
+   "h": "siempre",
+   "txt": "Las calles de Alfama de noche, muy bonito para dar una vuelta.",
+   "best": "De noche",
+   "media": [
+    "photos/lis22-alfama-noche.jpg"
+   ]
+  },
+  {
+   "id": "torre",
+   "cat": "ver",
+   "n": "Torre de Belém",
+   "kind": "Monumento",
+   "zone": "Belém",
+   "price": 2,
+   "lat": 38.6916,
+   "lon": -9.216,
+   "h": [
+    [
+     "mar-dom",
+     "09:30-18:00"
+    ]
+   ],
+   "txt": "La foto típica. Está al lado de todo lo de Belém.",
+   "tip": "Los lunes cierra.",
+   "media": [
+    "photos/lis22-torre-belem.jpg",
+    "photos/lis22-torre-2.jpg"
+   ]
+  },
+  {
+   "id": "jeronimos",
+   "cat": "ver",
+   "n": "Monasterio de los Jerónimos",
+   "kind": "Monumento",
+   "zone": "Belém",
+   "price": 2,
+   "lat": 38.6979,
+   "lon": -9.2068,
+   "txt": "Justo al lado de los pasteles.",
+   "tip": "Los lunes cierra.",
+   "media": [
+    "photos/lis22-jeronimos.jpg"
+   ]
+  },
+  {
+   "id": "padrao",
+   "cat": "ver",
+   "n": "Padrão dos Descobrimentos",
+   "kind": "Monumento",
+   "zone": "Belém",
+   "price": 0,
+   "lat": 38.6936,
+   "lon": -9.2057,
+   "h": "siempre",
+   "txt": "A dos pasos de la torre, junto al río.",
+   "media": [
+    "photos/lis22-padrao.jpg"
+   ]
+  },
+  {
+   "id": "lx",
+   "cat": "ver",
+   "n": "LX Factory",
+   "kind": "Tiendas y comida",
+   "zone": "Alcântara",
+   "price": 1,
+   "lat": 38.7036,
+   "lon": -9.1787,
+   "txt": "Una fábrica antigua con tiendas, murales y mercadillo, debajo del puente. Comimos sushi allí mismo.",
+   "tip": "Pilla de camino entre Belém y el centro.",
+   "media": [
+    "photos/lis22-lx-factory.jpg",
+    "photos/lis22-lx-2.jpg",
+    "photos/lis22-lx-3.jpg",
+    "photos/lis22-lx-4.jpg",
+    "photos/lis22-sushi.jpg"
+   ]
+  },
+  {
+   "id": "alfamagh",
+   "cat": "dormir",
+   "n": "Alfama Guest House",
+   "kind": "Pensión",
+   "zone": "Alfama",
+   "price": 2,
+   "lat": 38.7112,
+   "lon": -9.1297,
+   "txt": "Bastante bien ubicado. No está en pleno meollo, pero se llega cómodo a todo.",
+   "media": [
+    "photos/lis22-alfama-noche.jpg"
+   ]
+  },
+  {
+   "id": "holiday",
+   "cat": "dormir",
+   "n": "Holiday Inn (zona Moscavide)",
+   "kind": "Hotel",
+   "zone": "Moscavide",
+   "price": 2,
+   "lat": 38.779,
+   "lon": -9.102,
+   "txt": "Súper bien. Está lejos del centro, pero el Uber eran unos 7 € cada trayecto.",
+   "tip": "Buena opción si hay maratón o algún evento y el centro está carísimo.",
+   "media": []
+  }
+ ],
+ "plans": [
+  {
+   "id": "baixa",
+   "n": "Tarde por la Baixa y el Carmo",
+   "sub": "De la plaza del río a cenar pasta, pasando por dos miradores",
+   "dur": "4 h",
+   "when": "Tarde y noche",
+   "cover": "photos/lis26-mirador.jpg",
+   "steps": [
+    [
+     "comercio",
+     "Empezad aquí, junto al río."
+    ],
+    [
+     "santajusta",
+     "Subid en el elevador o andando por las cuestas."
+    ],
+    [
+     "ginjinha",
+     "Un chupito en el vaso de chocolate."
+    ],
+    [
+     "lisboabar",
+     "Cerveza grande en la azotea."
+    ],
+    [
+     "saopedro",
+     "Al atardecer, que hay música."
+    ],
+    [
+     "nonna",
+     "Cena de pasta, a un paso del mirador."
+    ]
+   ]
+  },
+  {
+   "id": "belem",
+   "n": "Mañana en Belém",
+   "sub": "Pasteles, monumentos y comer en LX Factory a la vuelta",
+   "dur": "5 h",
+   "when": "Mañana · mejor no en lunes",
+   "cover": "photos/lis22-torre-belem.jpg",
+   "steps": [
+    [
+     "comercio",
+     "Coged aquí el tranvía hacia Belém."
+    ],
+    [
+     "jeronimos",
+     "El monasterio, por fuera ya impresiona."
+    ],
+    [
+     "pasteis",
+     "Al lado mismo. Parada obligatoria."
+    ],
+    [
+     "padrao",
+     "Bajad hacia el río."
+    ],
+    [
+     "torre",
+     "La foto típica."
+    ],
+    [
+     "lx",
+     "De vuelta, a comer y a pasear."
+    ]
+   ]
+  },
+  {
+   "id": "noche",
+   "n": "Atardecer y noche en la Bica",
+   "sub": "Ostras a 1 €, funicular, atardecer y copas",
+   "dur": "4 h",
+   "when": "Tarde y noche",
+   "cover": "photos/lis22-pink-street.jpg",
+   "steps": [
+    [
+     "pink",
+     "Para empezar, la calle de los paraguas."
+    ],
+    [
+     "barbica",
+     "Happy hour de ostras."
+    ],
+    [
+     "bica",
+     "Subid en el funicular."
+    ],
+    [
+     "santacatarina",
+     "El atardecer con el puente enfrente."
+    ],
+    [
+     "bairroalto",
+     "A tomar algo en la calle."
+    ]
+   ]
+  }
+ ],
+ "basics": [
+  {
+   "ic": "plane",
+   "t": "Desde el aeropuerto",
+   "txt": "El metro (línea roja) os deja en el centro en unos 25 minutos por menos de 2 €. Hay que sacar la tarjeta recargable en la máquina. En Uber o Bolt también va bien de precio."
+  },
+  {
+   "ic": "ticket",
+   "t": "Para moverse",
+   "txt": "El pase de 24 h de metro, buses, tranvías y elevadores cuesta 7,25 €. Si solo vais a montar una vez en el tranvía, pagad a bordo (3,30 €). Y el Uber es baratísimo."
+  },
+  {
+   "ic": "shoe",
+   "t": "Calzado cómodo",
+   "txt": "Lisboa es todo cuestas, llevad calzado cómodo."
+  },
+  {
+   "ic": "bed",
+   "t": "Dónde dormir",
+   "txt": "Alfama, Baixa o Chiado para hacerlo todo andando. Si coincide con la maratón o con algún evento, el centro está carísimo. Nosotros dormimos en Moscavide y el Uber al centro eran unos 7 €."
+  },
+  {
+   "ic": "sun",
+   "t": "Atardeceres",
+   "txt": "Santa Catarina o São Pedro de Alcântara. En los dos hay ambiente al caer el sol."
+  },
+  {
+   "ic": "calendar",
+   "t": "Ojo con los lunes",
+   "txt": "La Torre de Belém y los Jerónimos cierran los lunes. Dejad Belém para otro día."
+  },
+  {
+   "ic": "car",
+   "t": "Si vais en coche",
+   "txt": "Parad en Évora. Es muy barato y bonito, y os pilla a mitad de camino.",
+   "media": "photos/lis26-evora.jpg"
+  }
+ ],
+ "help": {
+  "phrases": [
+   [
+    "Gracias",
+    "Obrigado (si eres chica, obrigada)"
+   ],
+   [
+    "Perdone",
+    "Desculpe"
+   ],
+   [
+    "La cuenta, por favor",
+    "A conta, por favor"
+   ],
+   [
+    "¿Dónde está…?",
+    "Onde fica…?"
+   ],
+   [
+    "¿Habla español?",
+    "Fala espanhol?"
+   ]
+  ],
+  "emergency": "112"
+ }
+}

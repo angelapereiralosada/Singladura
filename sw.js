@@ -1,6 +1,6 @@
 // Singladura · funciona sin conexión: guarda la app, tus datos y los trozos de mapa que ya has visto
-const V = "singladura-v13", TILES = "singladura-tiles";
-const SHELL = ["./", "index.html", "manifest.webmanifest", "gz.json", "vendor/maplibre-gl.js", "vendor/maplibre-gl.css", "vendor/d3.min.js", "vendor/world.js", "icons/icon-192.png"];
+const V = "singladura-v14", TILES = "singladura-tiles";
+const SHELL = ["./", "index.html", "manifest.webmanifest", "gz.json", "vendor/maplibre-gl.js", "vendor/maplibre-gl.css", "vendor/d3.min.js", "vendor/world.js", "icons/icon-192.png", "guia.html"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V && k !== TILES).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 let puts = 0;
@@ -17,7 +17,7 @@ self.addEventListener("fetch", e => {
     return;
   }
   if (u.origin !== location.origin) return;
-  const fresh = r.mode === "navigate" || u.pathname.endsWith("/data/items.json") || u.pathname.endsWith("/data/config.json") || u.pathname.endsWith("/index.html");
+  const fresh = r.mode === "navigate" || u.pathname.endsWith("/data/items.json") || u.pathname.endsWith("/data/config.json") || u.pathname.endsWith("/index.html") || u.pathname.endsWith("/guia.html") || u.pathname.includes("/data/guias/");
   const key = new Request(u.origin + u.pathname);
   if (fresh) {
     e.respondWith(fetch(r).then(res => { if (res.ok) caches.open(V).then(c => c.put(key, res.clone())); return res; }).catch(async () => (await caches.match(key)) || (await caches.match(new Request(u.origin + u.pathname.replace(/[^/]*$/, "index.html")))) || Response.error()));

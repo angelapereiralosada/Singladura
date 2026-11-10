@@ -1746,6 +1746,9 @@ function destStory(d, list){
 }
 function openDest(id, push = true){
   const d = dests().find(x => x.id === id); if (!d) return;
+  const gu = "guia.html#" + (d.slug || id.replace(/^dest-/, ""));
+  if (push) location.href = gu; else location.replace(gu);
+  return;
   DEST = id; if (push) setHash(d.slug || id.replace(/^dest-/, ""));
   renderDest(); const el = $("#dest"); el.hidden = false; el.scrollTop = 0; document.body.classList.add("deston");
 }
