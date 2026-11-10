@@ -41,8 +41,7 @@
    "order": "El rigatoni Pomodoro con burrata y pistacho, que es su plato estrella. Y el tiramisú.",
    "tip": "Como está de moda, id prontito o preguntad antes si hay sitio.",
    "media": [
-    "photos/lis26-cena.jpg",
-    "photos/lis22-v-pasta.mp4"
+    "photos/lis26-cena.jpg"
    ],
    "top": true,
    "addr": "Rua de Santo António da Glória 6B",
@@ -73,6 +72,26 @@
    "top": true
   },
   {
+   "id": "cultura",
+   "cat": "comer",
+   "n": "A Cultura do Hambúrguer",
+   "kind": "Hamburguesas",
+   "zone": "Bairro Alto",
+   "price": 2,
+   "lat": 38.7117,
+   "lon": -9.1441,
+   "txt": "Las hamburguesas estaban muy ricas, y con panes de colores.",
+   "order": "Una de las de pan rojo o negro, con patatas y una caña.",
+   "tip": "Tienen dos locales en el Bairro Alto: Rua das Salgadeiras y Rua da Atalaia. Después, a tomar algo por la zona.",
+   "addr": "Rua das Salgadeiras 38 (y Rua da Atalaia 57)",
+   "media": [
+    "photos/lis22-hamburguesas.jpg",
+    "photos/lis22-cena.jpg"
+   ],
+   "cover": "photos/lis22-hamburguesas.jpg",
+   "top": true
+  },
+  {
    "id": "pasteis",
    "cat": "comer",
    "n": "Pastéis de Belém",
@@ -98,8 +117,8 @@
    "price": 1,
    "lat": 38.7134,
    "lon": -9.1407,
-   "txt": "Un sitio enano debajo de unas escaleras. Te ponen el chupito de ginjinha en un vaso de chocolate.",
-   "order": "La ginjinha en vaso de chocolate, y os coméis el vaso.",
+   "txt": "Un sitio enano debajo de unas escaleras. Te ponen el chupito de ginjinha en un vaso de chocolate y pagas uno, pero te lo llenan dos veces.",
+   "order": "La ginjinha en vaso de chocolate. Con uno tienes derecho a que te lo rellenen otra vez, y luego os coméis el vaso.",
    "tip": "Subiendo las escaleras llegáis al Largo do Carmo, que es una plaza muy bonita.",
    "media": [
     "photos/lis26-v-ginjinha.mp4",
@@ -153,11 +172,9 @@
    "price": 1,
    "lat": 38.7128,
    "lon": -9.1445,
-   "txt": "Por la noche está lleno de gente tomando algo en la calle. Cenamos hamburguesas por aquí.",
+   "txt": "Por la noche está lleno de gente tomando algo en la calle.",
    "tip": "Se pide la bebida en la barra y se sale a la calle con ella, como hace todo el mundo.",
-   "media": [
-    "photos/lis22-cena.jpg"
-   ],
+   "media": [],
    "best": "De noche"
   },
   {

@@ -340,7 +340,8 @@ const DN = ["lun", "mar", "mie", "jue", "vie", "sab", "dom"], DL = ["Lunes", "Ma
 
 let G = null; const S = {me: null, watch: null, scroll: {}, navd: false, peek: null, mapCat: new Set(), meAt: 0};
 const isVid = u => /\.mp4$/i.test(u), poster = u => u.replace(/\.mp4$/i, ".jpg"), th = u => poster(u).replace("photos/", "photos/th/");
-const coverOf = p => p.cover ? th(p.cover) : p.media && p.media.length ? th(p.media.find(m => !isVid(m)) || p.media[0]) : th(G.hero[0]);
+const blankOf = p => { const C = CAT[p.cat]; return "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="${C.c}"/><g transform="translate(140 90) scale(5)" fill="none" stroke="${C.k}" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${P[C.ic]}"/></g></svg>`); };
+const coverOf = p => p.cover ? th(p.cover) : p.media && p.media.length ? th(p.media.find(m => !isVid(m)) || p.media[0]) : blankOf(p);
 const byId = id => G.places.find(p => p.id === id);
 const favKey = () => "fav." + G.slug;
 const favs = () => LS.get(favKey(), []);
@@ -524,9 +525,9 @@ function pHead(t, extra = ""){ return `<div class="ph" id="ph"><button class="rb
 function vPlace(id){
   const p = byId(id); if (!p) return vMissing();
   const s = status(p), d = dist(p), near = nearest(p, 4, p.id).filter(([k]) => k < 1.6);
-  const med = p.media.length ? p.media : [G.hero[0]];
+  const med = p.media.length ? p.media : [blankOf(p)];
   const {d: today} = Array.isArray(p.h) ? nowIn() : {d: -1};
-  return `<div class="dmedia">
+  return `<div class="dmedia"${p.media.length ? "" : ' style="height:34vh;min-height:220px"'}>
     <div class="strip" id="strip">${med.map(m => `<div class="m">${isVid(m) ? `<video src="${m}" poster="${poster(m)}" muted playsinline loop preload="metadata"></video>` : `<img src="${m}" alt="">`}</div>`).join("")}</div>
     <div class="top"><button class="rb" data-back aria-label="Atrás">${ic("back")}</button>${favBtn(p).replace('class="fav"', 'class="fav rb"')}</div>
     ${med.some(isVid) ? `<button class="snd" id="snd" aria-label="Activar sonido">${ic("mute")}</button>` : ""}
