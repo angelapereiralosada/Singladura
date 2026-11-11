@@ -403,16 +403,15 @@
    "addr": "Rua de São João da Praça 38"
   },
   {
-   "id": "holiday",
+   "id": "airbnb",
    "cat": "dormir",
-   "n": "Holiday Inn (zona Moscavide)",
-   "kind": "Hotel",
+   "n": "Airbnb en Moscavide",
+   "kind": "Apartamento",
    "zone": "Moscavide",
-   "price": 2,
    "lat": 38.779,
    "lon": -9.102,
-   "txt": "Súper bien. Está lejos del centro, pero el Uber eran unos 7 € cada trayecto.",
-   "tip": "Buena opción si hay maratón o algún evento y el centro está carísimo.",
+   "txt": "Había maratón y el centro estaba carísimo, así que cogimos un Airbnb en Moscavide. Está lejos, pero el Uber al centro eran unos 7 €.",
+   "tip": "Buena opción si coincide con algún evento y el centro está por las nubes.",
    "media": []
   }
  ],
@@ -535,7 +534,7 @@
   {
    "ic": "bed",
    "t": "Dónde dormir",
-   "txt": "Alfama, Baixa o Chiado para hacerlo todo andando. Si coincide con la maratón o con algún evento, el centro está carísimo. Nosotros dormimos en Moscavide y el Uber al centro eran unos 7 €."
+   "txt": "Alfama, Baixa o Chiado para hacerlo todo andando. Si coincide con la maratón o con algún evento, el centro está carísimo. Nosotros cogimos un Airbnb en Moscavide y el Uber al centro eran unos 7 €."
   },
   {
    "ic": "sun",
@@ -550,7 +549,7 @@
   {
    "ic": "car",
    "t": "Si vais en coche",
-   "txt": "Parad en Évora. Es muy barato y bonito, y os pilla a mitad de camino.",
+   "txt": "Parad en Évora. Es muy barato y bonito, y os pilla a mitad de camino. Nosotros dormimos en el Holiday Inn Express y súper bien.",
    "media": "photos/lis26-evora.jpg"
   }
  ],

@@ -2072,7 +2072,7 @@
     "lon": -7.907,
     "by": "coche",
     "leg": "En coche desde España",
-    "story": "A la ida paramos en Évora, a mitad de camino: un pueblo precioso y muy barato, de callejuelas blancas con zócalos amarillos que suben hacia la catedral. Perfecto para estirar las piernas, comer y seguir, o incluso para pasar un día entero.",
+    "story": "A la ida paramos en Évora, a mitad de camino: un pueblo precioso y muy barato, de callejuelas blancas con zócalos amarillos que suben hacia la catedral. Perfecto para estirar las piernas, comer y seguir, o incluso para pasar un día entero. Dormimos en el Holiday Inn Express y súper bien.",
     "note": "Consejo: Évora queda justo a mitad de camino desde España. Merece la parada, y es muy barato.",
     "items": [
      {
@@ -2093,7 +2093,8 @@
       "lon": -7.907,
       "txt": "Está en lo alto del casco antiguo."
      }
-    ]
+    ],
+    "sleep": "Holiday Inn Express Évora"
    },
    {
     "n": "Moscavide",
@@ -2103,17 +2104,18 @@
     "lon": -9.102,
     "by": "coche",
     "leg": "En coche hasta Lisboa",
-    "story": "Ese fin de semana había maratón y Lisboa estaba carísima, así que dormimos en el Holiday Inn, en la zona de Moscavide, junto al Parque das Nações. El hotel, súper bien; queda lejos del centro, pero el Uber era muy barato: unos 7 € cada trayecto.",
+    "story": "Ese fin de semana había maratón y Lisboa estaba carísima, así que cogimos un Airbnb en Moscavide. Queda lejos del centro, pero el Uber era muy barato: unos 7 € cada trayecto.",
     "note": "Consejo: si Lisboa está cara, Moscavide o el Parque das Nações salen mucho mejor de precio, y el Uber al centro cuesta unos 7 €.",
     "items": [
      {
       "t": "dormir",
-      "n": "Hotel Holiday Inn (zona Moscavide)",
+      "n": "Airbnb en Moscavide",
       "lat": 38.779,
       "lon": -9.102,
-      "txt": "Súper bien. Está lejos del centro, pero el Uber eran unos 7 € cada trayecto."
+      "txt": "Lejos del centro, pero el Uber eran unos 7 € cada trayecto."
      }
-    ]
+    ],
+    "sleep": "Airbnb en Moscavide"
    },
    {
     "n": "Baixa y Rossio",
